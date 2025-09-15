@@ -1,4 +1,4 @@
-package WeekendRevision.Step_1;
+package _00_WeekendRevision.Step_1;
 
 public class Patterns {
 

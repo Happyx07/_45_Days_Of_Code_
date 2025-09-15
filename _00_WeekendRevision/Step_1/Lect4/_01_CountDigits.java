@@ -1,4 +1,4 @@
- package WeekendRevision.Step_1.Lect4;
+ package _00_WeekendRevision.Step_1.Lect4;
  import java.util.Scanner;
 
 class _01_CountDigits {
