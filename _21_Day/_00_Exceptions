@@ -1,0 +1,14 @@
+// Let's compare with other array types
+    int[] numbers = {1, 2, 3, 4};
+    System.out.println(numbers);                // Prints: [I@hashcode
+    
+    String[] words = {"Hello", "World"};
+    System.out.println(words);                  // Prints: [Ljava.lang.String;@hashcode
+    
+    // To print other arrays properly, we need Arrays.toString()
+    System.out.println(java.util.Arrays.toString(numbers));  // Prints: [1, 2, 3, 4]
+    System.out.println(java.util.Arrays.toString(words));    // Prints: [Hello, World]
+    
+    // Converting char[] to String
+    String name = new String(arr);              // Convert char[] to String
+    System.out.println("Name: " + name);       // Prints: Name: Harshit

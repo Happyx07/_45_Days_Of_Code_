@@ -1,0 +1,334 @@
+/*
+===============================================================================
+                    COMPLETE JAVA STRINGS + DSA LEARNING GUIDE
+                           📚 PLACEMENT READY IN 7 DAYS 📚
+===============================================================================
+
+PART 1: JAVA STRING FUNDAMENTALS
+===============================================================================
+
+String in java are Immutable by default so we use StringBuffer and StringBuilder for Immutablity.
+
+
+1. STRING vs char[] vs StringBuilder vs StringBuffer
+----------------------------------------------------
+
+┌─────────────────┬─────────────┬─────────────┬──────────────┬─────────────────┐
+│     Type        │  Mutability │ Thread-Safe │ Performance  │    Use Case     │
+├─────────────────┼─────────────┼─────────────┼──────────────┼─────────────────┤
+│ String          │ Immutable   │    Yes      │    Slow      │ Few operations  │
+│ char[]          │  Mutable    │     No      │    Fast      │ Character ops   │
+│ StringBuilder   │  Mutable    │     No      │    Fast      │ Single thread   │
+│ StringBuffer    │  Mutable    │    Yes      │   Medium     │ Multi-thread    │
+└─────────────────┴─────────────┴─────────────┴──────────────┴─────────────────┘
+
+Example:
+String str = "Hello";           // Immutable
+char[] arr = {'H','e','l','l','o'}; // Mutable array
+StringBuilder sb = new StringBuilder("Hello"); // Mutable, not thread-safe
+StringBuffer sbf = new StringBuffer("Hello");  // Mutable, thread-safe
+
+2. STRING IMMUTABILITY & MEMORY (STRING POOL)
+----------------------------------------------
+
+💡 KEY CONCEPT: Strings are IMMUTABLE in Java!
+
+String Pool (Heap Memory):
+- Literal strings are stored in String Pool for memory optimization
+- Multiple variables can reference the same string object
+
+Memory Example:
+String s1 = "Java";        // Stored in String Pool  // This is a string Variable
+String s2 = "Java";        // Points to same object in pool  // this is also a String Variable
+String s3 = new String("Java"); // Creates new object in heap  // String Object
+
+Result: s1 == s2 (true), s1 == s3 (false)
+
+3. STRING OBJECT CREATION
+-------------------------
+
+Method 1 - String Literal:
+String str1 = "Hello";     // Goes to String Pool
+
+Method 2 - new Keyword:
+String str2 = new String("Hello"); // Creates new object in heap
+
+Method 3 - Using char array:
+char[] arr = {'H','e','l','l','o'};
+String str3 = new String(arr);
+
+4. equals() vs == in STRINGS
+-----------------------------
+
+== : Compares REFERENCES (memory addresses)
+equals() : Compares CONTENT (actual characters)
+
+Example:
+String s1 = "Java";
+String s2 = "Java";
+String s3 = new String("Java");
+
+s1 == s2        // true (same reference in pool)
+s1 == s3        // false (different objects)
+s1.equals(s3)   // true (same content)
+
+🎯 GOLDEN RULE: Always use equals() for string comparison!
+
+5. ESSENTIAL STRING METHODS
+===========================
+
+Length & Character Access:
+--------------------------
+length()        → Returns string length
+charAt(index)   → Returns character at given index
+toCharArray()   → Converts string to char array
+
+Example:
+String str = "Hello";
+int len = str.length();        // 5
+char ch = str.charAt(1);       // 'e'
+char[] arr = str.toCharArray(); // ['H','e','l','l','o']
+
+Substring Operations:
+---------------------
+substring(start)         → From start to end
+substring(start, end)    → From start to end-1
+indexOf(char/string)     → First occurrence index
+lastIndexOf(char/string) → Last occurrence index
+
+Example:
+String str = "Java Programming";
+String sub1 = str.substring(5);     // "Programming"
+String sub2 = str.substring(0, 4);  // "Java"
+int index1 = str.indexOf('a');      // 1
+int index2 = str.lastIndexOf('a');  // 3
+
+Search & Check Operations:
+--------------------------
+contains(string)     → Returns true if contains substring
+startsWith(string)   → Returns true if starts with given string
+endsWith(string)     → Returns true if ends with given string
+isEmpty()            → Returns true if length is 0
+
+Example:
+String str = "Java Programming";
+boolean contains = str.contains("Program");    // true
+boolean starts = str.startsWith("Java");       // true
+boolean ends = str.endsWith("ing");            // true
+boolean empty = str.isEmpty();                 // false
+
+Case & Formatting:
+------------------
+toUpperCase()    → Converts to uppercase
+toLowerCase()    → Converts to lowercase
+trim()           → Removes leading/trailing spaces
+
+Example:
+String str = "  Java Programming  ";
+String upper = str.toUpperCase();     // "  JAVA PROGRAMMING  "
+String lower = str.toLowerCase();     // "  java programming  "
+String trimmed = str.trim();          // "Java Programming"
+
+Split & Replace:
+----------------
+split(regex)              → Splits string into array
+replace(old, new)         → Replaces all occurrences
+replaceAll(regex, new)    → Replaces using regex
+replaceFirst(regex, new)  → Replaces first occurrence
+
+Example:
+String str = "Java,Python,C++";
+String[] parts = str.split(",");           // ["Java", "Python", "C++"]
+String replaced = str.replace(",", "-");   // "Java-Python-C++"
+String regex = "Java Programming 123";
+String result = regex.replaceAll("\\d+", "XXX"); // "Java Programming XXX"
+
+6. STRINGBUILDER & STRINGBUFFER
+===============================
+
+Why use StringBuilder/StringBuffer?
+- Strings are immutable → Each operation creates new object
+- For multiple operations → Use mutable alternatives
+- StringBuilder: Single-threaded, faster
+- StringBuffer: Multi-threaded, synchronized
+
+Common Methods:
+---------------
+append(data)         → Adds data at the end
+insert(index, data)  → Inserts data at given index
+delete(start, end)   → Deletes characters from start to end-1
+deleteCharAt(index)  → Deletes character at given index
+reverse()            → Reverses the string
+toString()           → Converts to String
+
+Example:
+StringBuilder sb = new StringBuilder("Hello");
+sb.append(" World");           // "Hello World"
+sb.insert(5, " Java");         // "Hello Java World"
+sb.delete(6, 10);             // "Hello World"
+sb.reverse();                 // "dlroW olleH"
+String result = sb.toString(); // Convert back to String
+
+Performance Comparison:
+-----------------------
+// ❌ Inefficient (creates multiple objects)
+String result = "";
+for(int i = 0; i < 1000; i++) {
+    result += "a";  // Each += creates new String object
+}
+
+// ✅ Efficient (single mutable object)
+StringBuilder sb = new StringBuilder();
+for(int i = 0; i < 1000; i++) {
+    sb.append("a");  // Modifies existing object
+}
+String result = sb.toString();
+
+===============================================================================
+PART 2: DSA PROBLEMS CLASSIFICATION
+===============================================================================
+
+🎯 PROBLEM CATEGORIES & DIFFICULTY LEVELS:
+
+BASIC PROBLEMS (Warm-up):
+------------------------
+1. Reverse a String
+2. Check Palindrome
+3. Count Vowels/Consonants
+4. Anagram Check
+5. Remove Duplicates
+6. First Non-Repeating Character
+
+INTERMEDIATE PROBLEMS:
+---------------------
+1. Longest Common Prefix
+2. Longest Palindromic Substring
+3. String Rotation Check
+4. Group Anagrams
+5. Valid Parentheses
+6. Remove Adjacent Duplicates
+
+ADVANCED PROBLEMS:
+------------------
+1. Minimum Window Substring
+2. Longest Substring Without Repeating Characters
+3. Regular Expression Matching
+4. Word Break Problem
+5. Edit Distance (Levenshtein)
+6. Pattern Matching (KMP, Rabin-Karp)
+
+===============================================================================
+7-DAY LEARNING PLAN
+===============================================================================
+
+📅 DAY 1-2: FOUNDATIONS
+-----------------------
+• String fundamentals & memory concepts
+• Essential String methods
+• Basic problems (Reverse, Palindrome, Vowel count)
+• Target: Solve 5-7 basic problems
+
+📅 DAY 3-4: INTERMEDIATE CONCEPTS
+---------------------------------
+• StringBuilder/StringBuffer mastery
+• Intermediate problems (LCP, Anagrams, Rotation)
+• Two-pointer technique on strings
+• Target: Solve 5-6 intermediate problems
+
+📅 DAY 5-6: ADVANCED TECHNIQUES
+-------------------------------
+• Sliding window on strings
+• Advanced problems (Min Window, Longest Substring)
+• Pattern matching algorithms
+• Target: Solve 4-5 advanced problems
+
+📅 DAY 7: MOCK TEST & REVISION
+------------------------------
+• Mixed difficulty problem set
+• Time-bound practice
+• Revision of all concepts
+• Target: Solve 8-10 mixed problems in 2 hours
+
+===============================================================================
+COMMON STRING PATTERNS & TECHNIQUES
+===============================================================================
+
+1. TWO POINTER TECHNIQUE:
+------------------------
+Use for: Palindrome check, reverse string, remove duplicates
+
+Template:
+int left = 0, right = str.length() - 1;
+while(left < right) {
+    // Process characters at left and right
+    left++;
+    right--;
+}
+
+2. SLIDING WINDOW:
+-----------------
+Use for: Substring problems, character frequency
+
+Template:
+int left = 0;
+for(int right = 0; right < str.length(); right++) {
+    // Expand window by including str.charAt(right)
+    
+    while(/* window is invalid */) {
+        // Shrink window from left
+        left++;
+    }
+    
+    // Update result with current valid window
+}
+
+3. FREQUENCY MAP:
+----------------
+Use for: Anagrams, character counting, duplicates
+
+Template:
+Map<Character, Integer> freq = new HashMap<>();
+for(char c : str.toCharArray()) {
+    freq.put(c, freq.getOrDefault(c, 0) + 1);
+}
+
+4. STRING BUILDER PATTERN:
+-------------------------
+Use for: String construction, reverse operations
+
+Template:
+StringBuilder sb = new StringBuilder();
+// Build string efficiently
+return sb.toString();
+
+===============================================================================
+INTERVIEW TIPS & TRICKS
+===============================================================================
+
+🎯 OPTIMIZATION CHECKLIST:
+--------------------------
+□ Use StringBuilder for string building
+□ Prefer charAt() over substring() for single characters
+□ Use equals() not == for content comparison
+□ Consider character arrays for in-place operations
+□ Use appropriate data structures (Set, Map) for lookups
+
+🎯 COMMON MISTAKES TO AVOID:
+---------------------------
+□ Using == instead of equals()
+□ Forgetting string immutability
+□ Not handling null/empty strings
+□ Inefficient string concatenation in loops
+□ Not considering case sensitivity
+
+🎯 TIME COMPLEXITY GUIDE:
+------------------------
+• charAt(), length(): O(1)
+• substring(): O(n)
+• indexOf(), contains(): O(n)
+• split(): O(n)
+• String concatenation: O(n)
+• StringBuilder operations: O(1) amortized
+
+===============================================================================
+*/

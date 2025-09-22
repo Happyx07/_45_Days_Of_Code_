@@ -1,4 +1,4 @@
-package _13_.step_4;
+package _13_Day.step_4;
 
 public class _02_SearchInsert {
   public static void main(String[] args) {
