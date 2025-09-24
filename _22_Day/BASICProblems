@@ -1,0 +1,340 @@
+===============================================================================
+                        JAVA STRINGS: STRUCTURED LEARNING PATH 🚀
+                              30 Problems for Complete Mastery
+===============================================================================
+
+📚 OVERVIEW:
+This is a step-by-step progression of 30 problems designed to build your Java 
+String manipulation skills from absolute basics to algorithmic challenges.
+
+📋 PROGRESS TRACKER:
+□ Phase 1: The Absolute Basics (Problems 1-3)
+□ Phase 2: Comparing & Searching (Problems 4-8) 
+□ Phase 3: Manipulation & Transformation (Problems 9-15)
+□ Phase 4: StringBuilder Mastery (Problems 16-20)
+□ Phase 5: Character Analysis (Problems 21-24)
+□ Phase 6: Practical Utilities (Problems 25-27)
+□ Phase 7: Algorithmic Challenges (Problems 28-30)
+
+===============================================================================
+🔰 PHASE 1: THE ABSOLUTE BASICS
+===============================================================================
+
+Problem #1: Find String Length
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: length()                                                        │
+│ Problem: Take a string and return its total number of characters.           │
+│ Learning Outcome: Understand how to get the size of a string.               │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #2: Access Nth Character  
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: charAt()                                                        │
+│ Problem: Print the first, middle, and last character of a string.           │
+│ Learning Outcome: Learn how to access individual characters by index.       │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #3: Print All Characters
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: length(), charAt()                                              │
+│ Problem: Iterate through a string and print each character on a new line.   │
+│ Learning Outcome: Master looping over a string character by character.      │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+===============================================================================
+🔍 PHASE 2: COMPARING & SEARCHING
+===============================================================================
+
+Problem #4: Exact Match Check
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: equals()                                                        │
+│ Problem: Return true if two strings are exactly the same (case-sensitive).  │
+│ Learning Outcome: Learn the correct way to check for string equality.       │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #5: Ignore-Case Match Check
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: equalsIgnoreCase()                                              │
+│ Problem: Check if two strings are the same, ignoring case.                  │
+│ Learning Outcome: Understand case-insensitive comparisons.                  │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #6: Lexicographical Comparison
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: compareTo()                                                     │
+│ Problem: Compare two strings to see which comes first in dictionary order.  │
+│ Learning Outcome: Learn the fundamentals of how strings are sorted.         │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #7: Find First Substring
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: indexOf()                                                       │
+│ Problem: Find the starting index of a word within a sentence.               │
+│ Learning Outcome: Learn to locate the position of a substring.              │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #8: Check for Substring Presence
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: contains()                                                      │
+│ Problem: Return true if a sentence contains a specific word.                │
+│ Learning Outcome: Learn boolean check for substring existence.              │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+===============================================================================
+✂️ PHASE 3: MANIPULATION & TRANSFORMATION
+===============================================================================
+
+Problem #9: Extract a Prefix
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: substring()                                                     │
+│ Problem: Return the first 5 characters of a string.                         │
+│ Learning Outcome: Learn how to extract a portion of a string.               │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #10: Extract a Suffix
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: substring()                                                     │
+│ Problem: Return everything from a given index to the end of the string.     │
+│ Learning Outcome: Learn how to slice a string from a middle point.          │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #11: Convert to Lowercase
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: toLowerCase()                                                   │
+│ Problem: Convert an entire string to lowercase.                             │
+│ Learning Outcome: Master case normalization for data processing.            │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #12: Trim Whitespace
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: trim()                                                          │
+│ Problem: Remove any leading or trailing spaces from a string.               │
+│ Learning Outcome: Understand how to clean up user input.                    │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #13: Character Replacement
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: replace()                                                       │
+│ Problem: Replace all occurrences of 'a' with 'o' in a string.               │
+│ Learning Outcome: Learn how to perform simple, immutable replacements.      │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #14: String to Character Array
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: toCharArray()                                                   │
+│ Problem: Convert a string into an array of characters.                      │
+│ Learning Outcome: Learn to get character array, essential for algorithms.   │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #15: Splitting a Sentence
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: split()                                                         │
+│ Problem: Split a sentence into an array of words by spaces.                 │
+│ Learning Outcome: Master powerful technique for tokenizing string data.     │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+===============================================================================
+🛠️ PHASE 4: STRINGBUILDER MASTERY
+===============================================================================
+
+Problem #16: Join Strings Efficiently
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: StringBuilder.append()                                          │
+│ Problem: Join an array of words into a single sentence.                     │
+│ Learning Outcome: Understand efficient concatenation vs. + operator.       │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #17: Reverse a String
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: StringBuilder.reverse()                                         │
+│ Problem: Reverse a string (e.g., "hello" becomes "olleh").                  │
+│ Learning Outcome: Learn easiest and most efficient way to reverse strings.  │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #18: Insert into a String
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: StringBuilder.insert()                                          │
+│ Problem: Insert a word at a specific index in a string.                     │
+│ Learning Outcome: Learn how to add content to middle of string builder.     │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #19: Delete from a String
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: StringBuilder.delete()                                          │
+│ Problem: Remove a portion of string given start and end index.              │
+│ Learning Outcome: Learn how to remove substring from string builder.        │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #20: Palindrome Check
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: StringBuilder.reverse(), equals()                               │
+│ Problem: Check if a string is a palindrome (e.g., "madam").                 │
+│ Learning Outcome: Combine String and StringBuilder knowledge.               │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+===============================================================================
+🔬 PHASE 5: CHARACTER ANALYSIS
+===============================================================================
+
+Problem #21: Anagram Check
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: toCharArray(), Arrays.sort()                                    │
+│ Problem: Determine if two strings are anagrams of each other.               │
+│ Learning Outcome: Learn to solve anagrams by sorting character arrays.      │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #22: Count Character Occurrences
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: Looping, charAt()                                               │
+│ Problem: Count the frequency of each character in a string.                 │
+│ Learning Outcome: Learn to use array as simple frequency map.               │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #23: Find Most Frequent Character
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: Frequency Map                                                   │
+│ Problem: Find the character that appears most frequently in a string.       │
+│ Learning Outcome: Practice iterating through frequency map to find max.     │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #24: Remove Duplicate Characters
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: indexOf(), StringBuilder                                        │
+│ Problem: Remove duplicate characters, keeping the first occurrence.         │
+│ Learning Outcome: Learn to build string conditionally by checking uniqueness│
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+===============================================================================
+🔧 PHASE 6: PRACTICAL UTILITIES
+===============================================================================
+
+Problem #25: Check for Only Digits
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: Character.isDigit()                                             │
+│ Problem: Return true if a string contains only numeric digits.              │
+│ Learning Outcome: Get introduced to Character wrapper class utility methods.│
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #26: Capitalize Words
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: split(), substring(), toUpperCase()                             │
+│ Problem: Capitalize the first letter of each word in a sentence.            │
+│ Learning Outcome: Consolidate splitting, slicing, and building skills.      │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #27: Basic String Formatting
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: String.format()                                                 │
+│ Problem: Create a formatted string like "My name is [Name]...".             │
+│ Learning Outcome: Learn modern and flexible way to format strings.          │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+===============================================================================
+🧠 PHASE 7: ALGORITHMIC CHALLENGES
+===============================================================================
+
+Problem #28: Simple String Compression
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: Looping, StringBuilder                                          │
+│ Problem: Compress a string (e.g., "aabcccccaaa" becomes "a2b1c5a3").        │
+│ Learning Outcome: Practice complex iteration patterns with look-ahead logic.│
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #29: Check String Rotation
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: concat(), contains()                                            │
+│ Problem: Check if one string is a rotation of another.                      │
+│ Learning Outcome: Learn a clever and efficient trick to solve this problem. │
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Problem #30: Validate IPv4 Address
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Core Topic: split(), Integer.parseInt(), try-catch                          │
+│ Problem: Determine if a string is a valid IPv4 address.                     │
+│ Learning Outcome: Tackle multi-step validation with string/number conversion│
+│ Completion: □                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+===============================================================================
+📊 SKILL PROGRESSION CHECKLIST
+===============================================================================
+
+□ BEGINNER LEVEL (Problems 1-8):
+  □ Basic string operations (length, charAt, equals)
+  □ String searching and comparison methods
+  □ Understanding string immutability
+
+□ INTERMEDIATE LEVEL (Problems 9-20):
+  □ String manipulation and transformation
+  □ StringBuilder vs String performance
+  □ Efficient string building techniques
+
+□ ADVANCED LEVEL (Problems 21-27):
+  □ Character analysis and frequency counting
+  □ Complex string processing algorithms
+  □ Practical utility functions
+
+□ EXPERT LEVEL (Problems 28-30):
+  □ Advanced algorithmic challenges
+  □ String compression and rotation
+  □ Data validation with strings
+
+===============================================================================
+🎯 LEARNING MILESTONES
+===============================================================================
+
+□ Milestone 1: Complete Phase 1-2 (Basic Operations)
+□ Milestone 2: Complete Phase 3-4 (Manipulation & StringBuilder)  
+□ Milestone 3: Complete Phase 5-6 (Analysis & Utilities)
+□ Milestone 4: Complete Phase 7 (Algorithmic Mastery)
+
+===============================================================================
+📝 NOTES SECTION
+===============================================================================
+
+Key Concepts to Remember:
+• String immutability - every operation creates a new object
+• Use StringBuilder for multiple concatenations
+• equals() vs == for string comparison
+• Character class utilities for analysis
+• Regular expressions for complex pattern matching
+
+Common Pitfalls to Avoid:
+• Using == instead of equals() for content comparison
+• Inefficient string concatenation in loops
+• Not handling null strings
+• Forgetting string indices are 0-based
+• Case sensitivity issues in comparisons
+
+===============================================================================
+
+

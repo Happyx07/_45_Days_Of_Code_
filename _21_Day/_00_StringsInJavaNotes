@@ -192,8 +192,8 @@ PART 2: DSA PROBLEMS CLASSIFICATION
 
 BASIC PROBLEMS (Warm-up):
 ------------------------
-1. Reverse a String
-2. Check Palindrome
+1. Reverse a String  { done}
+2. Check Palindrome  {done}
 3. Count Vowels/Consonants
 4. Anagram Check
 5. Remove Duplicates
