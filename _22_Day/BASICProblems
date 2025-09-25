@@ -22,7 +22,7 @@ String manipulation skills from absolute basics to algorithmic challenges.
 
 Problem #1: Find String Length
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ Core Topic: length()                                                        │
+│ Core Topic: length()    s.length();                                                      │
 │ Problem: Take a string and return its total number of characters.           │
 │ Learning Outcome: Understand how to get the size of a string.               │
 │ Completion: □                                                               │
@@ -30,7 +30,7 @@ Problem #1: Find String Length
 
 Problem #2: Access Nth Character  
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ Core Topic: charAt()                                                        │
+│ Core Topic: charAt()  s.charAt(index: 4)  ;                                                  │
 │ Problem: Print the first, middle, and last character of a string.           │
 │ Learning Outcome: Learn how to access individual characters by index.       │
 │ Completion: □                                                               │
@@ -74,7 +74,7 @@ Problem #6: Lexicographical Comparison
 
 Problem #7: Find First Substring
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ Core Topic: indexOf()                                                       │
+│ Core Topic: indexOf()       s.indexOf("a")  ;                                              │
 │ Problem: Find the starting index of a word within a sentence.               │
 │ Learning Outcome: Learn to locate the position of a substring.              │
 │ Completion: □                                                               │
@@ -102,7 +102,7 @@ Problem #9: Extract a Prefix
 
 Problem #10: Extract a Suffix
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ Core Topic: substring()                                                     │
+│ Core Topic: substring(start, end)                                                     │
 │ Problem: Return everything from a given index to the end of the string.     │
 │ Learning Outcome: Learn how to slice a string from a middle point.          │
 │ Completion: □                                                               │

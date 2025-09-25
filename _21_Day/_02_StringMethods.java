@@ -15,12 +15,12 @@ public class _02_StringMethods {
 
   //-------------------------------------------
   // IMPORTANT SUBSTRING METHODS
-   String str = "Java Programming";
-   String sub1 = str.substring(5);// substring starting from given index to the end.
-   String sub2 = str.substring(5, 12);
-   int idx1 = str.indexOf('J');
-   int idx2 = str.indexOf('g');
-   int idx3 = str.lastIndexOf('g');
+  //  String str = "Java Programming";
+  //  String sub1 = str.substring(5);// substring starting from given index to the end.
+  //  String sub2 = str.substring(5, 12);
+  //  int idx1 = str.indexOf('J');
+  //  int idx2 = str.indexOf('g');
+  //  int idx3 = str.lastIndexOf('g');
 
    // SEARCH AND CHECK OPERATIONS
 
@@ -35,15 +35,15 @@ public class _02_StringMethods {
   //  System.out.println(h.trim());
 
 
-  // SPLIT AND REPLACE METHODS-----
+  // // SPLIT AND REPLACE METHODS-----
 
-  String[] parts = str.split(" ");
+  // String[] parts = str.split(" ");
 
-  for(String p:parts){
-    System.out.println(p);
-  }
+  // for(String p:parts){
+  //   System.out.println(p);
+  // }
 
-  System.out.println(str.replaceAll("a", "i"));
+  // System.out.println(str.replaceAll("a", "i"));
 
 
 

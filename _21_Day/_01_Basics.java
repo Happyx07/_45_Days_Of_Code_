@@ -56,7 +56,7 @@ public class _01_Basics {
     // 🎯 YOUR CHALLENGE: COUNT VOWELS 
     System.out.println("\n=== VOWEL COUNTING CHALLENGE ===");
     String sentence = "Programming is Fun";
-    // TODO: Write code to count vowels in 'sentence'
+    //
     // Expected output: 6 vowels
     // Hint: Use charAt() and length() in a loop
     int vowelCount= 0;

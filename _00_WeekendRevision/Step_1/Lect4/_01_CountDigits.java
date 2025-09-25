@@ -15,6 +15,7 @@ class _01_CountDigits {
       count++;
     }
     System.out.println(count);
+    sc.close();
 
   }
 }

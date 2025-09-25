@@ -1,6 +1,5 @@
 package _22_Day.BasicStringsPractice;
-import java.util.Arrays;
-import java.util.HashSet;
+
 import java.util.Scanner;
 
 public class String1 {
@@ -8,6 +7,7 @@ public class String1 {
     Scanner sc = new Scanner(System.in);
     System.out.println("Enter your  1st String:");
     String input1 = sc.nextLine();
+    sc.close();
 
 //==================================================
 // Problem #30: Validate IPv4 Address
@@ -28,7 +28,7 @@ if(segments.length==4){
     }
       
     } catch (Exception e) {
-      // TODO: handle exception
+  
       valid = false;
       break;
     }
@@ -82,6 +82,9 @@ System.out.println(valid);
 // Problem #27: Basic String Formatting
 
 // String formated = String.format("My name is %s", input1);
+
+// %s is used for strings
+// %d is used for integers 
 
 // System.out.println(formated);
 
@@ -248,7 +251,7 @@ System.out.println(valid);
 // System.out.println(sb.reverse());
 
 //============================================
-
+   // problem #16 
 // String[] s = input1.split(" ");
 
 // StringBuilder sb = new StringBuilder();

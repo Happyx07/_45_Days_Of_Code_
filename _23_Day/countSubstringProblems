@@ -1,0 +1,790 @@
+===============================================================================
+                    JAVA SUBSTRING COUNTING PROBLEMS GUIDE
+                         6 Problems with Complete Solutions
+===============================================================================
+
+📚 OVERVIEW:
+This guide covers 6 progressively difficult problems related to counting 
+substrings in Java. Each problem includes intuition, approach, complexity 
+analysis, and clean Java implementation.
+
+🎯 LEARNING OBJECTIVES:
+- Master different substring counting techniques
+- Understand brute force vs optimized approaches
+- Learn sliding window and dynamic programming patterns
+- Handle edge cases in string problems
+- Solve LeetCode-style problems efficiently
+
+===============================================================================
+🟢 PROBLEM #1: COUNT ALL SUBSTRINGS (EASY)
+===============================================================================
+
+📋 PROBLEM STATEMENT:
+Given a string, count the total number of substrings possible.
+Input: "abc"
+Output: 6
+Explanation: Substrings are "a", "b", "c", "ab", "bc", "abc"
+
+💡 INTUITION:
+- For a string of length n, every character can be the start of a substring
+- From each starting position i, we can form substrings ending at positions i, i+1, ..., n-1
+- This gives us a mathematical formula: n*(n+1)/2
+
+🔍 APPROACH:
+1. Brute Force: Generate all substrings and count them - O(n³)
+2. Mathematical: Use formula n*(n+1)/2 - O(1)
+3. Iterative: Count substrings starting from each position - O(n²)
+
+⚡ COMPLEXITY:
+Time: O(1) for mathematical approach, O(n²) for iterative
+Space: O(1)
+
+💻 JAVA SOLUTION:
+```java
+public class CountAllSubstrings {
+    
+    // Method 1: Mathematical Formula (Most Efficient)
+    public static int countSubstringsMath(String s) {
+        if (s == null || s.length() == 0) return 0;
+        
+        int n = s.length();
+        return n * (n + 1) / 2;
+    }
+    
+    // Method 2: Iterative Approach (Educational)
+    public static int countSubstringsIterative(String s) {
+        if (s == null || s.length() == 0) return 0;
+        
+        int count = 0;
+        int n = s.length();
+        
+        // For each starting position
+        for (int i = 0; i < n; i++) {
+            // Count substrings starting at position i
+            for (int j = i; j < n; j++) {
+                count++;
+                // Optional: Print substring for visualization
+                // System.out.println(s.substring(i, j + 1));
+            }
+        }
+        
+        return count;
+    }
+    
+    public static void main(String[] args) {
+        String test = "abc";
+        System.out.println("Mathematical: " + countSubstringsMath(test));
+        System.out.println("Iterative: " + countSubstringsIterative(test));
+    }
+}
+```
+
+🔥 HINTS:
+1. Think about what defines a unique substring (start and end positions)
+2. For string of length 1: 1 substring, length 2: 3 substrings, length 3: 6 substrings
+3. Pattern: 1, 3, 6, 10, 15... (triangular numbers)
+
+===============================================================================
+🟡 PROBLEM #2: COUNT SUBSTRINGS WITH UNIQUE CHARACTERS (EASY-MEDIUM)
+===============================================================================
+
+📋 PROBLEM STATEMENT:
+Count the number of substrings that contain only unique characters.
+Input: "abcabc"
+Output: 10
+Explanation: "a", "b", "c", "ab", "bc", "ca", "abc", "bca", "cab", "a", "b", "c"
+
+💡 INTUITION:
+- We need to find all substrings where no character repeats
+- Use sliding window technique to maintain unique character window
+- When we find a duplicate, we need to shrink the window from left
+
+🔍 APPROACH:
+1. Brute Force: Check each substring for uniqueness - O(n³)
+2. Sliding Window: Expand and contract window based on duplicates - O(n²)
+3. Optimized Sliding Window: Use HashMap to track last occurrence - O(n)
+
+⚡ COMPLEXITY:
+Time: O(n) for optimized approach
+Space: O(min(m,n)) where m is character set size
+
+💻 JAVA SOLUTION:
+```java
+import java.util.*;
+
+public class CountUniqueSubstrings {
+    
+    public static int countUniqueSubstrings(String s) {
+        if (s == null || s.length() == 0) return 0;
+        
+        int count = 0;
+        int n = s.length();
+        
+        // For each starting position
+        for (int i = 0; i < n; i++) {
+            Set<Character> seen = new HashSet<>();
+            
+            // Extend substring from position i
+            for (int j = i; j < n; j++) {
+                char c = s.charAt(j);
+                
+                // If character already seen, break
+                if (seen.contains(c)) {
+                    break;
+                }
+                
+                seen.add(c);
+                count++;
+                // Optional: Print unique substring
+                // System.out.println(s.substring(i, j + 1));
+            }
+        }
+        
+        return count;
+    }
+    
+    // Optimized approach using sliding window
+    public static int countUniqueSubstringsOptimized(String s) {
+        if (s == null || s.length() == 0) return 0;
+        
+        int count = 0;
+        int n = s.length();
+        
+        for (int i = 0; i < n; i++) {
+            boolean[] visited = new boolean[256]; // ASCII characters
+            
+            for (int j = i; j < n && !visited[s.charAt(j)]; j++) {
+                visited[s.charAt(j)] = true;
+                count++;
+            }
+        }
+        
+        return count;
+    }
+    
+    public static void main(String[] args) {
+        String test = "abcabc";
+        System.out.println("Count: " + countUniqueSubstrings(test));
+        System.out.println("Optimized: " + countUniqueSubstringsOptimized(test));
+    }
+}
+```
+
+🔥 HINTS:
+1. Use HashSet to track characters in current substring
+2. When you encounter a duplicate, start a new substring from the next position
+3. Think about when to break the inner loop
+
+===============================================================================
+🟡 PROBLEM #3: COUNT PALINDROMIC SUBSTRINGS (MEDIUM)
+===============================================================================
+
+📋 PROBLEM STATEMENT:
+Count the number of palindromic substrings in a given string.
+Input: "aaa"
+Output: 6
+Explanation: "a", "a", "a", "aa", "aa", "aaa"
+
+💡 INTUITION:
+- A palindrome reads the same forwards and backwards
+- We can expand around each possible center (character and between characters)
+- For each center, expand outward while characters match
+
+🔍 APPROACH:
+1. Brute Force: Check each substring for palindrome property - O(n³)
+2. Expand Around Centers: For each center, expand while matching - O(n²)
+3. Dynamic Programming: Build solution using smaller palindromes - O(n²)
+
+⚡ COMPLEXITY:
+Time: O(n²) for expand around centers
+Space: O(1) for expand around centers, O(n²) for DP
+
+💻 JAVA SOLUTION:
+```java
+public class CountPalindromicSubstrings {
+    
+    public static int countPalindromicSubstrings(String s) {
+        if (s == null || s.length() == 0) return 0;
+        
+        int count = 0;
+        int n = s.length();
+        
+        // Check for palindromes centered at each position and between positions
+        for (int i = 0; i < n; i++) {
+            // Odd length palindromes (center at i)
+            count += expandAroundCenter(s, i, i);
+            
+            // Even length palindromes (center between i and i+1)
+            count += expandAroundCenter(s, i, i + 1);
+        }
+        
+        return count;
+    }
+    
+    private static int expandAroundCenter(String s, int left, int right) {
+        int count = 0;
+        
+        // Expand while characters match and indices are valid
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            count++;
+            left--;
+            right++;
+        }
+        
+        return count;
+    }
+    
+    // Alternative: Dynamic Programming approach
+    public static int countPalindromicSubstringsDP(String s) {
+        if (s == null || s.length() == 0) return 0;
+        
+        int n = s.length();
+        boolean[][] dp = new boolean[n][n];
+        int count = 0;
+        
+        // Single characters are palindromes
+        for (int i = 0; i < n; i++) {
+            dp[i][i] = true;
+            count++;
+        }
+        
+        // Check for 2-character palindromes
+        for (int i = 0; i < n - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) {
+                dp[i][i + 1] = true;
+                count++;
+            }
+        }
+        
+        // Check for palindromes of length 3 and more
+        for (int length = 3; length <= n; length++) {
+            for (int i = 0; i <= n - length; i++) {
+                int j = i + length - 1;
+                
+                if (s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1]) {
+                    dp[i][j] = true;
+                    count++;
+                }
+            }
+        }
+        
+        return count;
+    }
+    
+    public static void main(String[] args) {
+        String test = "aaa";
+        System.out.println("Expand Around Centers: " + countPalindromicSubstrings(test));
+        System.out.println("Dynamic Programming: " + countPalindromicSubstringsDP(test));
+        
+        // Test with more complex string
+        String test2 = "abc";
+        System.out.println("Test 'abc': " + countPalindromicSubstrings(test2)); // Should be 3
+    }
+}
+```
+
+🔥 HINTS:
+1. Every single character is a palindrome
+2. For each position, consider it as center of odd-length palindrome
+3. For each adjacent pair, consider them as center of even-length palindrome
+4. Expand outward while characters match
+
+===============================================================================
+🟠 PROBLEM #4: COUNT SUBSTRINGS WITH K DISTINCT CHARACTERS (MEDIUM)
+===============================================================================
+
+📋 PROBLEM STATEMENT:
+Count the number of substrings that have exactly K distinct characters.
+Input: s = "aba", k = 2
+Output: 2
+Explanation: Substrings with exactly 2 distinct characters: "ab", "ba"
+
+💡 INTUITION:
+- This is a classic sliding window problem
+- We need to count substrings with exactly K distinct characters
+- Use the fact that: exactly K = at most K - at most (K-1)
+
+🔍 APPROACH:
+1. Brute Force: Check each substring for distinct character count - O(n³)
+2. Sliding Window Helper: Count substrings with at most K distinct chars - O(n)
+3. Final Answer: atMostK(K) - atMostK(K-1) - O(n)
+
+⚡ COMPLEXITY:
+Time: O(n) where n is string length
+Space: O(K) for storing character frequencies
+
+💻 JAVA SOLUTION:
+```java
+import java.util.*;
+
+public class CountSubstringsKDistinct {
+    
+    public static int countSubstringsExactlyK(String s, int k) {
+        if (k == 0) return 0;
+        return countSubstringsAtMostK(s, k) - countSubstringsAtMostK(s, k - 1);
+    }
+    
+    private static int countSubstringsAtMostK(String s, int k) {
+        if (s == null || s.length() == 0 || k <= 0) return 0;
+        
+        Map<Character, Integer> charCount = new HashMap<>();
+        int left = 0, count = 0;
+        
+        for (int right = 0; right < s.length(); right++) {
+            char rightChar = s.charAt(right);
+            charCount.put(rightChar, charCount.getOrDefault(rightChar, 0) + 1);
+            
+            // Shrink window if we have more than k distinct characters
+            while (charCount.size() > k) {
+                char leftChar = s.charAt(left);
+                charCount.put(leftChar, charCount.get(leftChar) - 1);
+                
+                if (charCount.get(leftChar) == 0) {
+                    charCount.remove(leftChar);
+                }
+                left++;
+            }
+            
+            // Add all substrings ending at 'right' with at most k distinct chars
+            count += right - left + 1;
+        }
+        
+        return count;
+    }
+    
+    // Alternative: Direct approach (less efficient but more intuitive)
+    public static int countSubstringsExactlyKDirect(String s, int k) {
+        if (s == null || s.length() == 0) return 0;
+        
+        int count = 0;
+        int n = s.length();
+        
+        // Check all possible substrings
+        for (int i = 0; i < n; i++) {
+            Set<Character> distinctChars = new HashSet<>();
+            
+            for (int j = i; j < n; j++) {
+                distinctChars.add(s.charAt(j));
+                
+                // If exactly k distinct characters
+                if (distinctChars.size() == k) {
+                    count++;
+                } else if (distinctChars.size() > k) {
+                    // No point continuing from this starting position
+                    break;
+                }
+            }
+        }
+        
+        return count;
+    }
+    
+    public static void main(String[] args) {
+        String test = "aba";
+        int k = 2;
+        
+        System.out.println("Sliding Window: " + countSubstringsExactlyK(test, k));
+        System.out.println("Direct Approach: " + countSubstringsExactlyKDirect(test, k));
+        
+        // Additional test cases
+        System.out.println("Test 'aabab' with k=2: " + countSubstringsExactlyK("aabab", 2));
+        System.out.println("Test 'abcabc' with k=3: " + countSubstringsExactlyK("abcabc", 3));
+    }
+}
+```
+
+🔥 HINTS:
+1. Think about using the sliding window technique
+2. Key insight: exactly K = at most K - at most (K-1)
+3. Use HashMap to count frequency of characters in current window
+4. When window has > k distinct chars, shrink from left
+
+===============================================================================
+🔴 PROBLEM #5: NUMBER OF SUBSTRINGS CONTAINING ALL THREE CHARACTERS (MEDIUM)
+===============================================================================
+
+📋 PROBLEM STATEMENT:
+Given a string s consisting only of characters 'a', 'b', and 'c', return the 
+number of substrings containing at least one occurrence of all three characters.
+
+Input: s = "abcabc"
+Output: 10
+Explanation: Substrings containing all three characters: "abc", "abca", "abcab", 
+"abcabc", "bca", "bcab", "bcabc", "cab", "cabc", "abc"
+
+💡 INTUITION:
+- We need substrings that contain at least one 'a', one 'b', and one 'c'
+- Use sliding window to find the smallest valid window, then count all extensions
+- Key insight: If we have a valid substring from i to j, then all substrings 
+  from i to k (where k >= j) are also valid
+
+🔍 APPROACH:
+1. Brute Force: Check each substring for all three characters - O(n³)
+2. Sliding Window: Find leftmost valid position for each right pointer - O(n²)
+3. Optimized Sliding Window: Track last positions of each character - O(n)
+
+⚡ COMPLEXITY:
+Time: O(n) for optimized approach
+Space: O(1) - only storing indices for 3 characters
+
+💻 JAVA SOLUTION:
+```java
+public class SubstringsWithAllThreeChars {
+    
+    // Method 1: Optimized Sliding Window (Most Efficient)
+    public static int numberOfSubstrings(String s) {
+        if (s == null || s.length() < 3) return 0;
+        
+        // Track last seen positions of 'a', 'b', 'c'
+        int[] lastSeen = {-1, -1, -1}; // indices for a, b, c
+        int count = 0;
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            
+            // Update last seen position for current character
+            lastSeen[c - 'a'] = i;
+            
+            // Find the minimum of last seen positions (leftmost boundary)
+            int minPos = Math.min(lastSeen[0], Math.min(lastSeen[1], lastSeen[2]));
+            
+            // If all characters have been seen (minPos != -1),
+            // all substrings ending at i and starting at or before minPos are valid
+            if (minPos != -1) {
+                count += minPos + 1;
+            }
+        }
+        
+        return count;
+    }
+    
+    // Method 2: Sliding Window with HashMap (More Intuitive)
+    public static int numberOfSubstringsHashMap(String s) {
+        if (s == null || s.length() < 3) return 0;
+        
+        int count = 0;
+        int n = s.length();
+        
+        for (int left = 0; left < n; left++) {
+            int[] charCount = new int[3]; // Count for a, b, c
+            int distinctChars = 0;
+            
+            for (int right = left; right < n; right++) {
+                char c = s.charAt(right);
+                
+                // If this character appears for the first time in current window
+                if (charCount[c - 'a'] == 0) {
+                    distinctChars++;
+                }
+                charCount[c - 'a']++;
+                
+                // If we have all three characters
+                if (distinctChars == 3) {
+                    // All substrings from current right to end are valid
+                    count += n - right;
+                    break; // No need to extend further from this left
+                }
+            }
+        }
+        
+        return count;
+    }
+    
+    // Method 3: Brute Force (For Understanding)
+    public static int numberOfSubstringsBruteForce(String s) {
+        if (s == null || s.length() < 3) return 0;
+        
+        int count = 0;
+        int n = s.length();
+        
+        // Check all possible substrings
+        for (int i = 0; i < n; i++) {
+            boolean hasA = false, hasB = false, hasC = false;
+            
+            for (int j = i; j < n; j++) {
+                char c = s.charAt(j);
+                
+                if (c == 'a') hasA = true;
+                else if (c == 'b') hasB = true;
+                else if (c == 'c') hasC = true;
+                
+                // If all three characters are present
+                if (hasA && hasB && hasC) {
+                    // All substrings from i to k (k >= j) are valid
+                    count += n - j;
+                    break;
+                }
+            }
+        }
+        
+        return count;
+    }
+    
+    // Method 4: Alternative Optimized Approach
+    public static int numberOfSubstringsAlternative(String s) {
+        if (s == null || s.length() < 3) return 0;
+        
+        int count = 0;
+        int left = 0;
+        int[] charCount = new int[3];
+        
+        for (int right = 0; right < s.length(); right++) {
+            // Add current character to window
+            charCount[s.charAt(right) - 'a']++;
+            
+            // Shrink window until we don't have all three characters
+            while (charCount[0] > 0 && charCount[1] > 0 && charCount[2] > 0) {
+                // All substrings starting from left to current right are valid
+                count += s.length() - right;
+                
+                // Remove leftmost character and move left pointer
+                charCount[s.charAt(left) - 'a']--;
+                left++;
+            }
+        }
+        
+        return count;
+    }
+    
+    public static void main(String[] args) {
+        // Test cases
+        String test1 = "abcabc";
+        System.out.println("Test 'abcabc': " + numberOfSubstrings(test1)); // Expected: 10
+        
+        String test2 = "aaacb";
+        System.out.println("Test 'aaacb': " + numberOfSubstrings(test2)); // Expected: 3
+        
+        String test3 = "abc";
+        System.out.println("Test 'abc': " + numberOfSubstrings(test3)); // Expected: 1
+        
+        String test4 = "abacbc";
+        System.out.println("Test 'abacbc': " + numberOfSubstrings(test4)); // Expected: 10
+        
+        // Compare different approaches
+        System.out.println("\nComparison for 'abcabc':");
+        System.out.println("Optimized: " + numberOfSubstrings(test1));
+        System.out.println("HashMap: " + numberOfSubstringsHashMap(test1));
+        System.out.println("Brute Force: " + numberOfSubstringsBruteForce(test1));
+        System.out.println("Alternative: " + numberOfSubstringsAlternative(test1));
+    }
+}
+```
+
+🔥 HINTS:
+1. Key insight: If substring [i,j] contains all three chars, then [i,k] for all k≥j also contains all three
+2. Track the last seen position of each character as you iterate
+3. The minimum of last seen positions gives you the leftmost valid starting point
+4. Count = minPosition + 1 (all positions from 0 to minPosition can start valid substrings)
+
+===============================================================================
+🔴 PROBLEM #6: COUNT SUBSTRINGS WITH BALANCED PARENTHESES (MEDIUM)
+===============================================================================
+
+📋 PROBLEM STATEMENT:
+Count the number of substrings that have balanced parentheses.
+Input: "(()"
+Output: 1
+Explanation: Only "()" at indices 1-2 is balanced.
+
+💡 INTUITION:
+- A balanced string has equal opening and closing parentheses
+- At any point, we shouldn't have more closing than opening brackets
+- Use stack-like counting: increment for '(', decrement for ')'
+
+🔍 APPROACH:
+1. Brute Force: Check each substring for balance - O(n³)
+2. Optimized: For each starting position, track balance while extending - O(n²)
+3. Stack Simulation: Use counter instead of actual stack - O(n²)
+
+⚡ COMPLEXITY:
+Time: O(n²) where n is string length
+Space: O(1)
+
+💻 JAVA SOLUTION:
+```java
+public class CountBalancedParentheses {
+    
+    public static int countBalancedSubstrings(String s) {
+        if (s == null || s.length() == 0) return 0;
+        
+        int count = 0;
+        int n = s.length();
+        
+        // Try all possible starting positions
+        for (int i = 0; i < n; i++) {
+            int balance = 0; // Counter for parentheses balance
+            
+            // Extend substring from position i
+            for (int j = i; j < n; j++) {
+                char c = s.charAt(j);
+                
+                if (c == '(') {
+                    balance++;
+                } else if (c == ')') {
+                    balance--;
+                }
+                
+                // If balance becomes negative, no valid substring possible
+                if (balance < 0) {
+                    break;
+                }
+                
+                // If balance is 0 and we have at least one pair, it's balanced
+                if (balance == 0 && j > i) {
+                    count++;
+                    // Optional: Print balanced substring
+                    // System.out.println(s.substring(i, j + 1));
+                }
+            }
+        }
+        
+        return count;
+    }
+    
+    // Enhanced version that handles any characters (not just parentheses)
+    public static int countBalancedSubstringsEnhanced(String s) {
+        if (s == null || s.length() == 0) return 0;
+        
+        int count = 0;
+        int n = s.length();
+        
+        for (int i = 0; i < n; i++) {
+            int balance = 0;
+            boolean hasParentheses = false;
+            
+            for (int j = i; j < n; j++) {
+                char c = s.charAt(j);
+                
+                if (c == '(') {
+                    balance++;
+                    hasParentheses = true;
+                } else if (c == ')') {
+                    balance--;
+                    hasParentheses = true;
+                }
+                
+                // Invalid if more closing than opening
+                if (balance < 0) {
+                    break;
+                }
+                
+                // Valid balanced substring
+                if (balance == 0 && hasParentheses) {
+                    count++;
+                }
+            }
+        }
+        
+        return count;
+    }
+    
+    // Alternative: Using dynamic programming for optimization
+    public static int countBalancedSubstringsDP(String s) {
+        if (s == null || s.length() == 0) return 0;
+        
+        int n = s.length();
+        int count = 0;
+        
+        // dp[i] represents the length of valid parentheses ending at index i
+        int[] dp = new int[n];
+        
+        for (int i = 1; i < n; i++) {
+            if (s.charAt(i) == ')') {
+                if (s.charAt(i - 1) == '(') {
+                    // Case: ()
+                    dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2;
+                } else if (dp[i - 1] > 0) {
+                    // Case: ))
+                    int matchIndex = i - dp[i - 1] - 1;
+                    if (matchIndex >= 0 && s.charAt(matchIndex) == '(') {
+                        dp[i] = dp[i - 1] + 2 + (matchIndex > 0 ? dp[matchIndex - 1] : 0);
+                    }
+                }
+            }
+            
+            if (dp[i] > 0) {
+                // Count all valid substrings ending at position i
+                for (int len = 2; len <= dp[i]; len += 2) {
+                    count++;
+                }
+            }
+        }
+        
+        return count;
+    }
+    
+    public static void main(String[] args) {
+        String test1 = "(()";
+        System.out.println("Test '(()': " + countBalancedSubstrings(test1)); // Should be 1
+        
+        String test2 = "()()";
+        System.out.println("Test '()()': " + countBalancedSubstrings(test2)); // Should be 3
+        
+        String test3 = "((()))";
+        System.out.println("Test '((()))': " + countBalancedSubstrings(test3)); // Should be 4
+        
+        // Test enhanced version
+        String test4 = "a(b)c(d)e";
+        System.out.println("Enhanced 'a(b)c(d)e': " + countBalancedSubstringsEnhanced(test4));
+    }
+}
+```
+
+🔥 HINTS:
+1. Use a counter instead of stack for space efficiency
+2. Balance < 0 means invalid, break immediately
+3. Balance = 0 means potentially valid (if we've seen parentheses)
+4. Only count when balance returns to 0 and length > 0
+
+===============================================================================
+📊 COMPLEXITY SUMMARY
+===============================================================================
+
+┌─────────────────────────────────┬─────────────┬─────────────┬──────────────┐
+│ Problem                         │ Time        │ Space       │ Technique    │
+├─────────────────────────────────┼─────────────┼─────────────┼──────────────┤
+│ Count All Substrings           │ O(1)        │ O(1)        │ Math Formula │
+│ Count Unique Substrings        │ O(n²)       │ O(min(m,n)) │ HashSet      │
+│ Count Palindromic Substrings   │ O(n²)       │ O(1)        │ Expand Center│
+│ Count K Distinct Substrings    │ O(n)        │ O(k)        │ Sliding Win. │
+│ All Three Characters (LC 1358) │ O(n)        │ O(1)        │ Sliding Win. │
+│ Count Balanced Parentheses     │ O(n²)       │ O(1)        │ Balance Count│
+└─────────────────────────────────┴─────────────┴─────────────┴──────────────┘
+
+===============================================================================
+🎯 KEY LEARNING PATTERNS
+===============================================================================
+
+1. **Mathematical Approach**: When counting follows a formula (Problem 1)
+2. **Sliding Window**: For constraints like K distinct characters (Problem 4)
+3. **Expand Around Centers**: For palindromes and symmetric patterns (Problem 3)
+4. **HashSet/HashMap**: For tracking unique elements (Problem 2)
+5. **Counter/Balance**: For matching pairs like parentheses (Problem 5)
+
+===============================================================================
+📝 COMMON EDGE CASES TO HANDLE
+===============================================================================
+
+□ Empty or null strings
+□ Single character strings
+□ Strings with all same characters
+□ Strings with no valid substrings matching criteria
+□ k = 0 or k > string length for K-distinct problems
+□ Strings with special characters
+□ Very long strings (performance considerations)
+
+===============================================================================
+🚀 PRACTICE RECOMMENDATIONS
+===============================================================================
+
+1. Start with Problem 1 to understand basic substring concepts
+2. Master sliding window technique with Problems 2, 4, and 5
+3. Practice expand-around-center with Problem 3
+4. **Focus on Problem 5 (LC 1358)** - it's a common interview question
+5. Challenge yourself with Problem 6's balance tracking
+6. Try to implement multiple approaches for each problem
+7. Test with edge cases and various input sizes
+8. Time your solutions to understand performance differences
+9. **Practice explaining your approach** - crucial for interviews
+
+===============================================================================

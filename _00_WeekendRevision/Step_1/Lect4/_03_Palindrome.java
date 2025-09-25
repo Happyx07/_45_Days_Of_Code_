@@ -12,6 +12,7 @@ public class _03_Palindrome {
     int n = sc.nextInt();
 
     System.out.println(Palindrome(n));
+    sc.close();
 
     
 
