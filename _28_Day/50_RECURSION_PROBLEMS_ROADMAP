@@ -1,0 +1,502 @@
+===============================================================================
+                    50 RECURSION PROBLEMS - MASTERY ROADMAP
+                   Organized by Phases and Patterns for Systematic Learning
+===============================================================================
+
+🎯 LEARNING PHILOSOPHY:
+This list is carefully crafted to build your recursion skills incrementally.
+Each phase introduces new concepts while reinforcing previous ones.
+Master each phase before moving to the next for optimal learning.
+
+📊 DIFFICULTY LEVELS:
+⭐ = Beginner (Understanding recursion basics)
+⭐⭐ = Easy-Medium (Applying basic patterns)
+⭐⭐⭐ = Medium (Combining multiple concepts)
+⭐⭐⭐⭐ = Hard (Complex logic and optimization)
+⭐⭐⭐⭐⭐ = Expert (Advanced algorithms and edge cases)
+
+🗂️ PHASE BREAKDOWN:
+Phase 1: Foundation (Problems 1-10) - Basic recursion understanding
+Phase 2: Linear Processing (Problems 11-20) - Single recursive calls
+Phase 3: Tree Recursion (Problems 21-30) - Multiple recursive calls
+Phase 4: Backtracking (Problems 31-40) - Choice-based recursion
+Phase 5: Advanced Patterns (Problems 41-50) - Complex algorithms
+
+===============================================================================
+🌱 PHASE 1: FOUNDATION - BUILDING RECURSION INTUITION (Problems 1-10)
+===============================================================================
+
+Pattern: Basic Recursion Structure
+Focus: Understanding base case, recursive case, and call stack
+
+Problem 1: Print Numbers 1 to N ⭐
+----------------------------------
+Concept: Basic recursion with single parameter
+Logic: Print current number, then recurse for n-1
+Key Learning: Understanding call stack order
+
+Problem 2: Print Numbers N to 1 ⭐
+----------------------------------
+Concept: Reverse order recursion
+Logic: Recurse first, then print (post-order processing)
+Key Learning: Order of operations in recursion
+
+Problem 3: Calculate Factorial ⭐
+---------------------------------
+Concept: Mathematical recursion with return value
+Logic: n! = n × (n-1)! with base case 0! = 1
+Key Learning: Accumulating results through recursion
+
+Problem 4: Calculate Sum 1 to N ⭐
+---------------------------------
+Concept: Accumulative recursion
+Logic: sum(n) = n + sum(n-1) with base case sum(0) = 0
+Key Learning: Building up results from smaller problems
+
+Problem 5: Calculate Power (a^n) ⭐
+----------------------------------
+Concept: Two-parameter recursion
+Logic: power(a,n) = a × power(a,n-1) with base case power(a,0) = 1
+Key Learning: Multiple parameters in recursion
+
+Problem 6: Fibonacci Sequence ⭐
+-------------------------------
+Concept: Classic recursion example
+Logic: fib(n) = fib(n-1) + fib(n-2) with base cases fib(0)=0, fib(1)=1
+Key Learning: Multiple base cases
+
+Problem 7: Sum of Digits ⭐
+--------------------------
+Concept: Number processing recursion
+Logic: Extract last digit, recurse with remaining digits
+Key Learning: Processing number digit by digit
+
+Problem 8: Count Digits ⭐
+-------------------------
+Concept: Counting through recursion
+Logic: count(n) = 1 + count(n/10) with base case single digit
+Key Learning: Using recursion for counting
+
+Problem 9: Reverse a Number ⭐⭐
+------------------------------
+Concept: Helper function recursion
+Logic: Use auxiliary parameter to build reverse
+Key Learning: Helper functions with additional parameters
+
+Problem 10: Check if Number is Palindrome ⭐⭐
+--------------------------------------------
+Concept: Combining multiple recursive operations
+Logic: Compare number with its reverse using recursion
+Key Learning: Composing recursive functions
+
+===============================================================================
+🔢 PHASE 2: LINEAR PROCESSING - SINGLE PATH RECURSION (Problems 11-20)
+===============================================================================
+
+Pattern: Single Recursive Call per Function
+Focus: Array/String processing, linear data structures
+
+Problem 11: Array Sum ⭐
+-----------------------
+Concept: Array traversal using recursion
+Logic: sum(arr, n) = arr[n-1] + sum(arr, n-1)
+Key Learning: Processing arrays recursively
+
+Problem 12: Find Maximum in Array ⭐⭐
+------------------------------------
+Concept: Comparison-based recursion
+Logic: max(arr, n) = Math.max(arr[n-1], max(arr, n-1))
+Key Learning: Making decisions in recursion
+
+Problem 13: Linear Search in Array ⭐⭐
+--------------------------------------
+Concept: Search pattern in recursion
+Logic: Check current element, recurse for remaining
+Key Learning: Early termination in recursion
+
+Problem 14: Binary Search ⭐⭐
+----------------------------
+Concept: Divide and conquer introduction
+Logic: Compare middle element, recurse on appropriate half
+Key Learning: Reducing problem size by half
+
+Problem 15: Check if String is Palindrome ⭐⭐
+--------------------------------------------
+Concept: Two-pointer recursion technique
+Logic: Compare characters at both ends, recurse inward
+Key Learning: Working with string indices
+
+Problem 16: Reverse a String ⭐⭐
+------------------------------
+Concept: String processing with recursion
+Logic: Take first character, append to reverse of rest
+Key Learning: String manipulation in recursion
+
+Problem 17: Count Vowels in String ⭐⭐
+-------------------------------------
+Concept: Conditional counting in recursion
+Logic: Check current character, count if vowel, recurse
+Key Learning: Conditional logic in recursive calls
+
+Problem 18: Remove Character from String ⭐⭐
+-------------------------------------------
+Concept: String filtering with recursion
+Logic: Skip target character, include others, recurse
+Key Learning: Building filtered results
+
+Problem 19: GCD of Two Numbers ⭐⭐
+---------------------------------
+Concept: Euclidean algorithm recursion
+Logic: gcd(a,b) = gcd(b, a%b) with base case gcd(a,0) = a
+Key Learning: Mathematical algorithms using recursion
+
+Problem 20: Convert Decimal to Binary ⭐⭐
+----------------------------------------
+Concept: Number system conversion
+Logic: Collect remainders while dividing by 2
+Key Learning: Building results during recursion
+
+===============================================================================
+🌳 PHASE 3: TREE RECURSION - MULTIPLE PATH EXPLORATION (Problems 21-30)
+===============================================================================
+
+Pattern: Multiple Recursive Calls per Function
+Focus: Decision trees, combinations, tree-like problems
+
+Problem 21: Generate All Binary Strings of Length N ⭐⭐
+------------------------------------------------------
+Concept: Choice-based recursion (0 or 1 at each position)
+Logic: For each position, try 0 and 1, recurse for remaining
+Key Learning: Generating all possibilities
+
+Problem 22: Print All Subsequences of String ⭐⭐⭐
+-------------------------------------------------
+Concept: Include/exclude pattern
+Logic: For each character, generate subsequences with and without it
+Key Learning: Exponential recursion patterns
+
+Problem 23: Generate Power Set of Array ⭐⭐⭐
+-------------------------------------------
+Concept: Subset generation using recursion
+Logic: For each element, include it or exclude it from current subset
+Key Learning: Backtracking with collections
+
+Problem 24: Count Ways to Climb Stairs ⭐⭐
+-----------------------------------------
+Concept: Dynamic programming with recursion
+Logic: ways(n) = ways(n-1) + ways(n-2) (1 or 2 steps)
+Key Learning: Overlapping subproblems
+
+Problem 25: Coin Change Ways Count ⭐⭐⭐
+-------------------------------------
+Concept: Multiple choices at each step
+Logic: For each coin, include it or exclude it
+Key Learning: Optimization problems with recursion
+
+Problem 26: Target Sum in Array ⭐⭐⭐
+-----------------------------------
+Concept: Subset sum problem
+Logic: For each element, add to current sum or skip
+Key Learning: Constraint satisfaction with recursion
+
+Problem 27: Generate Balanced Parentheses ⭐⭐⭐
+---------------------------------------------
+Concept: Valid sequence generation
+Logic: Add '(' if count < n, add ')' if close_count < open_count
+Key Learning: Constraint-based generation
+
+Problem 28: Tower of Hanoi ⭐⭐⭐
+------------------------------
+Concept: Classic divide and conquer
+Logic: Move n-1 disks, move largest, move n-1 disks back
+Key Learning: Complex problem decomposition
+
+Problem 29: Josephus Problem ⭐⭐⭐
+-------------------------------
+Concept: Circular recursion pattern
+Logic: J(n,k) = (J(n-1,k) + k) % n with base case J(1,k) = 0
+Key Learning: Mathematical recursion relationships
+
+Problem 30: Count Paths in Grid ⭐⭐⭐
+-----------------------------------
+Concept: Path counting with constraints
+Logic: paths(i,j) = paths(i-1,j) + paths(i,j-1)
+Key Learning: 2D recursion problems
+
+===============================================================================
+🔄 PHASE 4: BACKTRACKING - CHOICE AND UNDO (Problems 31-40)
+===============================================================================
+
+Pattern: Try → Recurse → Undo
+Focus: Systematic exploration with backtracking
+
+Problem 31: Print All Permutations of String ⭐⭐⭐
+-------------------------------------------------
+Concept: Arrangement generation with backtracking
+Logic: Fix each character at each position, recurse, backtrack
+Key Learning: Swapping technique in backtracking
+
+Problem 32: Print All Permutations of Array ⭐⭐⭐
+------------------------------------------------
+Concept: Array permutation with duplicates handling
+Logic: Use swapping or visited array approach
+Key Learning: Handling duplicate elements
+
+Problem 33: Combination Sum ⭐⭐⭐
+------------------------------
+Concept: Finding combinations that sum to target
+Logic: Include current element multiple times or exclude
+Key Learning: Unlimited use of elements
+
+Problem 34: Letter Combinations of Phone Number ⭐⭐⭐
+---------------------------------------------------
+Concept: Mapping and combination generation
+Logic: For each digit, try all corresponding letters
+Key Learning: Multi-mapping in recursion
+
+Problem 35: Sudoku Solver ⭐⭐⭐⭐
+------------------------------
+Concept: Constraint satisfaction problem
+Logic: Fill empty cell, check validity, recurse, backtrack
+Key Learning: Complex constraint checking
+
+Problem 36: N-Queens Problem ⭐⭐⭐⭐
+---------------------------------
+Concept: Placement problem with multiple constraints
+Logic: Place queen in each row, check conflicts, backtrack
+Key Learning: Multiple constraint validation
+
+Problem 37: Rat in a Maze ⭐⭐⭐
+-----------------------------
+Concept: Path finding with obstacles
+Logic: Try all four directions, mark visited, backtrack
+Key Learning: Grid traversal with backtracking
+
+Problem 38: Word Search in Grid ⭐⭐⭐
+-----------------------------------
+Concept: Pattern matching in 2D grid
+Logic: Start from each cell, try to form word in all directions
+Key Learning: String matching with backtracking
+
+Problem 39: Palindrome Partitioning ⭐⭐⭐⭐
+------------------------------------------
+Concept: String partitioning with constraints
+Logic: Try all possible cuts, check palindrome, recurse
+Key Learning: Dynamic constraint checking
+
+Problem 40: Restore IP Addresses ⭐⭐⭐⭐
+------------------------------------
+Concept: String segmentation with validation
+Logic: Try placing dots, validate segments, backtrack
+Key Learning: Format validation in recursion
+
+===============================================================================
+🚀 PHASE 5: ADVANCED PATTERNS - COMPLEX ALGORITHMS (Problems 41-50)
+===============================================================================
+
+Pattern: Advanced Algorithmic Techniques
+Focus: Optimization, complex constraints, advanced data structures
+
+Problem 41: Merge Sort ⭐⭐⭐
+--------------------------
+Concept: Divide and conquer sorting
+Logic: Divide array, recursively sort halves, merge
+Key Learning: Efficient divide and conquer
+
+Problem 42: Quick Sort ⭐⭐⭐
+--------------------------
+Concept: Partition-based sorting
+Logic: Choose pivot, partition, recursively sort subarrays
+Key Learning: In-place partitioning algorithms
+
+Problem 43: Expression Evaluation ⭐⭐⭐⭐
+-------------------------------------
+Concept: Recursive descent parsing
+Logic: Parse operators and operands recursively
+Key Learning: Grammar-based recursion
+
+Problem 44: Longest Common Subsequence ⭐⭐⭐⭐
+---------------------------------------------
+Concept: Dynamic programming with memoization
+Logic: If characters match, recurse for both; else try both options
+Key Learning: Optimization with memoization
+
+Problem 45: Edit Distance (Levenshtein) ⭐⭐⭐⭐
+---------------------------------------------
+Concept: String transformation with minimum operations
+Logic: Try insert, delete, replace; take minimum cost
+Key Learning: Multi-operation optimization
+
+Problem 46: Wildcard Pattern Matching ⭐⭐⭐⭐⭐
+--------------------------------------------
+Concept: Advanced pattern matching with wildcards
+Logic: Handle '*' and '?' characters with multiple possibilities
+Key Learning: Complex pattern handling
+
+Problem 47: Regular Expression Matching ⭐⭐⭐⭐⭐
+---------------------------------------------
+Concept: Complex string matching with regex
+Logic: Handle '.', '*', and character matching recursively
+Key Learning: State machine simulation
+
+Problem 48: Word Break Problem ⭐⭐⭐⭐
+-----------------------------------
+Concept: String segmentation with dictionary
+Logic: Try all possible prefixes, check in dictionary, recurse
+Key Learning: Dictionary-based validation
+
+Problem 49: Longest Increasing Subsequence ⭐⭐⭐⭐
+------------------------------------------------
+Concept: Sequence optimization problem
+Logic: For each element, include if greater or exclude
+Key Learning: Sequence constraint handling
+
+Problem 50: Boolean Expression Evaluation ⭐⭐⭐⭐⭐
+-------------------------------------------------
+Concept: Complex expression parsing and evaluation
+Logic: Handle operators, parentheses, and boolean logic
+Key Learning: Complex grammar processing
+
+===============================================================================
+📈 LEARNING PROGRESSION SUMMARY
+===============================================================================
+
+┌─────────┬─────────────────────────────┬─────────────────┬──────────────────┐
+│ Phase   │ Focus Area                  │ Problems        │ Key Concepts     │
+├─────────┼─────────────────────────────┼─────────────────┼──────────────────┤
+│ Phase 1 │ Foundation                  │ 1-10            │ Base/Recursive   │
+│ Phase 2 │ Linear Processing           │ 11-20           │ Single Path      │
+│ Phase 3 │ Tree Recursion              │ 21-30           │ Multiple Paths   │
+│ Phase 4 │ Backtracking                │ 31-40           │ Try & Undo       │
+│ Phase 5 │ Advanced Patterns           │ 41-50           │ Complex Algos    │
+└─────────┴─────────────────────────────┴─────────────────┴──────────────────┘
+
+===============================================================================
+🎯 PATTERN CLASSIFICATION
+===============================================================================
+
+LINEAR RECURSION PATTERNS:
+• Mathematical Operations (1, 3, 4, 5, 19)
+• Array Processing (11, 12, 13, 17)
+• String Processing (15, 16, 18, 20)
+
+TREE RECURSION PATTERNS:
+• Generate All Possibilities (21, 22, 23)
+• Count Ways (24, 25, 30)
+• Constraint-based Generation (27, 28)
+
+BACKTRACKING PATTERNS:
+• Permutations & Combinations (31, 32, 34)
+• Placement Problems (35, 36, 37)
+• Path Finding (38, 39, 40)
+
+DIVIDE & CONQUER PATTERNS:
+• Sorting Algorithms (14, 41, 42)
+• String Algorithms (44, 45, 48)
+
+OPTIMIZATION PATTERNS:
+• Dynamic Programming (24, 44, 49)
+• Memoization (6, 44, 45)
+• Complex Constraints (46, 47, 50)
+
+===============================================================================
+🎓 MASTERY MILESTONES
+===============================================================================
+
+🏁 MILESTONE 1 (Problems 1-10): Recursion Fundamentals
+□ Understand base case and recursive case
+□ Master single parameter recursion
+□ Handle multiple base cases
+□ Use helper functions effectively
+
+🏁 MILESTONE 2 (Problems 11-20): Linear Processing
+□ Process arrays recursively
+□ Handle string manipulation
+□ Implement search algorithms
+□ Apply divide and conquer basics
+
+🏁 MILESTONE 3 (Problems 21-30): Tree Recursion
+□ Generate all possibilities
+□ Count ways and combinations
+□ Handle exponential recursion
+□ Optimize with memoization
+
+🏁 MILESTONE 4 (Problems 31-40): Backtracking Mastery
+□ Implement systematic exploration
+□ Master try-recurse-undo pattern
+□ Handle complex constraints
+□ Solve placement problems
+
+🏁 MILESTONE 5 (Problems 41-50): Advanced Algorithms
+□ Implement complex algorithms
+□ Handle optimization problems
+□ Master pattern matching
+□ Solve real-world problems
+
+===============================================================================
+📚 STUDY RECOMMENDATIONS
+===============================================================================
+
+WEEK 1-2: Foundation & Linear (Problems 1-20)
+• Focus on understanding recursion mechanics
+• Practice tracing recursion by hand
+• Master basic patterns before moving on
+
+WEEK 3-4: Tree Recursion (Problems 21-30)
+• Understand exponential growth
+• Learn memoization techniques
+• Practice generating all possibilities
+
+WEEK 5-6: Backtracking (Problems 31-40)
+• Master try-recurse-undo pattern
+• Focus on constraint handling
+• Practice systematic exploration
+
+WEEK 7-8: Advanced Patterns (Problems 41-50)
+• Study complex algorithms
+• Focus on optimization techniques
+• Practice real-world applications
+
+===============================================================================
+🎯 SUCCESS STRATEGY
+===============================================================================
+
+FOR EACH PROBLEM:
+1. **Understand the Problem** - Read carefully, identify patterns
+2. **Identify Base Cases** - What are the simplest scenarios?
+3. **Define Recursive Case** - How to reduce problem size?
+4. **Trace Small Examples** - Follow execution manually
+5. **Code the Solution** - Implement step by step
+6. **Test Edge Cases** - Verify with boundary conditions
+7. **Optimize if Needed** - Add memoization or improve logic
+
+DIFFICULTY PROGRESSION:
+• Master easier problems before advancing
+• Don't skip problems - each builds important skills
+• Practice similar problems to reinforce patterns
+• Review and refactor solutions for clarity
+
+COMMON MISTAKES TO AVOID:
+□ Rushing through easy problems
+□ Not tracing recursion manually
+□ Ignoring base case edge cases
+□ Not considering optimization
+□ Skipping problem verification
+
+===============================================================================
+🏆 FINAL GOAL
+===============================================================================
+
+By completing all 50 problems, you will have mastered:
+✅ All major recursion patterns
+✅ Backtracking and divide-and-conquer
+✅ Dynamic programming with recursion
+✅ Complex algorithm implementation
+✅ Problem-solving intuition
+✅ Interview-level recursion skills
+
+This progression ensures you build rock-solid recursion skills that will serve
+you in competitive programming, technical interviews, and advanced algorithm
+design. Take your time with each phase and master the patterns!
+
+===============================================================================

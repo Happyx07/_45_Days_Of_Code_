@@ -1,0 +1,1422 @@
+===============================================================================
+                        RECURSION MASTERY GUIDE
+                   From Absolute Basics to Advanced Concepts
+                        Complete Study Notes + Problem Set
+===============================================================================
+
+TABLE OF CONTENTS:
+1. Introduction & Basics
+2. Types of Recursion
+3. Implementation Details
+4. Intermediate Applications
+5. Advanced Concepts
+6. Best Practices & Intuition Building
+7. Problem Set (30 Essential Problems)
+8. Quick Revision Sheet
+
+===============================================================================
+1. INTRODUCTION & BASICS
+===============================================================================
+
+1.1 WHAT IS RECURSION?
+----------------------
+Recursion is a programming technique where a function calls itself to solve 
+a smaller version of the same problem.
+
+Simple Definition:
+"A function that calls itself with a modified input until it reaches a 
+stopping condition"
+
+Real-World Analogy:
+- Looking for your keys: "Check this room. If not found, check the next room."
+- Russian Matryoshka dolls: Each doll contains a smaller version of itself
+- Mathematical sequences: F(n) = F(n-1) + F(n-2) (Fibonacci)
+
+1.2 IMPORTANCE OF RECURSION
+---------------------------
+Why learn recursion?
+• Many problems have natural recursive structure (trees, graphs)
+• Elegant solutions for complex problems (backtracking, divide-and-conquer)
+• Foundation for advanced algorithms (merge sort, quicksort, DFS, BFS)
+• Essential for understanding data structures (binary trees, linked lists)
+• Critical for competitive programming and interviews
+
+1.3 RECURSION vs ITERATION
+--------------------------
+┌─────────────────────┬─────────────────────────────────────────────────────┐
+│ Aspect              │ Recursion                │ Iteration              │
+├─────────────────────┼──────────────────────────┼────────────────────────┤
+│ Code Style          │ Elegant, concise         │ More explicit          │
+│ Memory Usage        │ Higher (call stack)      │ Lower (variables only) │
+│ Performance         │ Slower (function calls)  │ Faster (direct loops)  │
+│ Problem Solving     │ Top-down approach        │ Bottom-up approach     │
+│ Natural Fit         │ Tree/Graph problems      │ Array/Linear problems  │
+│ Debugging           │ Harder to trace          │ Easier to debug        │
+└─────────────────────┴──────────────────────────┴────────────────────────┘
+
+1.4 HOW RECURSION WORKS INTERNALLY
+----------------------------------
+Function Call Stack:
+When a function is called, the system:
+1. Creates a stack frame containing local variables and parameters
+2. Pushes the frame onto the call stack
+3. Executes the function
+4. When function returns, pops the frame from stack
+5. Control returns to the calling function
+
+Example: factorial(3)
+Call Stack Visualization:
+│ factorial(1) │ ← Top of stack
+│ factorial(2) │
+│ factorial(3) │ ← Bottom of stack
+│ main()       │
+
+Memory grows with each recursive call until base case is reached!
+
+1.5 BASE CASE AND RECURSIVE CASE
+--------------------------------
+Every recursive function MUST have:
+
+BASE CASE: 
+- The stopping condition
+- Prevents infinite recursion
+- Returns a direct result without further recursion
+
+RECURSIVE CASE:
+- The function calls itself with modified parameters
+- Moves closer to the base case
+- Combines results from recursive calls
+
+Example 1: Factorial
+--------------------
+```
+factorial(n) = 1                    if n == 0 or n == 1 (BASE CASE)
+             = n * factorial(n-1)   if n > 1 (RECURSIVE CASE)
+```
+
+Step-by-step execution of factorial(4):
+factorial(4) = 4 * factorial(3)
+             = 4 * 3 * factorial(2)
+             = 4 * 3 * 2 * factorial(1)
+             = 4 * 3 * 2 * 1
+             = 24
+
+Example 2: Fibonacci
+-------------------
+```
+fibonacci(n) = 0                           if n == 0 (BASE CASE)
+             = 1                           if n == 1 (BASE CASE)
+             = fibonacci(n-1) + fibonacci(n-2)  if n > 1 (RECURSIVE CASE)
+```
+
+Example 3: Sum of N numbers
+--------------------------
+```
+sum(n) = 0           if n == 0 (BASE CASE)
+       = n + sum(n-1) if n > 0 (RECURSIVE CASE)
+```
+
+sum(5) = 5 + sum(4) = 5 + 4 + sum(3) = 5 + 4 + 3 + sum(2) = 5 + 4 + 3 + 2 + sum(1)
+       = 5 + 4 + 3 + 2 + 1 + sum(0) = 5 + 4 + 3 + 2 + 1 + 0 = 15
+
+===============================================================================
+2. TYPES OF RECURSION
+===============================================================================
+
+2.1 DIRECT vs INDIRECT RECURSION
+--------------------------------
+DIRECT RECURSION: Function calls itself directly
+```
+int factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n-1);  // Direct call to itself
+}
+```
+
+INDIRECT RECURSION: Function calls itself through other functions
+```
+int funcA(int n) {
+    if (n <= 1) return 1;
+    return funcB(n-1);
+}
+
+int funcB(int n) {
+    return funcA(n-1);  // Calls funcA, creating indirect recursion
+}
+```
+
+2.2 TAIL vs NON-TAIL RECURSION
+------------------------------
+TAIL RECURSION: Recursive call is the last operation in the function
+```
+int factorial_tail(int n, int result) {
+    if (n <= 1) return result;
+    return factorial_tail(n-1, n * result);  // Last operation
+}
+```
+
+NON-TAIL RECURSION: Operations are performed after the recursive call
+```
+int factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n-1);  // Multiplication after recursive call
+}
+```
+
+Advantage of Tail Recursion: Can be optimized by compilers to use constant stack space
+
+2.3 LINEAR vs TREE RECURSION
+----------------------------
+LINEAR RECURSION: Each function call makes only one recursive call
+```
+int factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n-1);  // Single recursive call
+}
+```
+
+TREE RECURSION: Each function call makes multiple recursive calls
+```
+int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n-1) + fibonacci(n-2);  // Two recursive calls
+}
+```
+
+Tree recursion creates a tree-like structure of function calls:
+                    fib(5)
+                   /      \
+               fib(4)      fib(3)
+              /     \      /     \
+          fib(3)  fib(2) fib(2) fib(1)
+
+2.4 NESTED RECURSION
+--------------------
+Recursive call with a recursive argument
+```
+int ackermann(int m, int n) {
+    if (m == 0) return n + 1;
+    if (n == 0) return ackermann(m-1, 1);
+    return ackermann(m-1, ackermann(m, n-1));  // Nested recursive calls
+}
+```
+
+2.5 MUTUAL RECURSION
+--------------------
+Two or more functions call each other recursively
+```
+int isEven(int n) {
+    if (n == 0) return 1;
+    return isOdd(n-1);
+}
+
+int isOdd(int n) {
+    if (n == 0) return 0;
+    return isEven(n-1);
+}
+```
+
+===============================================================================
+3. IMPLEMENTATION DETAILS
+===============================================================================
+
+3.1 STEP-BY-STEP DRY RUN
+------------------------
+Let's trace factorial(4) execution:
+
+Call Stack Growth:
+Step 1: factorial(4) called
+        Stack: [factorial(4)]
+        Check: 4 <= 1? No
+        Execute: return 4 * factorial(3)
+
+Step 2: factorial(3) called
+        Stack: [factorial(4), factorial(3)]
+        Check: 3 <= 1? No
+        Execute: return 3 * factorial(2)
+
+Step 3: factorial(2) called
+        Stack: [factorial(4), factorial(3), factorial(2)]
+        Check: 2 <= 1? No
+        Execute: return 2 * factorial(1)
+
+Step 4: factorial(1) called
+        Stack: [factorial(4), factorial(3), factorial(2), factorial(1)]
+        Check: 1 <= 1? Yes
+        Return: 1
+
+Call Stack Unwinding:
+Step 5: factorial(1) returns 1
+        Stack: [factorial(4), factorial(3), factorial(2)]
+        factorial(2) computes: 2 * 1 = 2
+        Return: 2
+
+Step 6: factorial(2) returns 2
+        Stack: [factorial(4), factorial(3)]
+        factorial(3) computes: 3 * 2 = 6
+        Return: 6
+
+Step 7: factorial(3) returns 6
+        Stack: [factorial(4)]
+        factorial(4) computes: 4 * 6 = 24
+        Return: 24
+
+Step 8: factorial(4) returns 24
+        Stack: []
+        Final result: 24
+
+3.2 COMMON MISTAKES BEGINNERS MAKE
+----------------------------------
+MISTAKE 1: Missing Base Case
+```
+int infiniteRecursion(int n) {
+    return n + infiniteRecursion(n-1);  // No base case!
+}
+// Result: Stack Overflow Error
+```
+
+MISTAKE 2: Incorrect Base Case
+```
+int factorial(int n) {
+    if (n == 1) return 1;  // Wrong! What about n=0?
+    return n * factorial(n-1);
+}
+// factorial(0) will cause infinite recursion
+```
+
+MISTAKE 3: Not Moving Toward Base Case
+```
+int badFunction(int n) {
+    if (n == 0) return 0;
+    return badFunction(n);  // n doesn't change!
+}
+// Infinite recursion with same parameter
+```
+
+MISTAKE 4: Forgetting to Return Recursive Call Result
+```
+int factorial(int n) {
+    if (n <= 1) return 1;
+    n * factorial(n-1);  // Missing return statement!
+}
+```
+
+MISTAKE 5: Modifying Parameters Incorrectly
+```
+int sum(int n) {
+    if (n == 0) return 0;
+    return sum(n--);  // Post-decrement! n doesn't change before call
+}
+// Should be: return n + sum(n-1);
+```
+
+3.3 TIME AND SPACE COMPLEXITY
+-----------------------------
+TIME COMPLEXITY:
+- Depends on number of recursive calls and work done in each call
+- Linear Recursion: O(n) if each call does O(1) work
+- Tree Recursion: Can be exponential, e.g., O(2^n) for naive Fibonacci
+
+SPACE COMPLEXITY:
+- Primarily determined by maximum depth of recursion (call stack)
+- Each recursive call adds a frame to call stack
+- Linear Recursion: O(n) space for n recursive calls
+- Tree Recursion: O(depth) space, not O(total calls)
+
+Examples:
+factorial(n): Time O(n), Space O(n)
+fibonacci(n): Time O(2^n), Space O(n) - depth is n
+binary_search(n): Time O(log n), Space O(log n)
+
+3.4 RECURSION vs DYNAMIC PROGRAMMING
+------------------------------------
+Problem: Many recursive solutions recalculate the same subproblems
+
+Example: Fibonacci
+fibonacci(5) calls fibonacci(3) multiple times:
+                    fib(5)
+                   /      \
+               fib(4)      fib(3)    ← fib(3) calculated
+              /     \      /     \
+          fib(3)  fib(2) fib(2) fib(1) ← fib(3) calculated again!
+         /     \
+      fib(2)  fib(1)
+
+MEMOIZATION: Store results of expensive function calls
+```
+Map<Integer, Integer> memo = new HashMap<>();
+
+int fibonacci(int n) {
+    if (n <= 1) return n;
+    if (memo.containsKey(n)) return memo.get(n);
+    
+    int result = fibonacci(n-1) + fibonacci(n-2);
+    memo.put(n, result);
+    return result;
+}
+```
+
+Memoization transforms O(2^n) to O(n) time complexity!
+
+===============================================================================
+4. INTERMEDIATE APPLICATIONS OF RECURSION
+===============================================================================
+
+4.1 RECURSION IN ARRAYS
+-----------------------
+Finding Sum:
+```
+int arraySum(int[] arr, int n) {
+    if (n <= 0) return 0;
+    return arr[n-1] + arraySum(arr, n-1);
+}
+```
+
+Finding Maximum:
+```
+int findMax(int[] arr, int n) {
+    if (n == 1) return arr[0];
+    return Math.max(arr[n-1], findMax(arr, n-1));
+}
+```
+
+Linear Search:
+```
+int search(int[] arr, int n, int key) {
+    if (n <= 0) return -1;
+    if (arr[n-1] == key) return n-1;
+    return search(arr, n-1, key);
+}
+```
+
+4.2 RECURSION IN STRINGS
+------------------------
+Palindrome Check:
+```
+boolean isPalindrome(String s, int start, int end) {
+    if (start >= end) return true;
+    if (s.charAt(start) != s.charAt(end)) return false;
+    return isPalindrome(s, start+1, end-1);
+}
+```
+
+Reverse String:
+```
+String reverse(String s) {
+    if (s.length() <= 1) return s;
+    return s.charAt(s.length()-1) + reverse(s.substring(0, s.length()-1));
+}
+```
+
+Generate Subsequences:
+```
+void subsequences(String s, int index, String current) {
+    if (index == s.length()) {
+        System.out.println(current);
+        return;
+    }
+    // Don't include current character
+    subsequences(s, index+1, current);
+    // Include current character
+    subsequences(s, index+1, current + s.charAt(index));
+}
+```
+
+4.3 RECURSION IN MATHEMATICS
+----------------------------
+Power Function:
+```
+int power(int base, int exp) {
+    if (exp == 0) return 1;
+    if (exp == 1) return base;
+    return base * power(base, exp-1);
+}
+
+// Optimized version:
+int powerOptimized(int base, int exp) {
+    if (exp == 0) return 1;
+    if (exp % 2 == 0) {
+        int half = powerOptimized(base, exp/2);
+        return half * half;
+    }
+    return base * powerOptimized(base, exp-1);
+}
+```
+
+GCD (Greatest Common Divisor):
+```
+int gcd(int a, int b) {
+    if (b == 0) return a;
+    return gcd(b, a % b);
+}
+```
+
+Permutations:
+```
+void permute(char[] arr, int start, int end) {
+    if (start == end) {
+        System.out.println(arr);
+        return;
+    }
+    for (int i = start; i <= end; i++) {
+        swap(arr, start, i);
+        permute(arr, start+1, end);
+        swap(arr, start, i);  // backtrack
+    }
+}
+```
+
+4.4 RECURSION ON LINKED LISTS
+-----------------------------
+Reverse Linked List:
+```
+Node reverse(Node head) {
+    if (head == null || head.next == null) return head;
+    Node reversedHead = reverse(head.next);
+    head.next.next = head;
+    head.next = null;
+    return reversedHead;
+}
+```
+
+Print in Reverse:
+```
+void printReverse(Node head) {
+    if (head == null) return;
+    printReverse(head.next);
+    System.out.print(head.data + " ");
+}
+```
+
+4.5 RECURSION ON TREES
+----------------------
+Tree Height:
+```
+int height(TreeNode root) {
+    if (root == null) return -1;
+    return 1 + Math.max(height(root.left), height(root.right));
+}
+```
+
+Inorder Traversal:
+```
+void inorder(TreeNode root) {
+    if (root == null) return;
+    inorder(root.left);
+    System.out.print(root.data + " ");
+    inorder(root.right);
+}
+```
+
+4.6 RECURSION ON GRAPHS
+-----------------------
+DFS Traversal:
+```
+void dfs(int vertex, boolean[] visited, List<List<Integer>> graph) {
+    visited[vertex] = true;
+    System.out.print(vertex + " ");
+    
+    for (int neighbor : graph.get(vertex)) {
+        if (!visited[neighbor]) {
+            dfs(neighbor, visited, graph);
+        }
+    }
+}
+```
+
+===============================================================================
+5. ADVANCED CONCEPTS
+===============================================================================
+
+5.1 BACKTRACKING USING RECURSION
+--------------------------------
+Backtracking = Recursion + Systematic Trial and Error
+
+Template:
+```
+boolean solve(parameters) {
+    if (base_case) {
+        return solution_found;
+    }
+    
+    for (each_possible_choice) {
+        make_choice();
+        if (solve(modified_parameters)) {
+            return true;  // Solution found
+        }
+        unmake_choice();  // Backtrack
+    }
+    
+    return false;  // No solution found
+}
+```
+
+N-Queens Problem:
+```
+boolean solveNQueens(int[][] board, int col, int n) {
+    if (col >= n) return true;  // All queens placed
+    
+    for (int row = 0; row < n; row++) {
+        if (isSafe(board, row, col, n)) {
+            board[row][col] = 1;  // Place queen
+            
+            if (solveNQueens(board, col + 1, n)) {
+                return true;
+            }
+            
+            board[row][col] = 0;  // Backtrack
+        }
+    }
+    return false;
+}
+```
+
+Rat in a Maze:
+```
+boolean solveMaze(int[][] maze, int x, int y, int[][] solution) {
+    if (x == n-1 && y == n-1) {  // Reached destination
+        solution[x][y] = 1;
+        return true;
+    }
+    
+    if (isSafe(maze, x, y)) {
+        solution[x][y] = 1;  // Mark as part of path
+        
+        // Try all directions
+        if (solveMaze(maze, x+1, y, solution)) return true;  // Down
+        if (solveMaze(maze, x, y+1, solution)) return true;  // Right
+        
+        solution[x][y] = 0;  // Backtrack
+    }
+    
+    return false;
+}
+```
+
+5.2 DIVIDE AND CONQUER
+----------------------
+Strategy: Break problem into smaller subproblems, solve recursively, combine results
+
+Merge Sort:
+```
+void mergeSort(int[] arr, int left, int right) {
+    if (left < right) {
+        int mid = (left + right) / 2;
+        
+        mergeSort(arr, left, mid);      // Divide
+        mergeSort(arr, mid + 1, right); // Divide
+        merge(arr, left, mid, right);   // Conquer
+    }
+}
+```
+
+Quick Sort:
+```
+void quickSort(int[] arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);  // Divide
+        
+        quickSort(arr, low, pi - 1);   // Conquer left
+        quickSort(arr, pi + 1, high);  // Conquer right
+    }
+}
+```
+
+Binary Search:
+```
+int binarySearch(int[] arr, int left, int right, int target) {
+    if (left > right) return -1;
+    
+    int mid = (left + right) / 2;
+    if (arr[mid] == target) return mid;
+    
+    if (target < arr[mid]) {
+        return binarySearch(arr, left, mid - 1, target);
+    } else {
+        return binarySearch(arr, mid + 1, right, target);
+    }
+}
+```
+
+5.3 RECURSION + DYNAMIC PROGRAMMING
+-----------------------------------
+Top-Down Approach (Memoization):
+```
+Map<String, Integer> memo = new HashMap<>();
+
+int longestCommonSubsequence(String s1, String s2, int i, int j) {
+    if (i == s1.length() || j == s2.length()) return 0;
+    
+    String key = i + "," + j;
+    if (memo.containsKey(key)) return memo.get(key);
+    
+    int result;
+    if (s1.charAt(i) == s2.charAt(j)) {
+        result = 1 + longestCommonSubsequence(s1, s2, i+1, j+1);
+    } else {
+        result = Math.max(
+            longestCommonSubsequence(s1, s2, i+1, j),
+            longestCommonSubsequence(s1, s2, i, j+1)
+        );
+    }
+    
+    memo.put(key, result);
+    return result;
+}
+```
+
+5.4 OPTIMIZATION TECHNIQUES
+---------------------------
+Tail Call Optimization:
+Convert non-tail recursion to tail recursion when possible
+
+Iterative Conversion:
+```
+// Recursive factorial
+int factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n-1);
+}
+
+// Iterative equivalent
+int factorial(int n) {
+    int result = 1;
+    for (int i = 1; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+```
+
+===============================================================================
+6. BEST PRACTICES & INTUITION BUILDING
+===============================================================================
+
+6.1 WHEN TO USE RECURSION
+-------------------------
+USE RECURSION WHEN:
+• Problem has recursive structure (trees, graphs)
+• Problem can be broken into similar subproblems
+• Backtracking is needed
+• Divide and conquer applies
+• Mathematical problems with recurrence relations
+
+AVOID RECURSION WHEN:
+• Simple iterative solution exists
+• Deep recursion might cause stack overflow
+• Performance is critical and iterative solution is faster
+• Memory usage is a concern
+
+6.2 PROBLEM BREAKDOWN STRATEGY
+------------------------------
+Step 1: Identify the base case
+- What's the simplest version of the problem?
+- When should recursion stop?
+
+Step 2: Identify the recursive case
+- How can you reduce the problem size?
+- What parameters change between calls?
+
+Step 3: Trust the recursion
+- Assume recursive calls work correctly
+- Focus on combining results
+
+Step 4: Trace through small examples
+- Verify base cases work
+- Check that recursion progresses toward base case
+
+6.3 RECURSION TREE VISUALIZATION
+--------------------------------
+For fibonacci(4):
+                    fib(4)
+                   /      \
+               fib(3)      fib(2)
+              /     \      /     \
+          fib(2)  fib(1) fib(1) fib(0)
+         /     \
+      fib(1)  fib(0)
+
+Insights:
+- Total nodes = total function calls
+- Depth = maximum stack size
+- Repeated subtrees = repeated calculations
+
+6.4 PATTERN RECOGNITION
+-----------------------
+Common Recursive Patterns:
+
+1. LINEAR PROCESSING: f(n) = operation + f(n-1)
+   Example: factorial, sum, array traversal
+
+2. TREE PROCESSING: f(n) = combine(f(left), f(right))
+   Example: binary tree operations, divide and conquer
+
+3. CHOICE/DECISION: f(n) = best(include, exclude)
+   Example: subset problems, knapsack
+
+4. GENERATE ALL: f(n) = generate each possibility
+   Example: permutations, combinations
+
+5. BACKTRACKING: f(state) = try each option, recurse, undo
+   Example: N-Queens, Sudoku, path finding
+
+===============================================================================
+7. PROBLEM SET - 30 ESSENTIAL RECURSION PROBLEMS
+===============================================================================
+
+DIFFICULTY LEVELS:
+⭐ = Beginner (Understand recursion basics)
+⭐⭐ = Intermediate (Apply recursion concepts)
+⭐⭐⭐ = Advanced (Master complex recursive algorithms)
+
+PROBLEM 1: Factorial of N ⭐
+---------------------------
+Problem: Calculate n! = n × (n-1) × (n-2) × ... × 1
+
+Hints:
+- Base case: factorial(0) = 1, factorial(1) = 1
+- Recursive case: factorial(n) = n × factorial(n-1)
+- Handle negative numbers
+
+Pseudocode:
+```
+function factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n-1)
+```
+
+PROBLEM 2: Fibonacci Sequence ⭐
+-------------------------------
+Problem: Find the nth number in Fibonacci sequence (0, 1, 1, 2, 3, 5, 8, ...)
+
+Hints:
+- Base cases: fib(0) = 0, fib(1) = 1
+- Recursive case: fib(n) = fib(n-1) + fib(n-2)
+- Consider memoization for optimization
+
+Pseudocode:
+```
+function fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+```
+
+PROBLEM 3: Sum of Digits ⭐
+--------------------------
+Problem: Find sum of all digits in a number (e.g., 123 → 1+2+3 = 6)
+
+Hints:
+- Base case: single digit number
+- Recursive case: last digit + sum of remaining digits
+- Use n%10 to get last digit, n/10 to remove last digit
+
+Pseudocode:
+```
+function digitSum(n):
+    if n < 10:
+        return n
+    return (n % 10) + digitSum(n / 10)
+```
+
+PROBLEM 4: Reverse a Number ⭐
+-----------------------------
+Problem: Reverse digits of a number (e.g., 123 → 321)
+
+Hints:
+- Use helper function with additional parameter for result
+- Extract last digit and build reversed number
+- Base case: when original number becomes 0
+
+Pseudocode:
+```
+function reverse(n, result = 0):
+    if n == 0:
+        return result
+    return reverse(n / 10, result * 10 + n % 10)
+```
+
+PROBLEM 5: Print Numbers 1 to N ⭐
+---------------------------------
+Problem: Print numbers from 1 to N and then from N to 1
+
+Hints:
+- For ascending: print after recursive call
+- For descending: print before recursive call
+- Base case: when n becomes 0
+
+Pseudocode:
+```
+function printAscending(n):
+    if n <= 0:
+        return
+    printAscending(n-1)
+    print(n)
+
+function printDescending(n):
+    if n <= 0:
+        return
+    print(n)
+    printDescending(n-1)
+```
+
+PROBLEM 6: Find Max in Array ⭐
+------------------------------
+Problem: Find maximum element in array using recursion
+
+Hints:
+- Base case: single element array
+- Recursive case: max of current element and max of rest
+- Pass array and current index as parameters
+
+Pseudocode:
+```
+function findMax(arr, n):
+    if n == 1:
+        return arr[0]
+    return max(arr[n-1], findMax(arr, n-1))
+```
+
+PROBLEM 7: Linear Search ⭐
+--------------------------
+Problem: Search for an element in array using recursion
+
+Hints:
+- Base case: element found or array exhausted
+- Recursive case: check current element, then search rest
+- Return index if found, -1 if not found
+
+Pseudocode:
+```
+function linearSearch(arr, n, key):
+    if n <= 0:
+        return -1
+    if arr[n-1] == key:
+        return n-1
+    return linearSearch(arr, n-1, key)
+```
+
+PROBLEM 8: Binary Search ⭐⭐
+---------------------------
+Problem: Search element in sorted array using binary search
+
+Hints:
+- Base case: left > right (not found)
+- Compare middle element with target
+- Recursively search left or right half
+
+Pseudocode:
+```
+function binarySearch(arr, left, right, target):
+    if left > right:
+        return -1
+    mid = (left + right) / 2
+    if arr[mid] == target:
+        return mid
+    if target < arr[mid]:
+        return binarySearch(arr, left, mid-1, target)
+    else:
+        return binarySearch(arr, mid+1, right, target)
+```
+
+PROBLEM 9: Check Palindrome ⭐
+-----------------------------
+Problem: Check if a string is palindrome using recursion
+
+Hints:
+- Base case: empty string or single character
+- Compare first and last characters
+- Recursively check substring
+
+Pseudocode:
+```
+function isPalindrome(s, start, end):
+    if start >= end:
+        return true
+    if s[start] != s[end]:
+        return false
+    return isPalindrome(s, start+1, end-1)
+```
+
+PROBLEM 10: Reverse String ⭐
+----------------------------
+Problem: Reverse a string using recursion
+
+Hints:
+- Base case: empty or single character string
+- Recursive case: last character + reverse of rest
+
+Pseudocode:
+```
+function reverseString(s):
+    if s.length <= 1:
+        return s
+    return s[s.length-1] + reverseString(s.substring(0, s.length-1))
+```
+
+PROBLEM 11: Generate Subsequences ⭐⭐
+-----------------------------------
+Problem: Generate all subsequences of a string
+
+Hints:
+- For each character: include it or exclude it
+- Use backtracking approach
+- Base case: processed all characters
+
+Pseudocode:
+```
+function subsequences(s, index, current):
+    if index == s.length:
+        print(current)
+        return
+    subsequences(s, index+1, current)           // exclude
+    subsequences(s, index+1, current + s[index]) // include
+```
+
+PROBLEM 12: Generate Power Set ⭐⭐
+--------------------------------
+Problem: Generate all subsets of an array
+
+Hints:
+- Similar to subsequences problem
+- For each element: include or exclude
+- Use list to store current subset
+
+Pseudocode:
+```
+function powerSet(arr, index, current):
+    if index == arr.length:
+        print(current)
+        return
+    powerSet(arr, index+1, current)
+    current.add(arr[index])
+    powerSet(arr, index+1, current)
+    current.remove(arr[index])  // backtrack
+```
+
+PROBLEM 13: Count Subsets with Sum ⭐⭐
+------------------------------------
+Problem: Count subsets of array with given target sum
+
+Hints:
+- For each element: include it or exclude it
+- Include only if remaining sum allows
+- Base case: sum becomes 0 (found) or negative (not found)
+
+Pseudocode:
+```
+function countSubsets(arr, index, sum):
+    if sum == 0:
+        return 1
+    if index >= arr.length or sum < 0:
+        return 0
+    return countSubsets(arr, index+1, sum) + 
+           countSubsets(arr, index+1, sum - arr[index])
+```
+
+PROBLEM 14: String Permutations ⭐⭐
+---------------------------------
+Problem: Generate all permutations of a string
+
+Hints:
+- Fix each character at first position
+- Generate permutations of remaining characters
+- Use swapping for backtracking
+
+Pseudocode:
+```
+function permute(str, start, end):
+    if start == end:
+        print(str)
+        return
+    for i = start to end:
+        swap(str, start, i)
+        permute(str, start+1, end)
+        swap(str, start, i)  // backtrack
+```
+
+PROBLEM 15: Array Permutations ⭐⭐
+--------------------------------
+Problem: Generate all permutations of an array
+
+Hints:
+- Same approach as string permutations
+- Use swapping technique
+- Handle duplicate elements carefully
+
+PROBLEM 16: Tower of Hanoi ⭐⭐
+----------------------------
+Problem: Move n disks from source to destination using auxiliary rod
+
+Hints:
+- Move n-1 disks to auxiliary
+- Move largest disk to destination
+- Move n-1 disks from auxiliary to destination
+
+Pseudocode:
+```
+function hanoi(n, source, destination, auxiliary):
+    if n == 1:
+        print("Move disk from " + source + " to " + destination)
+        return
+    hanoi(n-1, source, auxiliary, destination)
+    print("Move disk from " + source + " to " + destination)
+    hanoi(n-1, auxiliary, destination, source)
+```
+
+PROBLEM 17: Josephus Problem ⭐⭐
+------------------------------
+Problem: Find survivor position in circular elimination game
+
+Hints:
+- Recursive relation: J(n,k) = (J(n-1,k) + k) % n
+- Base case: J(1,k) = 0
+- Convert 0-indexed to 1-indexed result
+
+Pseudocode:
+```
+function josephus(n, k):
+    if n == 1:
+        return 0
+    return (josephus(n-1, k) + k) % n
+```
+
+PROBLEM 18: Rat in a Maze ⭐⭐⭐
+-----------------------------
+Problem: Find path from top-left to bottom-right in maze
+
+Hints:
+- Try all four directions: right, down, left, up
+- Mark visited cells, unmark while backtracking
+- Base case: reached destination
+
+Pseudocode:
+```
+function solveMaze(maze, x, y, solution):
+    if x == n-1 and y == n-1:
+        solution[x][y] = 1
+        return true
+     
+    if isSafe(maze, x, y):
+        solution[x][y] = 1
+        
+        if solveMaze(maze, x+1, y, solution): return true
+        if solveMaze(maze, x, y+1, solution): return true
+        
+        solution[x][y] = 0  // backtrack
+    
+    return false
+```
+
+PROBLEM 19: N-Queens Problem ⭐⭐⭐
+-------------------------------
+Problem: Place N queens on NxN chessboard such that no two queens attack each other
+
+Hints:
+- Place queens column by column
+- Check if placement is safe (row, diagonal conflicts)
+- Backtrack if no safe position in column
+
+Pseudocode:
+```
+function solveNQueens(board, col, n):
+    if col >= n:
+        return true
+    
+    for row = 0 to n-1:
+        if isSafe(board, row, col, n):
+            board[row][col] = 1
+            if solveNQueens(board, col+1, n):
+                return true
+            board[row][col] = 0  // backtrack
+    
+    return false
+```
+
+PROBLEM 20: Sudoku Solver ⭐⭐⭐
+----------------------------
+Problem: Fill empty cells in 9x9 Sudoku grid following rules
+
+Hints:
+- Find empty cell, try digits 1-9
+- Check if digit is valid in row, column, and 3x3 box
+- Backtrack if no valid digit works
+
+Pseudocode:
+```
+function solveSudoku(board):
+    empty = findEmptyCell(board)
+    if empty == null:
+        return true  // solved
+    
+    row, col = empty
+    for num = 1 to 9:
+        if isValid(board, row, col, num):
+            board[row][col] = num
+            if solveSudoku(board):
+                return true
+            board[row][col] = 0  // backtrack
+    
+    return false
+```
+
+PROBLEM 21: Word Search in Grid ⭐⭐⭐
+----------------------------------
+Problem: Find if word exists in 2D character grid
+
+Hints:
+- Start from each cell, try to build word
+- Move in all four directions
+- Mark visited cells, unmark while backtracking
+
+PROBLEM 22: Generate Balanced Parentheses ⭐⭐
+--------------------------------------------
+Problem: Generate all combinations of n pairs of balanced parentheses
+
+Hints:
+- Keep track of open and close parentheses count
+- Add '(' if open count < n
+- Add ')' if close count < open count
+
+Pseudocode:
+```
+function generateParentheses(n, open, close, current):
+    if open == n and close == n:
+        print(current)
+        return
+    
+    if open < n:
+        generateParentheses(n, open+1, close, current + "(")
+    if close < open:
+        generateParentheses(n, open, close+1, current + ")")
+```
+
+PROBLEM 23: Gray Code Generation ⭐⭐
+----------------------------------
+Problem: Generate n-bit Gray code sequence
+
+Hints:
+- Gray code for n bits = 0 + Gray(n-1) + 1 + reverse(Gray(n-1))
+- Base case: 1-bit Gray code = [0, 1]
+
+PROBLEM 24: Partition Problem ⭐⭐⭐
+-------------------------------
+Problem: Check if array can be partitioned into two equal sum subsets
+
+Hints:
+- Find total sum, check if even
+- Use subset sum approach for sum/2
+- Base cases: sum=0 (found), sum<0 or index>=n (not found)
+
+PROBLEM 25: Binary Strings without Consecutive 1s ⭐⭐
+---------------------------------------------------
+Problem: Count binary strings of length n without consecutive 1s
+
+Hints:
+- If current bit is 0, next can be 0 or 1
+- If current bit is 1, next can only be 0
+- Use memoization for optimization
+
+PROBLEM 26: Staircase Problem ⭐⭐
+------------------------------
+Problem: Count ways to climb n stairs (1 or 2 steps at a time)
+
+Hints:
+- Base cases: ways(0)=1, ways(1)=1
+- Recursive case: ways(n) = ways(n-1) + ways(n-2)
+- Similar to Fibonacci problem
+
+PROBLEM 27: Knight's Tour ⭐⭐⭐
+----------------------------
+Problem: Find sequence of moves for knight to visit every square once
+
+Hints:
+- Try all 8 possible knight moves
+- Use backtracking if stuck
+- Mark visited squares, unmark while backtracking
+
+PROBLEM 28: Phone Keypad Combinations ⭐⭐
+---------------------------------------
+Problem: Generate all letter combinations for given phone number
+
+Hints:
+- Map digits to letters (2→ABC, 3→DEF, etc.)
+- For each digit, try all corresponding letters
+- Base case: processed all digits
+
+PROBLEM 29: Merge Sort ⭐⭐
+------------------------
+Problem: Sort array using divide and conquer approach
+
+Hints:
+- Divide array into two halves
+- Recursively sort both halves
+- Merge sorted halves
+
+Pseudocode:
+```
+function mergeSort(arr, left, right):
+    if left < right:
+        mid = (left + right) / 2
+        mergeSort(arr, left, mid)
+        mergeSort(arr, mid+1, right)
+        merge(arr, left, mid, right)
+```
+
+PROBLEM 30: Quick Sort ⭐⭐
+------------------------
+Problem: Sort array using partitioning approach
+
+Hints:
+- Choose pivot element
+- Partition array around pivot
+- Recursively sort sub-arrays
+
+Pseudocode:
+```
+function quickSort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        quickSort(arr, low, pi-1)
+        quickSort(arr, pi+1, high)
+```
+
+===============================================================================
+8. QUICK REVISION SHEET
+===============================================================================
+
+RECURSION FUNDAMENTALS:
+----------------------
+✓ Function calls itself with modified parameters
+✓ Must have base case (stopping condition)
+✓ Must have recursive case (problem reduction)
+✓ Each call creates new stack frame
+
+BASE CASE CHECKLIST:
+-------------------
+□ Handles simplest version of problem
+□ Returns direct result without recursion
+□ Prevents infinite recursion
+□ Covers all edge cases (empty, single element, etc.)
+
+RECURSIVE CASE CHECKLIST:
+-------------------------
+□ Reduces problem size
+□ Moves closer to base case
+□ Correctly combines sub-problem results
+□ Maintains problem invariants
+
+COMMON PATTERNS:
+---------------
+1. Linear: f(n) = process(n) + f(n-1)
+2. Tree: f(n) = combine(f(left), f(right))
+3. Backtrack: try → recurse → undo
+4. Divide & Conquer: divide → solve → combine
+
+TIME COMPLEXITY RULES:
+---------------------
+• Linear recursion: O(n) if O(1) work per call
+• Tree recursion: O(branches^depth)
+• Master theorem for divide & conquer:
+  T(n) = aT(n/b) + f(n)
+
+SPACE COMPLEXITY:
+----------------
+• Always O(recursion depth) for call stack
+• Additional space depends on algorithm
+• Tail recursion can be optimized to O(1)
+
+OPTIMIZATION TECHNIQUES:
+-----------------------
+□ Memoization (top-down DP)
+□ Tail recursion conversion
+□ Iterative conversion when appropriate
+□ Early termination conditions
+
+DEBUGGING TIPS:
+--------------
+□ Trace through small examples manually
+□ Print parameters at function entry
+□ Verify base cases handle all scenarios
+□ Check that recursive calls progress toward base case
+□ Use proper indentation to visualize call depth
+
+WHEN TO USE RECURSION:
+---------------------
+✓ Tree/Graph traversal
+✓ Divide and conquer algorithms
+✓ Backtracking problems
+✓ Mathematical recurrences
+✓ Problems with recursive structure
+
+WHEN TO AVOID:
+-------------
+✗ Simple iterative solution exists
+✗ Deep recursion (stack overflow risk)
+✗ Performance critical code
+✗ Memory constraints
+
+BACKTRACKING TEMPLATE:
+---------------------
+```
+boolean solve(state):
+    if base_case:
+        return found_solution
+    
+    for each choice:
+        make_choice()
+        if solve(new_state):
+            return true
+        undo_choice()
+    
+    return false
+```
+
+DIVIDE & CONQUER TEMPLATE:
+-------------------------
+```
+function divideConquer(problem):
+    if problem.size <= threshold:
+        return solveDirect(problem)
+    
+    subproblems = divide(problem)
+    solutions = []
+    for sub in subproblems:
+        solutions.add(divideConquer(sub))
+    
+    return combine(solutions)
+```
+
+KEY FORMULAS:
+------------
+• Factorial: n! = n × (n-1)!
+• Fibonacci: F(n) = F(n-1) + F(n-2)
+• Power: a^n = a × a^(n-1)
+• GCD: gcd(a,b) = gcd(b, a%b)
+• Tree Height: h = 1 + max(h_left, h_right)
+
+COMPLEXITY CHEAT SHEET:
+----------------------
+┌─────────────────────┬────────────┬─────────────┐
+│ Problem             │ Time       │ Space       │
+├─────────────────────┼────────────┼─────────────┤
+│ Factorial           │ O(n)       │ O(n)        │
+│ Fibonacci (naive)   │ O(2^n)     │ O(n)        │
+│ Binary Search       │ O(log n)   │ O(log n)    │
+│ Merge Sort          │ O(n log n) │ O(n)        │
+│ Quick Sort (avg)    │ O(n log n) │ O(log n)    │
+│ Tower of Hanoi      │ O(2^n)     │ O(n)        │
+│ N-Queens            │ O(n!)      │ O(n)        │
+│ Subset Generation   │ O(2^n)     │ O(n)        │
+│ Permutations        │ O(n!)      │ O(n)        │
+└─────────────────────┴────────────┴─────────────┘
+
+===============================================================================
+FINAL NOTES:
+- Practice tracing recursion by hand before coding
+- Start with simple problems, gradually increase complexity  
+- Master base case identification - it's the key to correct recursion
+- Remember: recursion is just a tool - use it when it makes solution cleaner
+- Always consider iterative alternatives for performance-critical code
+===============================================================================
