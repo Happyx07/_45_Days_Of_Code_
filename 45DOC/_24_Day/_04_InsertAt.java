@@ -12,6 +12,6 @@ public class _04_InsertAt {
       temp.append(85);
         temp.display();
         temp.insertAt(3, 30);
-        temp.display();w
+        temp.display();
     }
 }

@@ -10,13 +10,14 @@ public class _01_Factorial {
     System.out.println("Enter your number:");
     int n = sc.nextInt();
     sc.nextLine();
-    System.out.println("The factorial of "+n+" is "+fact(n));
+    System.out.println("The factorial of " + n + " is " + fact(n));
     sc.close();
   }
 
-  public static int fact(int x){
-    if(x==0 || x==1)return 1;
-    return x * fact(x-1);
+  public static int fact(int x) {
+    if (x == 0 || x == 1)
+      return 1;
+    return x * fact(x - 1);
   }
-  
+
 }

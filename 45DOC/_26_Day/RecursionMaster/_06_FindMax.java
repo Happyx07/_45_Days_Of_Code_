@@ -4,6 +4,7 @@ public class _06_FindMax {
   public static void main(String[] args) {
 
     int[] nums = {1,2,3,5,4,2,6,8,1,2,6,3,5};
+    findMax(nums, 0);
     
     
   }

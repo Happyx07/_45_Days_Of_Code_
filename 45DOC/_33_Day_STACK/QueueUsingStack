@@ -1,0 +1,1197 @@
+/*
+===============================================================================
+              QUEUE IMPLEMENTATION USING STACK - COMPLETE GUIDE
+           From Basics to Advanced - Interview Ready Revision Notes
+===============================================================================
+
+🎯 PURPOSE:
+This comprehensive guide covers Queue implementation using Stack(s) - a 
+classic interview problem that tests understanding of both data structures.
+Perfect for B.Tech CSE students, placement preparation, and technical 
+interview revision.
+
+📚 TABLE OF CONTENTS:
+1. Problem Statement & Motivation
+2. Understanding the Challenge
+3. Approach 1: Two Stacks (Enqueue Costly)
+4. Approach 2: Two Stacks (Dequeue Costly) ⭐
+5. Detailed Implementations
+6. Complexity Analysis & Comparison
+7. Practice Problems & Variations
+8. Interview Tips & Common Mistakes
+9. Quick Reference Cheat Sheet
+10. Complete Working Examples
+
+===============================================================================
+                   SECTION 1: PROBLEM STATEMENT & MOTIVATION
+===============================================================================
+
+🔹 THE PROBLEM:
+───────────────────────────────────────────────────────────────────────────
+
+Design a QUEUE that supports all queue operations using only STACK operations.
+
+Queue Required Operations:
+• enqueue(x) - Insert element x at rear
+• dequeue() - Remove and return front element
+• front() / peek() - Return front element without removing
+• empty() - Check if queue is empty
+
+Available Stack Operations:
+• push(x) - Add element to top
+• pop() - Remove element from top
+• peek() - View top element
+• isEmpty() - Check if empty
+
+🔹 THE CHALLENGE:
+───────────────────────────────────────────────────────────────────────────
+
+Queue: FIFO (First In First Out)
+    enqueue(1) → enqueue(2) → enqueue(3) → dequeue() returns 1
+    [1] [2] [3]
+     ↑       ↑
+   front   rear
+
+Stack: LIFO (Last In First Out)
+    push(1) → push(2) → push(3) → pop() returns 3
+    [1]
+    [2]
+    [3] ← top
+
+💡 KEY INSIGHT: Stack naturally gives us the LAST element, but Queue 
+needs the FIRST element. We need to "reverse" the stack's behavior!
+
+🔹 WHY THIS PROBLEM MATTERS:
+───────────────────────────────────────────────────────────────────────────
+
+✅ Tests deep understanding of FIFO vs LIFO
+✅ Common in technical interviews (Amazon, Microsoft, Google)
+✅ Teaches data structure manipulation
+✅ Shows amortized complexity analysis
+✅ LeetCode #232 - Very popular problem
+✅ Builds problem-solving skills
+✅ Real-world: Browser history, undo/redo systems
+
+🔹 REAL-WORLD ANALOGY:
+───────────────────────────────────────────────────────────────────────────
+
+Imagine a stack of plates (Stack):
+Stack: [Plate1, Plate2, Plate3] (Plate3 on top, removes first)
+
+To simulate a queue (oldest plate should be removed first):
+We need to move plates to another stack to reverse the order!
+
+Original Stack: [1, 2, 3] (3 on top)
+Move to Helper: [3, 2, 1] (1 now on top)
+Now removing from Helper gives us 1 (FIFO)! ✅
+
+===============================================================================
+                   SECTION 2: UNDERSTANDING THE CHALLENGE
+===============================================================================
+
+🔹 CONCEPTUAL APPROACH:
+───────────────────────────────────────────────────────────────────────────
+
+The fundamental question: How do we make LIFO behave like FIFO?
+
+Queue Behavior:
+    enqueue(10) → enqueue(20) → enqueue(30) → dequeue() = 10
+    Access: From LEFT (oldest)
+
+Stack Behavior:
+    push(10) → push(20) → push(30) → pop() = 30
+    Access: From TOP (newest)
+
+💡 SOLUTION STRATEGY:
+Use TWO STACKS to reverse the order! One stack for input, one for output.
+
+🔹 TWO POSSIBLE APPROACHES:
+───────────────────────────────────────────────────────────────────────────
+
+Approach 1: Two Stacks - Make ENQUEUE costly
+    → Transfer elements during enqueue
+    → Enqueue: O(n), Dequeue: O(1)
+    → Simple but inefficient for frequent additions
+
+Approach 2: Two Stacks - Make DEQUEUE costly ⭐
+    → Transfer elements during dequeue (when needed)
+    → Enqueue: O(1), Dequeue: Amortized O(1)
+    → Efficient and preferred in interviews!
+
+🔹 WHICH APPROACH TO USE?
+───────────────────────────────────────────────────────────────────────────
+
+For Interviews: ⭐ Approach 2 (Dequeue Costly - Lazy Transfer)
+    ✅ Amortized O(1) for both operations
+    ✅ More efficient in practice
+    ✅ Shows understanding of amortized analysis
+    ✅ Commonly used in production
+
+But know both approaches to discuss trade-offs!
+
+🔹 THE KEY INSIGHT:
+───────────────────────────────────────────────────────────────────────────
+
+When we pop all elements from Stack1 and push to Stack2:
+Stack1: [1, 2, 3] (3 on top)
+    ↓ Transfer
+Stack2: [3, 2, 1] (1 on top)
+
+The ORDER IS REVERSED! Now Stack2's top has the oldest element (FIFO)! 🎯
+
+===============================================================================
+            SECTION 3: APPROACH 1 - TWO STACKS (ENQUEUE COSTLY)
+===============================================================================
+
+🔹 STRATEGY:
+───────────────────────────────────────────────────────────────────────────
+
+Keep elements in queue order always. Transfer during ENQUEUE.
+
+How?
+1. When enqueuing:
+   - Move all elements from stack1 to stack2
+   - Push new element to stack1
+   - Move all elements back from stack2 to stack1
+   - Result: New element at bottom, oldest at top
+
+2. When dequeuing:
+   - Simply pop from stack1 (top has oldest)
+
+🔹 STEP-BY-STEP EXAMPLE:
+───────────────────────────────────────────────────────────────────────────
+
+Initial State:
+    stack1: []
+    stack2: []
+
+Operation: enqueue(10)
+Step 1: Move all from stack1 to stack2 (nothing to move)
+    stack1: []
+    stack2: []
+Step 2: Push 10 to stack1
+    stack1: [10]
+    stack2: []
+Step 3: Move all from stack2 to stack1 (nothing to move)
+    stack1: [10]
+    stack2: []
+
+Operation: enqueue(20)
+Step 1: Move all from stack1 to stack2
+    stack1: []
+    stack2: [10]
+Step 2: Push 20 to stack1
+    stack1: [20]
+    stack2: [10]
+Step 3: Move all from stack2 to stack1
+    stack1: [20, 10]  (10 on top, 20 at bottom)
+    stack2: []
+
+Operation: enqueue(30)
+Step 1: Move stack1 to stack2
+    stack1: []
+    stack2: [10, 20]  (20 on top)
+Step 2: Push 30 to stack1
+    stack1: [30]
+    stack2: [10, 20]
+Step 3: Move stack2 to stack1
+    stack1: [30, 20, 10]  (10 on top)
+    stack2: []
+
+Operation: dequeue()
+    Simply pop from stack1 → returns 10
+    stack1: [30, 20]  (20 on top)
+
+Operation: dequeue()
+    Simply pop from stack1 → returns 20
+    stack1: [30]
+
+🔹 WHY THIS WORKS:
+───────────────────────────────────────────────────────────────────────────
+
+By transferring during enqueue, we maintain queue order in stack1.
+The top of stack1 always has the front of queue (oldest element).
+
+Visual: Queue front [10, 20, 30] rear
+        Stack1 [30, 20, 10] with 10 on top
+        ✅ Top matches front!
+
+═══════════════════════════════════════════════════════════════════════════
+            APPROACH 1 - JAVA IMPLEMENTATION (ENQUEUE COSTLY)
+═══════════════════════════════════════════════════════════════════════════
+*/
+
+import java.util.Stack;
+
+class QueueUsingTwoStacks_EnqueueCostly {
+    private Stack<Integer> stack1;  // Main stack (maintains queue order)
+    private Stack<Integer> stack2;  // Helper stack (temporary during enqueue)
+    
+    /**
+     * Constructor - Initialize both stacks
+     */
+    public QueueUsingTwoStacks_EnqueueCostly() {
+        stack1 = new Stack<>();
+        stack2 = new Stack<>();
+    }
+    
+    /**
+     * ENQUEUE OPERATION - Add element to queue (rear)
+     * Time Complexity: O(n) where n = number of elements
+     * Space Complexity: O(1) auxiliary
+     * 
+     * Strategy: Transfer all to stack2, push new, transfer back
+     */
+    public void enqueue(int x) {
+        // Step 1: Move all elements from stack1 to stack2
+        while (!stack1.isEmpty()) {
+            stack2.push(stack1.pop());
+        }
+        
+        // Step 2: Push new element to stack1
+        stack1.push(x);
+        
+        // Step 3: Move all elements back from stack2 to stack1
+        while (!stack2.isEmpty()) {
+            stack1.push(stack2.pop());
+        }
+        
+        System.out.println(x + " enqueued to queue");
+    }
+    
+    /**
+     * DEQUEUE OPERATION - Remove and return front element
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
+    public int dequeue() {
+        if (stack1.isEmpty()) {
+            System.out.println("Queue Underflow!");
+            return -1;
+        }
+        
+        return stack1.pop();
+    }
+    
+    /**
+     * FRONT/PEEK OPERATION - Return front element without removing
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
+    public int front() {
+        if (stack1.isEmpty()) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        
+        return stack1.peek();
+    }
+    
+    /**
+     * CHECK IF EMPTY
+     * Time Complexity: O(1)
+     */
+    public boolean empty() {
+        return stack1.isEmpty();
+    }
+    
+    /**
+     * GET SIZE
+     * Time Complexity: O(1)
+     */
+    public int size() {
+        return stack1.size();
+    }
+}
+
+/*
+===============================================================================
+         SECTION 4: APPROACH 2 - TWO STACKS (DEQUEUE COSTLY) ⭐⭐⭐
+===============================================================================
+
+🔹 STRATEGY: THE OPTIMAL SOLUTION (AMORTIZED O(1))
+───────────────────────────────────────────────────────────────────────────
+
+Use TWO STACKS smartly:
+- stack1 (input): For enqueue operations
+- stack2 (output): For dequeue operations
+
+Key Optimization: Only transfer when stack2 is EMPTY!
+
+How?
+1. When enqueuing:
+   - Simply push to stack1 (O(1))
+
+2. When dequeuing:
+   - If stack2 is NOT empty: pop from stack2 (O(1))
+   - If stack2 IS empty: transfer all from stack1 to stack2, then pop
+
+🔹 THE MAGIC: LAZY TRANSFER
+───────────────────────────────────────────────────────────────────────────
+
+We don't transfer every time! We only transfer when stack2 becomes empty.
+This means each element is transferred AT MOST ONCE, giving amortized O(1)!
+
+🔹 DETAILED STEP-BY-STEP EXAMPLE:
+───────────────────────────────────────────────────────────────────────────
+
+Initial State:
+    stack1 (input): []
+    stack2 (output): []
+
+Operation: enqueue(10)
+    Simply push to stack1
+    stack1: [10]
+    stack2: []
+
+Operation: enqueue(20)
+    Simply push to stack1
+    stack1: [10, 20]  (20 on top)
+    stack2: []
+
+Operation: enqueue(30)
+    Simply push to stack1
+    stack1: [10, 20, 30]  (30 on top)
+    stack2: []
+
+Operation: dequeue()
+    stack2 is empty, so transfer from stack1
+    
+    Transfer:
+        Pop 30 from stack1, push to stack2: stack2: [30]
+        Pop 20 from stack1, push to stack2: stack2: [30, 20]
+        Pop 10 from stack1, push to stack2: stack2: [30, 20, 10]
+    
+    Now stack2: [30, 20, 10] (10 on top)
+    stack1: []
+    
+    Pop from stack2 → returns 10
+    stack1: []
+    stack2: [30, 20]  (20 on top)
+
+Operation: enqueue(40)
+    Simply push to stack1
+    stack1: [40]
+    stack2: [30, 20]
+
+Operation: dequeue()
+    stack2 is NOT empty, so directly pop from stack2
+    Returns 20
+    stack1: [40]
+    stack2: [30]
+
+Operation: dequeue()
+    stack2 is NOT empty, so directly pop from stack2
+    Returns 30
+    stack1: [40]
+    stack2: []
+
+Operation: dequeue()
+    stack2 IS empty, so transfer from stack1
+    Transfer 40 to stack2
+    stack1: []
+    stack2: [40]
+    Pop from stack2 → returns 40
+
+🔹 WHY THIS IS OPTIMAL:
+───────────────────────────────────────────────────────────────────────────
+
+✅ Enqueue is always O(1) - just push
+✅ Dequeue is amortized O(1):
+   - Sometimes O(1) when stack2 has elements
+   - Sometimes O(n) when transferring
+   - But each element transfers ONCE, so average = O(1)
+✅ Space efficient - only uses two stacks
+✅ Most practical solution
+✅ Interview favorite!
+
+🔹 AMORTIZED ANALYSIS PROOF:
+───────────────────────────────────────────────────────────────────────────
+
+Consider n enqueue operations followed by n dequeue operations:
+
+Enqueue n times: n × O(1) = O(n)
+
+Dequeue n times:
+- First dequeue: Transfer n elements (O(n)) + pop (O(1))
+- Next n-1 dequeues: Just pop (O(1) each)
+- Total: O(n) + (n-1) × O(1) = O(2n) = O(n)
+
+Total for 2n operations: O(n) + O(n) = O(2n)
+Average per operation: O(2n) / 2n = O(1) ✅
+
+Key: Each element is pushed once and popped once from each stack.
+
+═══════════════════════════════════════════════════════════════════════════
+         APPROACH 2 - JAVA IMPLEMENTATION (DEQUEUE COSTLY) ⭐⭐⭐
+═══════════════════════════════════════════════════════════════════════════
+*/
+
+class QueueUsingTwoStacks_DequeueCostly {
+    private Stack<Integer> stack1;  // Input stack (for enqueue)
+    private Stack<Integer> stack2;  // Output stack (for dequeue)
+    
+    /**
+     * Constructor - Initialize both stacks
+     */
+    public QueueUsingTwoStacks_DequeueCostly() {
+        stack1 = new Stack<>();
+        stack2 = new Stack<>();
+    }
+    
+    /**
+     * ENQUEUE OPERATION - Add element to queue
+     * Time Complexity: O(1) - Simply push to stack1
+     * Space Complexity: O(1)
+     * 
+     * Strategy: Always push to stack1 (input stack)
+     */
+    public void enqueue(int x) {
+        stack1.push(x);
+        System.out.println(x + " enqueued to queue");
+    }
+    
+    /**
+     * DEQUEUE OPERATION - Remove and return front element
+     * Time Complexity: Amortized O(1)
+     *   - Best Case: O(1) when stack2 has elements
+     *   - Worst Case: O(n) when need to transfer
+     *   - Amortized: O(1) because each element transfers once
+     * Space Complexity: O(1)
+     * 
+     * Strategy: Use stack2 as output. Transfer only when stack2 is empty.
+     */
+    public int dequeue() {
+        // If both stacks are empty, queue is empty
+        if (stack1.isEmpty() && stack2.isEmpty()) {
+            System.out.println("Queue Underflow!");
+            return -1;
+        }
+        
+        // If stack2 is empty, transfer all from stack1
+        if (stack2.isEmpty()) {
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop());
+            }
+        }
+        
+        // Pop from stack2 (has elements in queue order)
+        return stack2.pop();
+    }
+    
+    /**
+     * FRONT/PEEK OPERATION - Return front without removing
+     * Time Complexity: Amortized O(1)
+     * Space Complexity: O(1)
+     */
+    public int front() {
+        if (stack1.isEmpty() && stack2.isEmpty()) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        
+        // If stack2 is empty, transfer from stack1
+        if (stack2.isEmpty()) {
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop());
+            }
+        }
+        
+        // Peek from stack2
+        return stack2.peek();
+    }
+    
+    /**
+     * CHECK IF EMPTY
+     * Time Complexity: O(1)
+     */
+    public boolean empty() {
+        return stack1.isEmpty() && stack2.isEmpty();
+    }
+    
+    /**
+     * GET SIZE
+     * Time Complexity: O(1)
+     */
+    public int size() {
+        return stack1.size() + stack2.size();
+    }
+}
+
+/*
+═══════════════════════════════════════════════════════════════════════════
+                    LEETCODE #232 - IMPLEMENT QUEUE USING STACKS
+                          (COMPLETE SOLUTION)
+═══════════════════════════════════════════════════════════════════════════
+
+This is the exact format expected in LeetCode and interviews.
+Using Approach 2 (Dequeue Costly - Optimal)
+*/
+
+class MyQueue {
+    private Stack<Integer> input;   // For enqueue
+    private Stack<Integer> output;  // For dequeue
+    
+    /**
+     * Initialize your data structure here.
+     */
+    public MyQueue() {
+        input = new Stack<>();
+        output = new Stack<>();
+    }
+    
+    /**
+     * Push element x to the back of queue.
+     * Time Complexity: O(1)
+     */
+    public void push(int x) {
+        input.push(x);
+    }
+    
+    /**
+     * Removes the element from front of queue and returns that element.
+     * Time Complexity: Amortized O(1)
+     */
+    public int pop() {
+        // Transfer from input to output if output is empty
+        if (output.isEmpty()) {
+            while (!input.isEmpty()) {
+                output.push(input.pop());
+            }
+        }
+        return output.pop();
+    }
+    
+    /**
+     * Get the front element.
+     * Time Complexity: Amortized O(1)
+     */
+    public int peek() {
+        // Transfer from input to output if output is empty
+        if (output.isEmpty()) {
+            while (!input.isEmpty()) {
+                output.push(input.pop());
+            }
+        }
+        return output.peek();
+    }
+    
+    /**
+     * Returns whether the queue is empty.
+     * Time Complexity: O(1)
+     */
+    public boolean empty() {
+        return input.isEmpty() && output.isEmpty();
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */
+
+/*
+═══════════════════════════════════════════════════════════════════════════
+                        COMPREHENSIVE TESTING CLASS
+═══════════════════════════════════════════════════════════════════════════
+*/
+
+class QueueUsingStackDemo {
+    public static void main(String[] args) {
+        System.out.println("═══════════════════════════════════════════════");
+        System.out.println("    QUEUE USING STACK - ALL APPROACHES DEMO");
+        System.out.println("═══════════════════════════════════════════════\n");
+        
+        // ========== TEST APPROACH 1: ENQUEUE COSTLY ==========
+        System.out.println("========== APPROACH 1: TWO STACKS (ENQUEUE COSTLY) ==========\n");
+        QueueUsingTwoStacks_EnqueueCostly queue1 = new QueueUsingTwoStacks_EnqueueCostly();
+        
+        System.out.println("--- Enqueue Operations (Slow) ---");
+        queue1.enqueue(10);
+        queue1.enqueue(20);
+        queue1.enqueue(30);
+        System.out.println("Front: " + queue1.front());
+        System.out.println("Size: " + queue1.size());
+        
+        System.out.println("\n--- Dequeue Operations (Fast) ---");
+        System.out.println("Dequeued: " + queue1.dequeue());
+        System.out.println("Dequeued: " + queue1.dequeue());
+        System.out.println("Front: " + queue1.front());
+        
+        System.out.println("\n--- More Operations ---");
+        queue1.enqueue(40);
+        queue1.enqueue(50);
+        System.out.println("Front: " + queue1.front());
+        System.out.println("Dequeued: " + queue1.dequeue());
+        
+        
+        // ========== TEST APPROACH 2: DEQUEUE COSTLY (OPTIMAL) ==========
+        System.out.println("\n\n========== APPROACH 2: TWO STACKS (DEQUEUE COSTLY) ⭐ ==========\n");
+        QueueUsingTwoStacks_DequeueCostly queue2 = new QueueUsingTwoStacks_DequeueCostly();
+        
+        System.out.println("--- Enqueue Operations (Fast) ---");
+        queue2.enqueue(100);
+        queue2.enqueue(200);
+        queue2.enqueue(300);
+        queue2.enqueue(400);
+        System.out.println("Size: " + queue2.size());
+        
+        System.out.println("\n--- Dequeue Operations (Amortized Fast) ---");
+        System.out.println("Front: " + queue2.front());
+        System.out.println("Dequeued: " + queue2.dequeue());
+        System.out.println("Dequeued: " + queue2.dequeue());
+        
+        System.out.println("\n--- Mixed Operations ---");
+        queue2.enqueue(500);
+        System.out.println("Front: " + queue2.front());
+        System.out.println("Dequeued: " + queue2.dequeue());
+        queue2.enqueue(600);
+        System.out.println("Size: " + queue2.size());
+        
+        System.out.println("\n--- Empty the Queue ---");
+        while (!queue2.empty()) {
+            System.out.println("Dequeued: " + queue2.dequeue());
+        }
+        System.out.println("Empty? " + queue2.empty());
+        queue2.dequeue();  // Test underflow
+        
+        
+        // ========== TEST LEETCODE FORMAT ==========
+        System.out.println("\n\n========== LEETCODE FORMAT (MyQueue) ==========\n");
+        MyQueue myQueue = new MyQueue();
+        
+        System.out.println("Operations: push(1), push(2), peek(), pop(), empty()");
+        myQueue.push(1);
+        myQueue.push(2);
+        System.out.println("peek() returns: " + myQueue.peek());    // returns 1
+        System.out.println("pop() returns: " + myQueue.pop());      // returns 1
+        System.out.println("empty() returns: " + myQueue.empty());  // returns false
+        
+        System.out.println("\n--- More Operations ---");
+        myQueue.push(3);
+        myQueue.push(4);
+        System.out.println("peek() returns: " + myQueue.peek());    // returns 2
+        System.out.println("pop() returns: " + myQueue.pop());      // returns 2
+        System.out.println("pop() returns: " + myQueue.pop());      // returns 3
+        System.out.println("pop() returns: " + myQueue.pop());      // returns 4
+        System.out.println("empty() returns: " + myQueue.empty());  // returns true
+        
+        System.out.println("\n═══════════════════════════════════════════════");
+        System.out.println("         ALL APPROACHES TESTED SUCCESSFULLY");
+        System.out.println("═══════════════════════════════════════════════");
+    }
+}
+
+/*
+===============================================================================
+              SECTION 5: COMPLEXITY ANALYSIS & COMPARISON
+===============================================================================
+
+🔹 TIME COMPLEXITY COMPARISON:
+───────────────────────────────────────────────────────────────────────────
+
+┌─────────────┬────────────────────┬────────────────────┐
+│ Operation   │ Approach 1         │ Approach 2 ⭐      │
+│             │ (Enqueue Costly)   │ (Dequeue Costly)   │
+├─────────────┼────────────────────┼────────────────────┤
+│ enqueue(x)  │ O(n)               │ O(1) ✅            │
+│ dequeue()   │ O(1) ✅            │ Amortized O(1) ✅  │
+│ front()     │ O(1) ✅            │ Amortized O(1) ✅  │
+│ empty()     │ O(1)               │ O(1)               │
+└─────────────┴────────────────────┴────────────────────┘
+
+🔹 SPACE COMPLEXITY COMPARISON:
+───────────────────────────────────────────────────────────────────────────
+
+┌─────────────┬────────────────────┬────────────────────┐
+│ Aspect      │ Approach 1         │ Approach 2         │
+├─────────────┼────────────────────┼────────────────────┤
+│ Stacks Used │ 2                  │ 2                  │
+│ Space for n │ O(n)               │ O(n)               │
+│ Aux Space   │ O(1)               │ O(1)               │
+│ Efficiency  │ Same               │ Same               │
+└─────────────┴────────────────────┴────────────────────┘
+
+🔹 WHICH APPROACH TO CHOOSE?
+───────────────────────────────────────────────────────────────────────────
+
+For Interviews: ⭐⭐⭐ Approach 2 (Dequeue Costly)
+    ✅ Amortized O(1) for all operations
+    ✅ Enqueue is O(1) - usually more frequent
+    ✅ Shows understanding of amortized analysis
+    ✅ More practical and efficient
+    ✅ Industry standard
+
+When to use Approach 1:
+    → If dequeue happens much more frequently than enqueue
+    → Very rare scenario in practice
+
+🔹 DETAILED AMORTIZED ANALYSIS:
+───────────────────────────────────────────────────────────────────────────
+
+For Approach 2 (Dequeue Costly):
+
+Consider sequence: enqueue n elements, then dequeue n elements
+
+Enqueue Phase:
+- Each enqueue: O(1)
+- Total: n × O(1) = O(n)
+
+Dequeue Phase:
+- First dequeue: Transfer n elements O(n) + pop O(1) = O(n)
+- Remaining dequeues: Just pop O(1) each
+- Total: O(n) + (n-1) × O(1) = O(n)
+
+Overall: O(n) + O(n) = O(2n) for 2n operations
+Per operation: O(2n) / 2n = O(1) ✅
+
+Key Insight: Each element is:
+1. Pushed to stack1 once: O(1)
+2. Moved to stack2 once: O(1)
+3. Popped from stack2 once: O(1)
+Total per element: O(3) = O(1) amortized!
+
+🔹 COMPARISON WITH REVERSE PROBLEM:
+───────────────────────────────────────────────────────────────────────────
+
+Queue using Stack (This problem):
+✅ Two stacks required
+✅ Amortized O(1) for all operations
+✅ Lazy transfer optimization
+
+Stack using Queue (#225):
+✅ One queue possible
+✅ Push is O(n), Pop is O(1)
+✅ Rotation technique
+
+Both are classic interview problems!
+
+===============================================================================
+            SECTION 6: PRACTICE PROBLEMS & VARIATIONS
+===============================================================================
+
+🔹 RELATED PROBLEMS:
+───────────────────────────────────────────────────────────────────────────
+
+1. ⭐ LeetCode #232 - Implement Queue using Stacks
+   - Direct application of this concept
+   - Must solve both approaches
+
+2. ⭐ LeetCode #225 - Implement Stack using Queues
+   - Reverse problem
+   - Good to learn both directions
+
+3. ⭐⭐ Design a Queue that supports getMax() using Stacks
+   - Variant: Add getMax() operation in O(1)
+   - Hint: Use auxiliary stack with max values
+
+4. ⭐⭐ Implement Queue with Two Stacks (No peek allowed on stacks)
+   - Constraint: Can only use push() and pop()
+   - Same approach works
+
+5. ⭐⭐ Implement Circular Queue using Stacks
+   - Fixed size queue with stack operations
+   - Track size and capacity
+
+🔹 VARIATIONS TO PRACTICE:
+───────────────────────────────────────────────────────────────────────────
+
+Variation 1: Queue with GetMin
+    Add getMin() operation returning minimum element in O(1)
+    Hint: Use auxiliary stack to track minima
+
+Variation 2: Queue with GetMax
+    Add getMax() operation
+    Similar to getMin approach
+
+Variation 3: Queue using One Stack
+    Possible with recursion!
+    Time complexity becomes worse
+
+Variation 4: Deque using Stacks
+    Support insertFront, insertRear, deleteFront, deleteRear
+    Requires more stacks or complex logic
+
+Variation 5: Priority Queue using Stacks
+    Elements dequeued by priority
+    Need additional sorting mechanism
+
+🔹 INTERVIEW FOLLOW-UP QUESTIONS:
+───────────────────────────────────────────────────────────────────────────
+
+Q1: Why is approach 2 better than approach 1?
+A1: Enqueue is O(1), and dequeue is amortized O(1). Enqueue is typically 
+    more frequent, so this is more efficient overall.
+
+Q2: What is amortized time complexity?
+A2: Average time per operation over a sequence. Some ops may be O(n), but 
+    averaged over many operations, it's O(1).
+
+Q3: Can you implement queue using one stack?
+A3: Yes, using recursion, but it's less efficient (O(n) for dequeue).
+
+Q4: When would you use approach 1 over approach 2?
+A4: If dequeue happens much more frequently than enqueue (rare).
+
+Q5: What if we need both enqueue and dequeue to be worst-case O(1)?
+A5: Not possible with just stacks. Need different data structure (linked list).
+
+Q6: How many times is each element moved in approach 2?
+A6: Exactly once - from stack1 to stack2. Never moved back.
+
+Q7: Can this be thread-safe?
+A7: Add synchronization to methods, use thread-safe Stack implementation.
+
+===============================================================================
+          SECTION 7: INTERVIEW TIPS & COMMON MISTAKES
+===============================================================================
+
+🔹 COMMON MISTAKES TO AVOID:
+───────────────────────────────────────────────────────────────────────────
+
+❌ Mistake 1: Transferring elements back and forth unnecessarily
+    Impact: Destroys amortized O(1) complexity
+    Fix: In approach 2, NEVER transfer from stack2 back to stack1
+
+❌ Mistake 2: Not checking if output stack is empty before transferring
+    Wrong: Always transfer before dequeue
+    Correct: Only transfer when output stack is empty
+    
+❌ Mistake 3: Forgetting to check both stacks for empty() operation
+    Wrong: return stack1.isEmpty()
+    Correct: return stack1.isEmpty() && stack2.isEmpty()
+
+❌ Mistake 4: Not handling underflow (empty queue dequeue)
+    Impact: NullPointerException
+    Fix: Check if both stacks are empty before dequeue
+
+❌ Mistake 5: Incorrect size() implementation
+    Wrong: return stack1.size() or stack2.size()
+    Correct: return stack1.size() + stack2.size()
+
+❌ Mistake 6: Confusing which approach is optimal
+    Know: Approach 2 (dequeue costly) is better in practice
+
+❌ Mistake 7: Poor explanation of amortized analysis
+    Be clear: Each element transfers exactly once
+
+🔹 INTERVIEW COMMUNICATION TIPS:
+───────────────────────────────────────────────────────────────────────────
+
+✅ Start with problem restatement
+✅ Clarify: Can I use built-in Stack? (Usually yes)
+✅ Discuss both approaches briefly
+✅ Recommend approach 2 (dequeue costly)
+✅ Explain the lazy transfer concept
+✅ Draw diagrams showing transfer
+✅ Explain amortized complexity clearly
+✅ Code with good variable names (input/output)
+✅ Test with example (enqueue 3, dequeue 2, enqueue 1)
+✅ Discuss why it's better than approach 1
+
+🔹 WHAT TO SAY IN INTERVIEW:
+───────────────────────────────────────────────────────────────────────────
+
+"To implement Queue using Stacks, I need to convert LIFO behavior of 
+stacks to FIFO behavior of queues.
+
+There are two main approaches:
+1. Transfer during enqueue - O(n) enqueue, O(1) dequeue
+2. Transfer during dequeue - O(1) enqueue, Amortized O(1) dequeue
+
+I'll implement approach 2 as it's more efficient. The key idea is to use 
+two stacks: 'input' for enqueue and 'output' for dequeue. When dequeuing, 
+I only transfer elements from input to output when output is empty. This 
+lazy transfer ensures each element is moved exactly once, giving amortized 
+O(1) time complexity."
+
+Then code approach 2!
+
+🔹 CODE REVIEW CHECKLIST:
+───────────────────────────────────────────────────────────────────────────
+
+□ Handle empty queue (underflow) in dequeue
+□ Check output stack is empty before transfer
+□ Don't transfer unnecessarily
+□ empty() checks BOTH stacks
+□ size() returns sum of both stacks
+□ Use descriptive names (input/output or stack1/stack2)
+□ Add comments for transfer logic
+□ Test with mixed enqueue/dequeue
+□ Explain amortized complexity
+
+===============================================================================
+              SECTION 8: QUICK REFERENCE CHEAT SHEET
+===============================================================================
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    QUEUE USING STACK - KEY POINTS                       │
+├─────────────────────────────────────────────────────────────────────────┤
+│ Problem: Implement Queue (FIFO) using Stack (LIFO)                     │
+│ Challenge: Reverse stack's natural order                               │
+│ Best Solution: Two stacks with lazy transfer ⭐                        │
+│ Enqueue: O(1) - Push to input stack                                    │
+│ Dequeue: Amortized O(1) - Lazy transfer to output stack                │
+│ Space: O(n) - Two stacks total                                         │
+│ LeetCode: #232 - Implement Queue using Stacks                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+🔹 APPROACH 2 (OPTIMAL) - CORE ALGORITHM:
+───────────────────────────────────────────────────────────────────────────
+
+enqueue(x):
+    input.push(x)
+
+dequeue():
+    if output.isEmpty():
+        while !input.isEmpty():
+            output.push(input.pop())
+    return output.pop()
+
+front():
+    if output.isEmpty():
+        while !input.isEmpty():
+            output.push(input.pop())
+    return output.peek()
+
+empty():
+    return input.isEmpty() && output.isEmpty()
+
+🔹 WHY LAZY TRANSFER WORKS:
+───────────────────────────────────────────────────────────────────────────
+
+Input Stack: [1, 2, 3] (3 on top) - newest elements
+Output Stack: [] (empty)
+
+Transfer when output is empty:
+    Pop 3, 2, 1 from input
+    Push 3, 2, 1 to output
+    Result: Output [3, 2, 1] (1 on top)
+
+Now output has oldest elements on top → FIFO! ✅
+Don't transfer again until output is empty!
+
+🔹 COMPLEXITY SUMMARY:
+───────────────────────────────────────────────────────────────────────────
+
+Operation  │ Approach 1  │ Approach 2 ⭐ │ Explanation
+───────────┼─────────────┼───────────────┼─────────────────────
+enqueue    │ O(n)        │ O(1)          │ Just push to input
+dequeue    │ O(1)        │ Amortized O(1)│ Lazy transfer
+front      │ O(1)        │ Amortized O(1)│ Same as dequeue
+empty      │ O(1)        │ O(1)          │ Check both stacks
+Space      │ O(n)        │ O(n)          │ Two stacks
+
+🔹 KEY INSIGHT:
+───────────────────────────────────────────────────────────────────────────
+
+Each element goes through exactly 3 operations:
+1. Push to input stack (during enqueue)
+2. Move to output stack (during first dequeue after enqueue)
+3. Pop from output stack (during dequeue)
+
+Total: O(3) = O(1) per element amortized! 🎯
+
+===============================================================================
+                        SECTION 9: VISUAL SUMMARY
+===============================================================================
+
+📊 LAZY TRANSFER VISUALIZATION (APPROACH 2):
+───────────────────────────────────────────────────────────────────────────
+
+State 1: After enqueue(1), enqueue(2), enqueue(3)
+    input: [1, 2, 3]  (3 on top)
+    output: []
+
+State 2: Call dequeue() - Output is empty, so transfer
+    Transfer Process:
+        input: [1, 2] → output: [3]
+        input: [1]    → output: [3, 2]
+        input: []     → output: [3, 2, 1]
+    
+    Final:
+        input: []
+        output: [3, 2, 1]  (1 on top - oldest!)
+
+State 3: Return output.pop() = 1 ✅
+    input: []
+    output: [3, 2]  (2 on top)
+
+State 4: enqueue(4)
+    input: [4]
+    output: [3, 2]
+
+State 5: dequeue() - Output NOT empty, just pop
+    Return output.pop() = 2 ✅
+    input: [4]
+    output: [3]
+
+State 6: dequeue()
+    Return output.pop() = 3 ✅
+    input: [4]
+    output: []
+
+State 7: dequeue() - Output empty, transfer again
+    Transfer 4: input: [] → output: [4]
+    Return output.pop() = 4 ✅
+
+🎯 DECISION TREE:
+───────────────────────────────────────────────────────────────────────────
+
+                Need Queue using Stack?
+                        │
+        ┌───────────────┴───────────────┐
+        │                               │
+   For Interview?              For Learning?
+        │                               │
+   Use Approach 2              Try Both Approaches
+   (Dequeue Costly)            Then Choose Better
+        │                               │
+   Explain Amortized           Understand Trade-offs
+   Complexity                          │
+        │                               │
+        └───────────┬───────────────────┘
+                    │
+        Code with input/output stacks
+                    │
+            Test & Analyze
+
+===============================================================================
+                   SECTION 10: COMPLETE WORKING EXAMPLE
+===============================================================================
+
+🔹 TRACE THROUGH COMPLETE EXAMPLE (APPROACH 2):
+───────────────────────────────────────────────────────────────────────────
+
+MyQueue queue = new MyQueue();
+
+Operation: queue.push(5)
+    input.push(5)
+    input: [5]
+    output: []
+
+Operation: queue.push(10)
+    input.push(10)
+    input: [5, 10]
+    output: []
+
+Operation: queue.push(15)
+    input.push(15)
+    input: [5, 10, 15]
+    output: []
+
+Operation: queue.peek()
+    output is empty, so transfer:
+        Pop 15, 10, 5 from input
+        Push to output: [15, 10, 5]
+    input: []
+    output: [15, 10, 5]  (5 on top)
+    Return: 5
+
+Operation: queue.pop()
+    output not empty, just pop
+    Return: 5
+    input: []
+    output: [15, 10]  (10 on top)
+
+Operation: queue.push(20)
+    input.push(20)
+    input: [20]
+    output: [15, 10]
+
+Operation: queue.pop()
+    output not empty, pop
+    Return: 10
+    input: [20]
+    output: [15]
+
+Operation: queue.pop()
+    output not empty, pop
+    Return: 15
+    input: [20]
+    output: []
+
+Operation: queue.pop()
+    output is empty, transfer:
+        Pop 20 from input
+        Push to output: [20]
+    input: []
+    output: [20]
+    Return: 20
+
+Operation: queue.empty()
+    input.isEmpty() && output.isEmpty()
+    Return: true
+
+Perfect FIFO: Enqueued 5,10,15,20 → Dequeued 5,10,15,20 ✅
+
+===============================================================================
+                       SECTION 11: FINAL TAKEAWAYS
+===============================================================================
+
+🎓 KEY LEARNINGS:
+───────────────────────────────────────────────────────────────────────────
+
+1. Queue is FIFO, Stack is LIFO - fundamentally opposite
+2. Use TWO stacks to achieve FIFO from LIFO
+3. Lazy transfer (approach 2) is optimal
+4. Each element transfers exactly once → Amortized O(1)
+5. input stack for enqueue, output stack for dequeue
+6. Only transfer when output stack is empty
+7. LeetCode #232 is must-solve for interviews
+8. Understanding amortized complexity is crucial
+
+💪 MASTERY CHECKLIST:
+───────────────────────────────────────────────────────────────────────────
+
+□ Understand why this problem is challenging
+□ Can explain both approaches
+□ Can code approach 2 (optimal) from scratch
+□ Can trace through operations step-by-step
+□ Understand amortized complexity analysis
+□ Can explain why lazy transfer is better
+□ Have solved LeetCode #232
+□ Can handle follow-up questions
+□ Can explain to a beginner
+□ Know reverse problem (Stack using Queue)
+
+🚀 NEXT STEPS:
+───────────────────────────────────────────────────────────────────────────
+
+1. Solve LeetCode #232 (this problem)
+2. Solve LeetCode #225 (Stack using Queue)
+3. Implement with generics <T>
+4. Add getMin/getMax functionality
+5. Study amortized analysis in depth
+6. Practice explaining to others
+7. Solve related problems (priority queue, deque)
+8. Understand real-world applications
+
+🎯 INTERVIEW SUCCESS FORMULA:
+───────────────────────────────────────────────────────────────────────────
+
+1. Restate problem clearly
+2. Identify core challenge (FIFO vs LIFO)
+3. Propose two-stack approach
+4. Explain lazy transfer optimization
+5. Code approach 2 with good naming
+6. Test with example
+7. Explain amortized O(1) complexity
+8. Discuss why it's optimal
+
+Remember: "Two stacks can simulate a queue through lazy transfer. Each 
+element moves from input to output exactly once, making all operations 
+amortized O(1)!" 🎯
+
+This problem tests understanding of BOTH data structures AND amortized 
+analysis - master it completely!
+
+===============================================================================
+                              END OF GUIDE
+            Practice this until you can code it in your sleep! ⭐
+===============================================================================
+*/

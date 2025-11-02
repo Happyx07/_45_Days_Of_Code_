@@ -1,5 +1,3 @@
-
-
 public class _01_pattern {
 
   public static void main(String[] args) {

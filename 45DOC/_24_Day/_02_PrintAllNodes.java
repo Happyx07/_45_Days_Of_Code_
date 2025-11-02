@@ -1,5 +1,5 @@
 package _24_Day;
-import _24_Day.LinkedList;
+
 
 public class _02_PrintAllNodes {
   public static void main(String[] args) {

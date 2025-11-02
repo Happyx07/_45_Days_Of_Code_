@@ -9,6 +9,7 @@ public class _05_Print1toN {
     int n= sc.nextInt();
     sc.nextLine();
     printN(n);
+    sc.close();
 
 
   }

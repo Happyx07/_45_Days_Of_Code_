@@ -1,0 +1,1097 @@
+/*
+===============================================================================
+                    BACKTRACKING PROBLEMS MASTERCLASS
+                  Beginner-Friendly Step-by-Step Guide
+===============================================================================
+
+This file contains detailed explanations and implementations of classic 
+backtracking problems. Each problem is broken down from naive thinking 
+to optimal solution with complete code examples.
+
+TABLE OF CONTENTS:
+1. Word Search
+2. N-Queen Problem
+3. Rat in a Maze
+
+===============================================================================
+*/
+
+import java.util.*;
+
+public class BACKTRACKING_MASTERCLASS {
+    
+    /*
+    ═══════════════════════════════════════════════════════════════════════
+                            PROBLEM 1: WORD SEARCH
+    ═══════════════════════════════════════════════════════════════════════
+    
+    🎯 PROBLEM STATEMENT:
+    Given a 2D grid of characters and a word, find if the word exists in 
+    the grid. The word can be constructed from letters of sequentially 
+    adjacent cells (horizontally or vertically). The same cell cannot be 
+    used more than once.
+    
+    📝 REAL-WORLD ANALOGY:
+    Imagine you're playing a word puzzle game where you need to trace a 
+    word on a letter board. You can move up, down, left, or right to the 
+    next letter, but you can't step on the same tile twice!
+    
+    Example:
+    Grid:
+    A B C E
+    S F C S
+    A D E E
+    
+    Word: "ABCCED" → TRUE (A→B→C→C→E→D path exists)
+    Word: "SEE" → TRUE (S→E→E path exists)
+    Word: "ABCB" → FALSE (Can't reuse B)
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🤔 NAIVE APPROACH (Brute Force Thinking):
+    
+    The simplest thought process:
+    1. "I need to find where the word starts in the grid"
+    2. "From each starting position, I'll try to match the word letter by letter"
+    3. "At each step, I can move in 4 directions: up, down, left, right"
+    4. "If I get stuck, I need to go back and try a different path"
+    
+    This is the ESSENCE of backtracking!
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    📊 DRY RUN - Let's trace "SEE" in the grid:
+    
+    Grid:                  Step-by-step exploration:
+    A B C E                
+    S F C S                1. Start at S(1,0)
+    A D E E                2. Look for 'E' around S → found at E(2,2)
+                          3. Look for 'E' around E(2,2) → found at E(2,3)
+                          4. Word complete! Return TRUE
+    
+    What if we tried a wrong path?
+    1. Start at S(1,3)
+    2. Look for 'E' around S(1,3) → found at E(0,3)
+    3. Look for 'E' around E(0,3) → NOT found in valid neighbors
+    4. BACKTRACK to S(1,3), try different direction
+    5. Eventually find the correct path or exhaust all options
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🌳 RECURSIVE TREE VISUALIZATION:
+    
+    For word "SEE" starting from S at (1,0):
+    
+                        S(1,0) [index=0]
+                            |
+                    Try 4 directions
+                    /   |   |   \
+                  ❌   ❌   E(2,2) ❌
+                            [index=1]
+                                |
+                        Try 4 directions
+                        /   |   |   \
+                      ❌   ❌   E(2,3) ❌
+                                [index=2]
+                                    |
+                              Word Complete! ✅
+    
+    ❌ = Invalid move (out of bounds, wrong letter, or already visited)
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🔄 BACKTRACKING CONCEPT:
+    
+    Key Insight: We need to MARK cells as VISITED when exploring, then 
+    UNMARK them when backtracking to allow other paths to use them.
+    
+    The Backtracking Pattern:
+    1. Make a choice (move to a cell)
+    2. Mark it as visited
+    3. Explore further (recursive call)
+    4. Unmake the choice (unmark as visited) ← This is BACKTRACKING!
+    
+    Why backtrack?
+    - If we don't unmark, other potential paths can't use that cell
+    - We need to restore the state before trying a different path
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    ⚡ OPTIMIZATIONS:
+    
+    1. Early Termination: If we find the word, stop searching
+    2. Boundary Checks: Validate indices before accessing grid
+    3. Visited Marking: Use the grid itself (modify and restore) instead 
+       of extra visited array
+    4. Direction Array: Use arrays for cleaner 4-direction exploration
+    
+    ───────────────────────────────────────────────────────────────────────
+    */
+    
+    // ==================== SOLUTION 1: WORD SEARCH ====================
+    
+    /**
+     * Main function to check if word exists in grid
+     * Time: O(N * M * 4^L) where N=rows, M=cols, L=word length
+     * Space: O(L) for recursion stack
+     */
+    public static boolean wordSearch(char[][] board, String word) {
+        if (board == null || board.length == 0 || word == null) {
+            return false;
+        }
+        
+        int rows = board.length;
+        int cols = board[0].length;
+        
+        // Try starting from each cell in the grid
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                // If first letter matches, start DFS from this cell
+                if (board[i][j] == word.charAt(0)) {
+                    if (dfsWordSearch(board, word, i, j, 0)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * DFS helper function - explores all 4 directions recursively
+     * 
+     * @param board - 2D character grid
+     * @param word - target word to search
+     * @param row - current row position
+     * @param col - current column position
+     * @param index - current index in the word we're matching
+     * @return true if word can be formed from this position
+     */
+    private static boolean dfsWordSearch(char[][] board, String word, 
+                                         int row, int col, int index) {
+        
+        // BASE CASE 1: We've matched all characters! SUCCESS! 🎉
+        if (index == word.length()) {
+            return true;
+        }
+        
+        // BASE CASE 2: Out of bounds or wrong character
+        if (row < 0 || row >= board.length || 
+            col < 0 || col >= board[0].length || 
+            board[row][col] != word.charAt(index)) {
+            return false;
+        }
+        
+        // STEP 1: Mark current cell as visited by temporarily changing it
+        char temp = board[row][col];
+        board[row][col] = '#';  // Mark as visited
+        
+        // STEP 2: Explore all 4 directions (up, down, left, right)
+        boolean found = dfsWordSearch(board, word, row - 1, col, index + 1) ||  // UP
+                       dfsWordSearch(board, word, row + 1, col, index + 1) ||  // DOWN
+                       dfsWordSearch(board, word, row, col - 1, index + 1) ||  // LEFT
+                       dfsWordSearch(board, word, row, col + 1, index + 1);    // RIGHT
+        
+        // STEP 3: BACKTRACK - Restore the cell (unmake the choice)
+        board[row][col] = temp;  // This is the KEY backtracking step!
+        
+        return found;
+    }
+    
+    // Alternative cleaner version using direction arrays
+    private static int[] dx = {-1, 1, 0, 0};  // Row directions: up, down, left, right
+    private static int[] dy = {0, 0, -1, 1};  // Col directions: up, down, left, right
+    
+    private static boolean dfsWordSearchClean(char[][] board, String word, 
+                                              int row, int col, int index) {
+        // Base cases
+        if (index == word.length()) return true;
+        if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) {
+            return false;
+        }
+        if (board[row][col] != word.charAt(index)) return false;
+        
+        // Mark visited
+        char temp = board[row][col];
+        board[row][col] = '#';
+        
+        // Try all 4 directions
+        for (int dir = 0; dir < 4; dir++) {
+            int newRow = row + dx[dir];
+            int newCol = col + dy[dir];
+            if (dfsWordSearchClean(board, word, newRow, newCol, index + 1)) {
+                board[row][col] = temp;  // Restore before returning
+                return true;
+            }
+        }
+        
+        // Backtrack
+        board[row][col] = temp;
+        return false;
+    }
+    
+    /*
+    ───────────────────────────────────────────────────────────────────────
+    
+    📈 COMPLEXITY ANALYSIS - WORD SEARCH:
+    
+    Time Complexity: O(N × M × 4^L)
+    - N × M: We might start from any cell in the grid
+    - 4^L: At each step, we have 4 choices, and we go L levels deep
+    - In practice, it's much better due to pruning (invalid moves)
+    
+    Space Complexity: O(L)
+    - Recursion stack depth = word length
+    - We modify the grid in-place for visited marking
+    
+    Comparison:
+    - Brute Force (generate all paths): O(N × M × 4^(N×M)) - TERRIBLE!
+    - Our approach with backtracking: O(N × M × 4^L) - MUCH BETTER!
+    - Early termination and pruning make it even faster in practice
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🎓 KEY LEARNINGS - WORD SEARCH:
+    
+    1. **Backtracking Pattern**: Make choice → Explore → Unmake choice
+    2. **State Restoration**: Always restore modified state when backtracking
+    3. **In-place Marking**: Clever trick to avoid extra visited array
+    4. **Direction Arrays**: Clean way to handle 4/8 direction movements
+    5. **Early Termination**: Return immediately when solution is found
+    
+    This pattern applies to: Grid traversal, path finding, maze problems
+    
+    ═══════════════════════════════════════════════════════════════════════
+    */
+    
+    
+    
+    /*
+    ═══════════════════════════════════════════════════════════════════════
+                          PROBLEM 2: N-QUEEN PROBLEM
+    ═══════════════════════════════════════════════════════════════════════
+    
+    🎯 PROBLEM STATEMENT:
+    Place N queens on an N×N chessboard such that no two queens attack 
+    each other. A queen can attack horizontally, vertically, and diagonally.
+    Find all possible solutions.
+    
+    📝 REAL-WORLD ANALOGY:
+    Imagine you're organizing a party with N very competitive people in an 
+    N×N seating arrangement. Each person doesn't want to sit in the same 
+    row, column, or diagonal as any other person. How many seating 
+    arrangements are possible?
+    
+    Example: N = 4
+    
+    Solution 1:        Solution 2:
+    . Q . .            . . Q .
+    . . . Q            Q . . .
+    Q . . .            . . . Q
+    . . Q .            . Q . .
+    
+    (There are 2 solutions for N=4)
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🤔 NAIVE APPROACH (Brute Force Thinking):
+    
+    Initial thought process:
+    1. "I need to place N queens on N×N board"
+    2. "I'll try placing a queen in every possible position"
+    3. "For each placement, check if it's safe (no attacks)"
+    4. "If I can place all N queens, that's a solution"
+    5. "If I get stuck, remove the last queen and try a different position"
+    
+    Key Insight: We can place ONE queen per ROW! This reduces our search space.
+    Instead of trying all N² positions, we try N positions per row.
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    📊 DRY RUN - Let's solve for N=4:
+    
+    Row 0: Try placing queen at each column
+    
+    Attempt 1: Place at (0,0)
+    Board:              Can we continue?
+    Q . . .             Row 1: Can't place at (1,0) or (1,1) → Try (1,2)
+    . . Q .             Row 2: Can't place anywhere! BACKTRACK
+    . . . .
+    . . . .
+    
+    Attempt 2: Place at (0,1)
+    Board:              Can we continue?
+    . Q . .             Row 1: Can't place at (1,0), (1,1), (1,2) → Try (1,3)
+    . . . Q             Row 2: Try (2,0) → No safe place for Row 3. BACKTRACK
+    . . . .             Try (2,1) → Can place at (3,2). SUCCESS! ✅
+    . . . .
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🌳 RECURSIVE TREE VISUALIZATION (N=4):
+    
+                            Start (Row 0)
+                        /    |    |    \
+                    Col0  Col1  Col2  Col3
+                    /      |      |      \
+               Row1      Row1   Row1    Row1
+              / | \      /|\     ...     ...
+            ...  ... (continue exploring each valid placement)
+    
+    At each level (row), we try placing queen at each column.
+    We only go deeper if the placement is SAFE.
+    If we reach Row N, we found a solution!
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🔄 BACKTRACKING CONCEPT:
+    
+    The N-Queen backtracking process:
+    
+    1. Choose a column in the current row
+    2. Check if it's safe (no queen attacks)
+    3. Place the queen (make the choice)
+    4. Move to next row (recurse)
+    5. If next row fails, REMOVE the queen (unmake choice) ← BACKTRACK
+    6. Try next column in current row
+    
+    Why backtrack?
+    - A placement might seem fine initially but lead to dead end later
+    - We need to try ALL possibilities systematically
+    - Backtracking lets us explore different branches of the decision tree
+    
+    Attack Detection:
+    A queen at (row, col) attacks:
+    - Same row: Any (row, *) - We avoid by placing 1 queen per row
+    - Same column: Any (*, col) - Check column before placing
+    - Main diagonal: Any (r, c) where r - c == row - col
+    - Anti-diagonal: Any (r, c) where r + c == row + col
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    ⚡ OPTIMIZATIONS:
+    
+    1. **One Queen Per Row**: Only try different columns for each row
+    2. **Fast Attack Checking**: Use sets/arrays to track attacked diagonals
+    3. **Pruning**: Don't explore subtrees that violate constraints
+    4. **Symmetry Breaking**: Can optimize further using board symmetries
+    
+    Instead of checking entire board each time (O(N²)), we use:
+    - colSet: Track occupied columns
+    - diagSet: Track occupied main diagonals (row - col)
+    - antiDiagSet: Track occupied anti-diagonals (row + col)
+    
+    This makes conflict checking O(1)!
+    
+    ───────────────────────────────────────────────────────────────────────
+    */
+    
+    // ==================== SOLUTION 2: N-QUEEN ====================
+    
+    /**
+     * Brute Force Version - Easy to understand but slower
+     * Checks entire board for conflicts each time
+     */
+    public static List<List<String>> solveNQueensBruteForce(int n) {
+        List<List<String>> solutions = new ArrayList<>();
+        char[][] board = new char[n][n];
+        
+        // Initialize board with empty cells
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = '.';
+            }
+        }
+        
+        backtrackNQueenBrute(solutions, board, 0);
+        return solutions;
+    }
+    
+    private static void backtrackNQueenBrute(List<List<String>> solutions, 
+                                             char[][] board, int row) {
+        // BASE CASE: All queens placed successfully!
+        if (row == board.length) {
+            solutions.add(constructSolution(board));
+            return;
+        }
+        
+        // Try placing queen in each column of current row
+        for (int col = 0; col < board.length; col++) {
+            if (isSafeBrute(board, row, col)) {
+                // STEP 1: Make the choice (place queen)
+                board[row][col] = 'Q';
+                
+                // STEP 2: Explore (recurse to next row)
+                backtrackNQueenBrute(solutions, board, row + 1);
+                
+                // STEP 3: Unmake the choice (remove queen) - BACKTRACK!
+                board[row][col] = '.';
+            }
+        }
+    }
+    
+    /**
+     * Check if placing queen at (row, col) is safe
+     * This is O(N) check for each placement
+     */
+    private static boolean isSafeBrute(char[][] board, int row, int col) {
+        int n = board.length;
+        
+        // Check column (no queen above in same column)
+        for (int i = 0; i < row; i++) {
+            if (board[i][col] == 'Q') return false;
+        }
+        
+        // Check main diagonal (top-left to bottom-right)
+        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] == 'Q') return false;
+        }
+        
+        // Check anti-diagonal (top-right to bottom-left)
+        for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+            if (board[i][j] == 'Q') return false;
+        }
+        
+        return true;
+    }
+    
+    /**
+     * OPTIMIZED VERSION - Uses sets for O(1) conflict checking
+     * This is the RECOMMENDED approach!
+     */
+    public static List<List<String>> solveNQueens(int n) {
+        List<List<String>> solutions = new ArrayList<>();
+        char[][] board = new char[n][n];
+        
+        // Initialize board
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = '.';
+            }
+        }
+        
+        // Sets for O(1) conflict checking
+        Set<Integer> columns = new HashSet<>();
+        Set<Integer> diagonals = new HashSet<>();      // row - col
+        Set<Integer> antiDiagonals = new HashSet<>();  // row + col
+        
+        backtrackNQueen(solutions, board, 0, columns, diagonals, antiDiagonals);
+        return solutions;
+    }
+    
+    private static void backtrackNQueen(List<List<String>> solutions, 
+                                       char[][] board, int row,
+                                       Set<Integer> columns, 
+                                       Set<Integer> diagonals,
+                                       Set<Integer> antiDiagonals) {
+        int n = board.length;
+        
+        // BASE CASE: All queens placed!
+        if (row == n) {
+            solutions.add(constructSolution(board));
+            return;
+        }
+        
+        // Try placing queen at each column in current row
+        for (int col = 0; col < n; col++) {
+            int diag = row - col;
+            int antiDiag = row + col;
+            
+            // Check if this position is under attack (O(1) check!)
+            if (columns.contains(col) || 
+                diagonals.contains(diag) || 
+                antiDiagonals.contains(antiDiag)) {
+                continue;  // Skip this column, it's not safe
+            }
+            
+            // STEP 1: Make the choice
+            board[row][col] = 'Q';
+            columns.add(col);
+            diagonals.add(diag);
+            antiDiagonals.add(antiDi
+            ag);
+            
+            // STEP 2: Explore (recurse)
+            backtrackNQueen(solutions, board, row + 1, 
+                          columns, diagonals, antiDiagonals);
+            
+            // STEP 3: Unmake the choice - BACKTRACK!
+            board[row][col] = '.';
+            columns.remove(col);
+            diagonals.remove(diag);
+            antiDiagonals.remove(antiDiag);
+        }
+    }
+    
+    /**
+     * Convert board to required output format
+     */
+    private static List<String> constructSolution(char[][] board) {
+        List<String> solution = new ArrayList<>();
+        for (char[] row : board) {
+            solution.add(new String(row));
+        }
+        return solution;
+    }
+    
+    /*
+    ───────────────────────────────────────────────────────────────────────
+    
+    📈 COMPLEXITY ANALYSIS - N-QUEEN:
+    
+    Brute Force Version:
+    Time Complexity: O(N! × N)
+    - N! arrangements to try (each row has fewer valid choices)
+    - N for safety check at each placement
+    Space Complexity: O(N²) for board + O(N) for recursion stack
+    
+    Optimized Version:
+    Time Complexity: O(N!)
+    - Still need to explore N! arrangements
+    - But safety check is now O(1) instead of O(N)
+    Space Complexity: O(N) for sets + O(N) for recursion = O(N)
+    
+    Why we can't do better than O(N!)?
+    - We need to explore all valid arrangements
+    - There's no way to predict which arrangements work without trying
+    - This is an NP-Hard problem
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🎓 KEY LEARNINGS - N-QUEEN:
+    
+    1. **Constraint Optimization**: Place 1 queen per row to reduce search space
+    2. **Fast Validation**: Use sets/arrays for O(1) conflict detection
+    3. **Diagonal Tracking**: row-col and row+col uniquely identify diagonals
+    4. **Systematic Exploration**: Try all possibilities in organized manner
+    5. **State Management**: Track what's occupied using auxiliary data structures
+    
+    This pattern applies to: Constraint satisfaction, placement problems, 
+    combinatorial optimization
+    
+    ═══════════════════════════════════════════════════════════════════════
+    */
+    
+    
+    
+    /*
+    ═══════════════════════════════════════════════════════════════════════
+                        PROBLEM 3: RAT IN A MAZE
+    ═══════════════════════════════════════════════════════════════════════
+    
+    🎯 PROBLEM STATEMENT:
+    A rat is placed at the top-left corner (0,0) of a maze (N×N matrix). 
+    The rat needs to reach the bottom-right corner (N-1, N-1). The maze 
+    contains 1s (open paths) and 0s (walls). The rat can move in 4 
+    directions: Down(D), Up(U), Left(L), Right(R). Find all possible paths.
+    
+    📝 REAL-WORLD ANALOGY:
+    Think of a GPS navigation system that needs to find ALL possible routes 
+    from your home to your destination. The GPS explores roads (1s) and 
+    avoids blocked paths (0s). It remembers which roads it has already 
+    tried to avoid going in circles!
+    
+    Example:
+    Maze (1 = open, 0 = blocked):
+    1 0 0 0
+    1 1 0 1
+    0 1 0 0
+    0 1 1 1
+    
+    Possible Paths:
+    "DDRDRR" (Down, Down, Right, Down, Right, Right)
+    "DRDDRR" (Down, Right, Down, Down, Right, Right)
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🤔 NAIVE APPROACH (Brute Force Thinking):
+    
+    Natural thought process:
+    1. "Start at (0,0)"
+    2. "Try moving in each direction: Down, Left, Right, Up"
+    3. "If I reach (N-1, N-1), save the path!"
+    4. "If I hit a wall or go out of bounds, go back and try different direction"
+    5. "Mark cells as visited so I don't loop infinitely"
+    
+    This is classic backtracking with path tracking!
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    📊 DRY RUN - Let's trace paths in a simple 3×3 maze:
+    
+    Maze:               Step-by-Step Exploration:
+    1 1 0
+    0 1 0               Start at (0,0)
+    0 1 1               
+                        Try Down: (0,0)→(1,0) ❌ (blocked)
+    Path: ""            Try Left: ❌ (out of bounds)
+                        Try Right: (0,0)→(0,1) ✅
+                        
+    At (0,1):           Try Down: (0,1)→(1,1) ✅
+    Path: "R"           
+                        At (1,1):
+    At (1,1):           Try Down: (1,1)→(2,1) ✅
+    Path: "RD"          
+                        At (2,1):
+    At (2,1):           Try Right: (2,1)→(2,2) ✅ DESTINATION! 🎯
+    Path: "RDDR"        
+                        Found path: "RDDR" ✅
+                        Now BACKTRACK and try other paths...
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🌳 RECURSIVE TREE VISUALIZATION:
+    
+                        (0,0) ""
+                        / | | \
+                       D  L  R  U
+                      ❌ ❌ ✅  ❌
+                             |
+                        (0,1) "R"
+                        / | | \
+                       D  L  R  U
+                      ✅ ❌ ❌  ❌
+                       |
+                  (1,1) "RD"
+                    / | | \
+                   D  L  R  U
+                  ✅ ❌ ❌  ❌
+                   |
+              (2,1) "RDD"
+                / | | \
+               D  L  R  U
+              ❌ ❌ ✅  ❌
+                   |
+          (2,2) "RDDR" 🎯 REACHED!
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🔄 BACKTRACKING CONCEPT:
+    
+    The Rat in Maze backtracking process:
+    
+    1. Try moving in a direction (D/L/R/U)
+    2. Mark current cell as visited
+    3. Recursively explore from new position
+    4. When returning, UNMARK the cell (backtrack) ← KEY STEP!
+    5. Try next direction
+    
+    Why mark and unmark?
+    - Marking prevents infinite loops (visiting same cell again in same path)
+    - Unmarking allows different paths to use the same cell
+    
+    Example:
+    Path 1: (0,0)→(0,1)→(1,1)→(2,1)→(2,2)
+    Path 2: (0,0)→(0,1)→(1,1)→(2,1)→(2,0)→(2,1)→(2,2)
+    
+    Notice (1,1) is used in BOTH paths! Unmarking makes this possible.
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    ⚡ OPTIMIZATIONS:
+    
+    1. **Direction Arrays**: Clean code for 4-direction movement
+    2. **In-place Marking**: Modify maze itself (-1 for visited) to save space
+    3. **Early Termination**: If only 1 path needed, return immediately
+    4. **Lexicographic Order**: Try D,L,R,U in order for sorted output
+    5. **Boundary Check First**: Validate before accessing array
+    
+    ───────────────────────────────────────────────────────────────────────
+    */
+    
+    // ==================== SOLUTION 3: RAT IN A MAZE ====================
+    
+    /**
+     * Find all paths from (0,0) to (n-1,n-1) in maze
+     * Time: O(4^(N²)) in worst case (all cells open)
+     * Space: O(N²) for visited array + O(N²) for recursion
+     */
+    public static List<String> ratInMaze(int[][] maze, int n) {
+        List<String> paths = new ArrayList<>();
+        
+        // Edge cases
+        if (maze == null || n == 0 || maze[0][0] == 0 || maze[n-1][n-1] == 0) {
+            return paths;
+        }
+        
+        boolean[][] visited = new boolean[n][n];
+        findPaths(maze, n, 0, 0, "", paths, visited);
+        
+        return paths;
+    }
+    
+    /**
+     * Recursive backtracking function to explore all paths
+     */
+    private static void findPaths(int[][] maze, int n, int row, int col, 
+                                  String path, List<String> paths, 
+                                  boolean[][] visited) {
+        
+        // BASE CASE: Reached destination!
+        if (row == n - 1 && col == n - 1) {
+            paths.add(path);
+            return;
+        }
+        
+        // STEP 1: Mark current cell as visited
+        visited[row][col] = true;
+        
+        // STEP 2: Try all 4 directions in lexicographic order (D, L, R, U)
+        
+        // Try Down
+        if (isValid(maze, n, row + 1, col, visited)) {
+            findPaths(maze, n, row + 1, col, path + "D", paths, visited);
+        }
+        
+        // Try Left
+        if (isValid(maze, n, row, col - 1, visited)) {
+            findPaths(maze, n, row, col - 1, path + "L", paths, visited);
+        }
+        
+        // Try Right
+        if (isValid(maze, n, row, col + 1, visited)) {
+            findPaths(maze, n, row, col + 1, path + "R", paths, visited);
+        }
+        
+        // Try Up
+        if (isValid(maze, n, row - 1, col, visited)) {
+            findPaths(maze, n, row - 1, col, path + "U", paths, visited);
+        }
+        
+        // STEP 3: BACKTRACK - Unmark cell so other paths can use it
+        visited[row][col] = false;
+    }
+    
+    /**
+     * Check if a move to (row, col) is valid
+     */
+    private static boolean isValid(int[][] maze, int n, int row, int col, 
+                                   boolean[][] visited) {
+        return row >= 0 && row < n && 
+               col >= 0 && col < n && 
+               maze[row][col] == 1 && 
+               !visited[row][col];
+    }
+    
+    /**
+     * CLEANER VERSION using direction arrays
+     * This is the RECOMMENDED approach for production code
+     */
+    public static List<String> ratInMazeClean(int[][] maze, int n) {
+        List<String> paths = new ArrayList<>();
+        if (maze == null || n == 0 || maze[0][0] == 0 || maze[n-1][n-1] == 0) {
+            return paths;
+        }
+        
+        boolean[][] visited = new boolean[n][n];
+        findPathsClean(maze, n, 0, 0, "", paths, visited);
+        return paths;
+    }
+    
+    private static void findPathsClean(int[][] maze, int n, int row, int col,
+                                      String path, List<String> paths,
+                                      boolean[][] visited) {
+        // Reached destination
+        if (row == n - 1 && col == n - 1) {
+            paths.add(path);
+            return;
+        }
+        
+        // Mark visited
+        visited[row][col] = true;
+        
+        // Direction arrays for D, L, R, U
+        int[] dRow = {1, 0, 0, -1};
+        int[] dCol = {0, -1, 1, 0};
+        char[] dirChar = {'D', 'L', 'R', 'U'};
+        
+        // Try all 4 directions
+        for (int i = 0; i < 4; i++) {
+            int newRow = row + dRow[i];
+            int newCol = col + dCol[i];
+            
+            if (isValid(maze, n, newRow, newCol, visited)) {
+                findPathsClean(maze, n, newRow, newCol, 
+                             path + dirChar[i], paths, visited);
+            }
+        }
+        
+        // Backtrack
+        visited[row][col] = false;
+    }
+    
+    /*
+    ───────────────────────────────────────────────────────────────────────
+    
+    📈 COMPLEXITY ANALYSIS - RAT IN A MAZE:
+    
+    Time Complexity: O(4^(N²))
+    - In worst case (all cells open), from each cell we try 4 directions
+    - We might visit up to N² cells
+    - So theoretically 4^(N²) paths possible
+    - In practice, much better due to walls and visited marking
+    
+    Space Complexity: O(N²)
+    - Visited array: O(N²)
+    - Recursion stack: O(N²) in worst case (path length)
+    - Path string: O(N²) characters maximum
+    
+    Optimizations comparison:
+    - Without visited array: INFINITE LOOP! (rat goes in circles)
+    - With visited but no backtracking: Only finds 1 path
+    - With visited + backtracking: Finds ALL paths ✅
+    
+    ───────────────────────────────────────────────────────────────────────
+    
+    🎓 KEY LEARNINGS - RAT IN A MAZE:
+    
+    1. **Visited Tracking**: Essential to prevent infinite loops
+    2. **Backtracking for Exploration**: Unmark to allow multiple paths
+    3. **Direction Arrays**: Clean, extensible code for multi-directional movement
+    4. **Path Building**: Accumulate path string as we explore
+    5. **Boundary Validation**: Always check before accessing array elements
+    6. **Lexicographic Order**: Process directions in specific order for sorted output
+    
+    This pattern applies to: Path finding, maze solving, grid traversal,
+    shortest path problems, game AI
+    
+    ═══════════════════════════════════════════════════════════════════════
+    */
+    
+    
+    
+    /*
+    ═══════════════════════════════════════════════════════════════════════
+                        UNIVERSAL BACKTRACKING TEMPLATE
+    ═══════════════════════════════════════════════════════════════════════
+    
+    The problems above follow a common backtracking pattern. Here's the 
+    universal template you can adapt to ANY backtracking problem:
+    
+    ```java
+    void backtrack(state, choices, result) {
+        // BASE CASE: Check if we've reached a valid solution
+        if (isValidSolution(state)) {
+            result.add(copySolution(state));
+            return;
+        }
+        
+        // Try each possible choice
+        for (choice in choices) {
+            // PRUNE: Skip invalid choices early
+            if (!isValid(choice, state)) {
+                continue;
+            }
+            
+            // STEP 1: Make the choice (modify state)
+            makeChoice(state, choice);
+            
+            // STEP 2: Explore with this choice (recurse)
+            backtrack(state, nextChoices, result);
+            
+            // STEP 3: Unmake the choice (restore state) - BACKTRACK!
+            unmakeChoice(state, choice);
+        }
+    }
+    ```
+    
+    Mapping to our problems:
+    
+    WORD SEARCH:
+    - State: current position (row, col), word index
+    - Choices: 4 directions (up, down, left, right)
+    - Make choice: Mark cell visited, move to new cell
+    - Unmake choice: Unmark cell
+    
+    N-QUEEN:
+    - State: which rows have queens, current row being filled
+    - Choices: columns in current row
+    - Make choice: Place queen, mark column/diagonals as attacked
+    - Unmake choice: Remove queen, unmark column/diagonals
+    
+    RAT IN MAZE:
+    - State: current position, path string
+    - Choices: 4 directions (D, L, R, U)
+    - Make choice: Mark visited, move to new cell, append direction to path
+    - Unmake choice: Unmark visited
+    
+    ═══════════════════════════════════════════════════════════════════════
+    */
+    
+    
+    
+    /*
+    ═══════════════════════════════════════════════════════════════════════
+                            TESTING AND EXAMPLES
+    ═══════════════════════════════════════════════════════════════════════
+    */
+    
+    public static void main(String[] args) {
+        System.out.println("═══════════════════════════════════════════════");
+        System.out.println("      BACKTRACKING PROBLEMS - TEST CASES");
+        System.out.println("═══════════════════════════════════════════════\n");
+        
+        // ============ TEST 1: WORD SEARCH ============
+        System.out.println("📝 TEST 1: WORD SEARCH");
+        System.out.println("─────────────────────────────────────────────");
+        
+        char[][] board1 = {
+            {'A', 'B', 'C', 'E'},
+            {'S', 'F', 'C', 'S'},
+            {'A', 'D', 'E', 'E'}
+        };
+        
+        System.out.println("Board:");
+        printBoard(board1);
+        
+        String[] testWords = {"ABCCED", "SEE", "ABCB", "SFCS"};
+        for (String word : testWords) {
+            boolean found = wordSearch(board1, word);
+            System.out.println("Word \"" + word + "\": " + 
+                             (found ? "✅ FOUND" : "❌ NOT FOUND"));
+        }
+        
+        // ============ TEST 2: N-QUEEN ============
+        System.out.println("\n\n👑 TEST 2: N-QUEEN PROBLEM");
+        System.out.println("─────────────────────────────────────────────");
+        
+        int[] nValues = {4, 5};
+        for (int n : nValues) {
+            System.out.println("\nN = " + n + ":");
+            List<List<String>> solutions = solveNQueens(n);
+            System.out.println("Number of solutions: " + solutions.size());
+            
+            if (n == 4) {
+                System.out.println("\nShowing all solutions for N=4:");
+                for (int i = 0; i < solutions.size(); i++) {
+                    System.out.println("\nSolution " + (i + 1) + ":");
+                    for (String row : solutions.get(i)) {
+                        System.out.println(row);
+                    }
+                }
+            }
+        }
+        
+        // ============ TEST 3: RAT IN A MAZE ============
+        System.out.println("\n\n🐀 TEST 3: RAT IN A MAZE");
+        System.out.println("─────────────────────────────────────────────");
+        
+        int[][] maze1 = {
+            {1, 0, 0, 0},
+            {1, 1, 0, 1},
+            {0, 1, 0, 0},
+            {0, 1, 1, 1}
+        };
+        
+        System.out.println("Maze (1=open, 0=blocked):");
+        printMaze(maze1);
+        
+        List<String> paths = ratInMaze(maze1, 4);
+        System.out.println("\nNumber of paths: " + paths.size());
+        System.out.println("Paths found:");
+        for (String path : paths) {
+            System.out.println("  " + path);
+        }
+        
+        // Test 2: Simpler maze
+        System.out.println("\n\nSimpler Maze:");
+        int[][] maze2 = {
+            {1, 1, 0},
+            {0, 1, 0},
+            {0, 1, 1}
+        };
+        printMaze(maze2);
+        
+        paths = ratInMaze(maze2, 3);
+        System.out.println("Number of paths: " + paths.size());
+        System.out.println("Paths found:");
+        for (String path : paths) {
+            System.out.println("  " + path);
+        }
+        
+        System.out.println("\n═══════════════════════════════════════════════");
+        System.out.println("           ALL TESTS COMPLETED! ✅");
+        System.out.println("═══════════════════════════════════════════════");
+    }
+    
+    // Helper methods for printing
+    private static void printBoard(char[][] board) {
+        for (char[] row : board) {
+            for (char c : row) {
+                System.out.print(c + " ");
+            }
+            System.out.println();
+        }
+    }
+    
+    private static void printMaze(int[][] maze) {
+        for (int[] row : maze) {
+            for (int cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+/*
+═══════════════════════════════════════════════════════════════════════════
+                        FINAL SUMMARY & KEY TAKEAWAYS
+═══════════════════════════════════════════════════════════════════════════
+
+🎯 CORE BACKTRACKING PRINCIPLE:
+   Make Choice → Explore → Unmake Choice (Backtrack)
+
+🔑 ESSENTIAL PATTERNS:
+
+1. WORD SEARCH TYPE:
+   - Grid traversal with constraints
+   - In-place visited marking
+   - 4/8 directional exploration
+   - Applications: Pattern matching, grid problems
+
+2. N-QUEEN TYPE:
+   - Placement with global constraints
+   - Fast conflict checking using sets
+   - Systematic row-by-row exploration
+   - Applications: Constraint satisfaction, assignment problems
+
+3. RAT IN MAZE TYPE:
+   - Path finding with obstacles
+   - Visited tracking with backtracking
+   - Multiple solution collection
+   - Applications: Routing, navigation, game AI
+
+📊 COMPLEXITY PATTERNS:
+   - Backtracking: Usually O(b^d) where b=branching factor, d=depth
+   - Space: O(d) for recursion stack + state storage
+   - Optimization: Pruning reduces practical complexity significantly
+
+🚀 OPTIMIZATION TECHNIQUES:
+   1. Early termination when solution found
+   2. Constraint checking before recursion (pruning)
+   3. Use sets/arrays for O(1) lookups
+   4. In-place state modification to save space
+   5. Direction arrays for clean multi-directional code
+
+💡 WHEN TO USE BACKTRACKING:
+   ✅ Need to explore ALL possible solutions
+   ✅ Problem has choice at each step
+   ✅ Can validate partial solutions
+   ✅ Need to undo choices to try alternatives
+   ❌ Only need one solution (BFS might be better)
+   ❌ Problem has optimal substructure (use DP)
+
+🎓 PRACTICE STRATEGY:
+   1. Understand the problem constraints
+   2. Identify what constitutes a "choice"
+   3. Define base cases clearly
+   4. Implement make/unmake choice correctly
+   5. Add pruning for optimization
+   6. Test with small examples first
+
+Remember: Backtracking is about SYSTEMATIC EXPLORATION of ALL possibilities
+by making choices, exploring consequences, and backtracking when needed!
+
+═══════════════════════════════════════════════════════════════════════════
+*/

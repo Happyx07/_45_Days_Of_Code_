@@ -1,0 +1,1310 @@
+===============================================================================
+                    QUEUE DATA STRUCTURE - COMPLETE GUIDE
+                   From Basics to Advanced - Interview Ready Notes
+===============================================================================
+
+🎯 PURPOSE:
+This comprehensive guide covers Queue implementation using Arrays from 
+absolute basics to advanced concepts. Perfect for B.Tech CSE students, 
+placement preparation, and technical interview revision.
+
+📚 TABLE OF CONTENTS:
+1. Introduction to Queue
+2. Queue Operations & Implementation
+3. Simple Queue (Linear Queue) Implementation
+4. Circular Queue Implementation
+5. Common Problems & Solutions
+6. Time & Space Complexity Analysis
+7. Interview Problems
+8. Quick Reference & Cheat Sheet
+
+===============================================================================
+                        SECTION 1: INTRODUCTION TO QUEUE
+===============================================================================
+
+🔹 WHAT IS A QUEUE?
+───────────────────────────────────────────────────────────────────────────
+
+A Queue is a LINEAR DATA STRUCTURE that follows a particular order in which
+operations are performed. The order is FIFO (First In First Out) or LILO 
+(Last In Last Out).
+
+Think of it like:
+🎫 A ticket counter line - First person in line gets served first
+🚶 Queue at a bus stop - People board in the order they arrived
+🍔 McDonald's drive-thru - Orders are processed in sequence
+📞 Call center - Calls are answered in the order received
+
+🔹 KEY CHARACTERISTICS:
+───────────────────────────────────────────────────────────────────────────
+
+✅ FIFO Principle: First element added is the first one removed
+✅ Two Access Points: FRONT (removal) and REAR (insertion)
+✅ Linear Flow: Elements move from REAR to FRONT
+✅ Fast Operations: All basic operations are O(1) time complexity
+
+🔹 REAL-WORLD APPLICATIONS:
+───────────────────────────────────────────────────────────────────────────
+
+1. CPU Scheduling
+   - Process scheduling in operating systems
+   - Round-robin scheduling algorithm
+
+2. Printer Queue
+   - Print jobs are processed in FIFO order
+   - First document sent gets printed first
+
+3. BFS (Breadth-First Search)
+   - Level-order traversal of trees
+   - Shortest path algorithms
+
+4. Asynchronous Data Transfer
+   - IO Buffers
+   - Pipes, file IO operations
+
+5. Customer Service
+   - Call centers handling calls
+   - Help desk ticketing systems
+
+6. Network Packet Management
+   - Routers managing packet transmission
+   - Network traffic management
+
+7. Web Server Request Handling
+   - Handling incoming HTTP requests
+   - Task queues in web applications
+
+===============================================================================
+                  SECTION 2: QUEUE OPERATIONS & TERMINOLOGY
+===============================================================================
+
+🔹 BASIC QUEUE OPERATIONS:
+───────────────────────────────────────────────────────────────────────────
+
+1. ENQUEUE (Insert/Add)
+   ├─ Adds an element to the REAR of the queue
+   ├─ Time Complexity: O(1)
+   └─ Can cause Queue Overflow if queue is full
+
+2. DEQUEUE (Remove/Delete)
+   ├─ Removes and returns the FRONT element
+   ├─ Time Complexity: O(1)
+   └─ Can cause Queue Underflow if queue is empty
+
+3. FRONT/PEEK (Access)
+   ├─ Returns the FRONT element WITHOUT removing it
+   ├─ Time Complexity: O(1)
+   └─ Useful for checking what's at front
+
+4. REAR (Access)
+   ├─ Returns the REAR element WITHOUT removing it
+   ├─ Time Complexity: O(1)
+   └─ Useful for checking what was last added
+
+5. isEmpty()
+   ├─ Checks if queue is empty
+   ├─ Time Complexity: O(1)
+   └─ Returns true if no elements, false otherwise
+
+6. isFull()
+   ├─ Checks if queue is full (for array implementation)
+   ├─ Time Complexity: O(1)
+   └─ Only relevant for fixed-size arrays
+
+7. size()
+   ├─ Returns number of elements in queue
+   ├─ Time Complexity: O(1)
+   └─ Useful for knowing current queue size
+
+🔹 QUEUE TERMINOLOGY:
+───────────────────────────────────────────────────────────────────────────
+
+• FRONT: Pointer to the first element (for removal)
+• REAR: Pointer to the last element (for insertion)
+• CAPACITY: Maximum number of elements queue can hold
+• SIZE: Current number of elements in queue
+• QUEUE OVERFLOW: Trying to enqueue when queue is full
+• QUEUE UNDERFLOW: Trying to dequeue when queue is empty
+
+🔹 VISUAL REPRESENTATION:
+───────────────────────────────────────────────────────────────────────────
+
+Empty Queue:
+    FRONT → [ ] [ ] [ ] [ ] [ ] ← REAR
+
+After enqueue(10):
+    FRONT → [10] [ ] [ ] [ ] [ ] ← REAR
+
+After enqueue(20):
+    FRONT → [10] [20] [ ] [ ] [ ] ← REAR
+
+After enqueue(30):
+    FRONT → [10] [20] [30] [ ] [ ] ← REAR
+
+After dequeue() - removes 10:
+            FRONT → [20] [30] [ ] [ ] [ ] ← REAR
+
+After enqueue(40):
+            FRONT → [20] [30] [40] [ ] [ ] ← REAR
+
+Operations Flow:
+enqueue(10) → enqueue(20) → enqueue(30) → dequeue() returns 10 
+→ enqueue(40) → front() returns 20
+
+===============================================================================
+           SECTION 3: SIMPLE QUEUE (LINEAR QUEUE) IMPLEMENTATION
+===============================================================================
+
+🔹 WHY ARRAY IMPLEMENTATION?
+───────────────────────────────────────────────────────────────────────────
+
+Advantages:
+✅ Simple and easy to implement
+✅ Cache-friendly (contiguous memory)
+✅ Fast access time O(1)
+✅ No extra memory for pointers
+
+Disadvantages:
+❌ Fixed size (must be declared initially)
+❌ Wastage of memory (cannot reuse dequeued space)
+❌ Queue overflow even with empty spaces
+❌ Cannot grow dynamically
+
+🔹 IMPLEMENTATION APPROACH:
+───────────────────────────────────────────────────────────────────────────
+
+1. Use an array to store elements
+2. Use 'front' to track first element index
+3. Use 'rear' to track last element index
+4. Initialize front = -1, rear = -1 (indicates empty queue)
+5. For enqueue: increment rear, then add element
+6. For dequeue: increment front, then return element
+
+⚠️ MAJOR PROBLEM WITH SIMPLE QUEUE:
+───────────────────────────────────────────────────────────────────────────
+
+Once front moves forward, the space before it is WASTED!
+
+Example:
+Initial: [10][20][30][ ][ ]  front=0, rear=2
+After 2 dequeues: [ ][ ][30][ ][ ]  front=2, rear=2
+Try enqueue(40): [ ][ ][30][40][ ]  front=2, rear=3
+Try enqueue(50): [ ][ ][30][40][50]  front=2, rear=4 (FULL!)
+
+But we have 2 empty spaces at the beginning! This is the problem.
+Solution: Use CIRCULAR QUEUE (covered in next section)
+
+═══════════════════════════════════════════════════════════════════════════
+                    SIMPLE QUEUE - JAVA IMPLEMENTATION
+═══════════════════════════════════════════════════════════════════════════
+*/
+
+class SimpleQueue {
+    private int[] arr;        // Array to store queue elements
+    private int front;        // Index of front element
+    private int rear;         // Index of rear element
+    private int capacity;     // Maximum capacity of queue
+    private int size;         // Current number of elements
+    
+    // Constructor - Initialize queue with given capacity
+    public SimpleQueue(int capacity) {
+        this.capacity = capacity;
+        arr = new int[capacity];
+        front = -1;           // -1 indicates empty queue
+        rear = -1;
+        size = 0;
+    }
+    
+    /**
+     * ENQUEUE OPERATION - Add element to rear of queue
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
+    public void enqueue(int element) {
+        // Check for Queue Overflow
+        if (isFull()) {
+            System.out.println("Queue Overflow! Cannot enqueue " + element);
+            return;
+        }
+        
+        // If queue is empty, set front to 0
+        if (front == -1) {
+            front = 0;
+        }
+        
+        // Increment rear and add element
+        rear++;
+        arr[rear] = element;
+        size++;
+        System.out.println(element + " enqueued to queue");
+    }
+    
+    /**
+     * DEQUEUE OPERATION - Remove and return front element
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
+    public int dequeue() {
+        // Check for Queue Underflow
+        if (isEmpty()) {
+            System.out.println("Queue Underflow! Queue is empty");
+            return -1;
+        }
+        
+        int removed = arr[front];
+        
+        // If this was the last element, reset queue
+        if (front == rear) {
+            front = -1;
+            rear = -1;
+        } else {
+            front++;
+        }
+        
+        size--;
+        return removed;
+    }
+    
+    /**
+     * FRONT/PEEK OPERATION - View front element without removing
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
+    public int front() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        return arr[front];
+    }
+    
+    /**
+     * REAR OPERATION - View rear element
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
+    public int rear() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        return arr[rear];
+    }
+    
+    /**
+     * CHECK IF QUEUE IS EMPTY
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
+    public boolean isEmpty() {
+        return front == -1;
+    }
+    
+    /**
+     * CHECK IF QUEUE IS FULL
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
+    public boolean isFull() {
+        return rear == capacity - 1;
+    }
+    
+    /**
+     * GET CURRENT SIZE OF QUEUE
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
+    public int size() {
+        return size;
+    }
+    
+    /**
+     * DISPLAY ALL ELEMENTS (for debugging)
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     */
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty!");
+            return;
+        }
+        
+        System.out.print("Queue elements (front to rear): ");
+        for (int i = front; i <= rear; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+}
+
+/*
+===============================================================================
+                SECTION 4: CIRCULAR QUEUE IMPLEMENTATION
+===============================================================================
+
+🔹 WHAT IS CIRCULAR QUEUE?
+───────────────────────────────────────────────────────────────────────────
+
+A Circular Queue is an improved version of Simple Queue where the LAST 
+position is connected back to the FIRST position, forming a circle.
+
+Key Advantage: Solves the memory wastage problem of simple queue!
+
+Visual Representation:
+
+    [0] [1] [2] [3] [4]
+     ↑               ↓
+     └───────────────┘
+     (Connected in circle)
+
+🔹 HOW IT WORKS:
+───────────────────────────────────────────────────────────────────────────
+
+Instead of rear reaching capacity-1 and declaring "FULL", we check if the 
+space is actually occupied or just unused due to dequeues.
+
+Formula for circular increment:
+    rear = (rear + 1) % capacity
+    front = (front + 1) % capacity
+
+Example:
+Capacity = 5, Current state: [ ][ ][30][40][50]  front=2, rear=4
+
+Enqueue(60): rear = (4+1) % 5 = 0
+Result: [60][ ][30][40][50]  front=2, rear=0
+
+Enqueue(70): rear = (0+1) % 5 = 1
+Result: [60][70][30][40][50]  front=2, rear=1  (Now FULL!)
+
+🔹 FULL CONDITION IN CIRCULAR QUEUE:
+───────────────────────────────────────────────────────────────────────────
+
+Queue is FULL when: (rear + 1) % capacity == front
+
+This means the next position of rear would collide with front.
+
+🔹 EMPTY CONDITION:
+───────────────────────────────────────────────────────────────────────────
+
+Method 1: Use size variable (easier)
+    isEmpty() when size == 0
+
+Method 2: Use front and rear only
+    isEmpty() when front == -1
+
+═══════════════════════════════════════════════════════════════════════════
+                    CIRCULAR QUEUE - JAVA IMPLEMENTATION
+═══════════════════════════════════════════════════════════════════════════
+*/
+
+class CircularQueue {
+    private int[] arr;
+    private int front;
+    private int rear;
+    private int capacity;
+    private int size;
+    
+    /**
+     * Constructor - Initialize circular queue
+     */
+    public CircularQueue(int capacity) {
+        this.capacity = capacity;
+        arr = new int[capacity];
+        front = -1;
+        rear = -1;
+        size = 0;
+    }
+    
+    /**
+     * ENQUEUE OPERATION - Add element to queue (circular)
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
+    public void enqueue(int element) {
+        // Check for overflow
+        if (isFull()) {
+            System.out.println("Queue is Full! Cannot enqueue " + element);
+            return;
+        }
+        
+        // First element being added
+        if (front == -1) {
+            front = 0;
+        }
+        
+        // Circular increment of rear
+        rear = (rear + 1) % capacity;
+        arr[rear] = element;
+        size++;
+        System.out.println(element + " enqueued to circular queue");
+    }
+    
+    /**
+     * DEQUEUE OPERATION - Remove element from front (circular)
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
+    public int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue is Empty! Cannot dequeue");
+            return -1;
+        }
+        
+        int removed = arr[front];
+        
+        // If this was the last element
+        if (front == rear) {
+            front = -1;
+            rear = -1;
+        } else {
+            // Circular increment of front
+            front = (front + 1) % capacity;
+        }
+        
+        size--;
+        return removed;
+    }
+    
+    /**
+     * FRONT/PEEK OPERATION
+     * Time Complexity: O(1)
+     */
+    public int front() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        return arr[front];
+    }
+    
+    /**
+     * REAR OPERATION
+     * Time Complexity: O(1)
+     */
+    public int rear() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        return arr[rear];
+    }
+    
+    /**
+     * CHECK IF EMPTY
+     */
+    public boolean isEmpty() {
+        return size == 0;
+        // Alternative: return front == -1;
+    }
+    
+    /**
+     * CHECK IF FULL
+     * Critical condition for circular queue!
+     */
+    public boolean isFull() {
+        return size == capacity;
+        // Alternative: return (rear + 1) % capacity == front && front != -1;
+    }
+    
+    /**
+     * GET SIZE
+     */
+    public int size() {
+        return size;
+    }
+    
+    /**
+     * DISPLAY - Shows elements in order (handles circular nature)
+     * Time Complexity: O(n)
+     */
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty!");
+            return;
+        }
+        
+        System.out.print("Circular Queue (front to rear): ");
+        int i = front;
+        while (true) {
+            System.out.print(arr[i] + " ");
+            if (i == rear) break;
+            i = (i + 1) % capacity;
+        }
+        System.out.println();
+    }
+}
+
+/*
+═══════════════════════════════════════════════════════════════════════════
+                        TESTING QUEUE IMPLEMENTATIONS
+═══════════════════════════════════════════════════════════════════════════
+*/
+
+public class QueueDemo {
+    public static void main(String[] args) {
+        System.out.println("═══════════════════════════════════════════════");
+        System.out.println("         QUEUE IMPLEMENTATIONS - DEMO");
+        System.out.println("═══════════════════════════════════════════════\n");
+        
+        // ========== TEST 1: SIMPLE QUEUE ==========
+        System.out.println("========== SIMPLE QUEUE ==========\n");
+        SimpleQueue sq = new SimpleQueue(5);
+        
+        // Test isEmpty
+        System.out.println("Is queue empty? " + sq.isEmpty());
+        System.out.println();
+        
+        // Enqueue operations
+        System.out.println("--- ENQUEUE OPERATIONS ---");
+        sq.enqueue(10);
+        sq.enqueue(20);
+        sq.enqueue(30);
+        sq.display();
+        System.out.println("Front element: " + sq.front());
+        System.out.println("Rear element: " + sq.rear());
+        System.out.println("Size: " + sq.size());
+        System.out.println();
+        
+        // Dequeue operations
+        System.out.println("--- DEQUEUE OPERATIONS ---");
+        System.out.println("Dequeued: " + sq.dequeue());
+        System.out.println("Dequeued: " + sq.dequeue());
+        sq.display();
+        System.out.println();
+        
+        // Continue enqueuing
+        System.out.println("--- MORE ENQUEUE ---");
+        sq.enqueue(40);
+        sq.enqueue(50);
+        sq.enqueue(60);  // This will fill the queue
+        sq.display();
+        System.out.println();
+        
+        // Try to enqueue when full (demonstrates limitation)
+        System.out.println("--- TESTING OVERFLOW ---");
+        sq.enqueue(70);  // Should fail even though conceptually space exists
+        System.out.println();
+        
+        
+        // ========== TEST 2: CIRCULAR QUEUE ==========
+        System.out.println("\n========== CIRCULAR QUEUE ==========\n");
+        CircularQueue cq = new CircularQueue(5);
+        
+        System.out.println("--- INITIAL ENQUEUE ---");
+        cq.enqueue(10);
+        cq.enqueue(20);
+        cq.enqueue(30);
+        cq.enqueue(40);
+        cq.enqueue(50);
+        cq.display();
+        System.out.println("Size: " + cq.size());
+        System.out.println();
+        
+        System.out.println("--- DEQUEUE OPERATIONS ---");
+        System.out.println("Dequeued: " + cq.dequeue());
+        System.out.println("Dequeued: " + cq.dequeue());
+        cq.display();
+        System.out.println("Size: " + cq.size());
+        System.out.println();
+        
+        System.out.println("--- CIRCULAR ENQUEUE (Using freed space) ---");
+        cq.enqueue(60);  // Goes to position 0
+        cq.enqueue(70);  // Goes to position 1
+        cq.display();
+        System.out.println("Front: " + cq.front());
+        System.out.println("Rear: " + cq.rear());
+        System.out.println();
+        
+        System.out.println("--- FILL COMPLETELY ---");
+        cq.dequeue();  // Remove 30
+        cq.enqueue(80);  // Now queue is full
+        cq.display();
+        cq.enqueue(90);  // Should show overflow
+        System.out.println();
+        
+        System.out.println("--- EMPTY THE QUEUE ---");
+        while (!cq.isEmpty()) {
+            System.out.println("Dequeued: " + cq.dequeue());
+        }
+        cq.display();
+        cq.dequeue();  // Test underflow
+        
+        System.out.println("\n═══════════════════════════════════════════════");
+        System.out.println("           DEMONSTRATION COMPLETE");
+        System.out.println("═══════════════════════════════════════════════");
+    }
+}
+
+/*
+═══════════════════════════════════════════════════════════════════════════
+                 SECTION 5: COMPLEXITY ANALYSIS & COMPARISON
+═══════════════════════════════════════════════════════════════════════════
+
+🔹 TIME COMPLEXITY TABLE:
+───────────────────────────────────────────────────────────────────────────
+
+┌─────────────────┬──────────────────┬─────────────────────────────────┐
+│ Operation       │ Time Complexity  │ Explanation                     │
+├─────────────────┼──────────────────┼─────────────────────────────────┤
+│ enqueue()       │ O(1)             │ Direct array access             │
+│ dequeue()       │ O(1)             │ Direct array access             │
+│ front()         │ O(1)             │ Direct array access             │
+│ rear()          │ O(1)             │ Direct array access             │
+│ isEmpty()       │ O(1)             │ Simple comparison               │
+│ isFull()        │ O(1)             │ Simple comparison               │
+│ size()          │ O(1)             │ Return size variable            │
+│ display()       │ O(n)             │ Must traverse all elements      │
+└─────────────────┴──────────────────┴─────────────────────────────────┘
+
+🔹 SPACE COMPLEXITY:
+───────────────────────────────────────────────────────────────────────────
+
+• Total Space: O(n) where n = capacity
+• Auxiliary Space for operations: O(1)
+• No extra space needed for pointers (unlike linked list)
+
+🔹 SIMPLE vs CIRCULAR QUEUE:
+───────────────────────────────────────────────────────────────────────────
+
+┌──────────────────┬─────────────────────┬─────────────────────────┐
+│ Aspect           │ Simple Queue        │ Circular Queue          │
+├──────────────────┼─────────────────────┼─────────────────────────┤
+│ Memory Usage     │ Wasteful            │ Efficient               │
+│ Reuse Space      │ No                  │ Yes                     │
+│ Implementation   │ Simpler             │ Slightly complex        │
+│ Full Condition   │ rear == capacity-1  │ (rear+1)%cap == front   │
+│ Practical Use    │ Limited             │ Widely used             │
+│ Best For         │ Learning concept    │ Production systems      │
+└──────────────────┴─────────────────────┴─────────────────────────┘
+
+🔹 QUEUE vs STACK:
+───────────────────────────────────────────────────────────────────────────
+
+┌──────────────────┬─────────────────┬─────────────────────┐
+│ Feature          │ Queue           │ Stack               │
+├──────────────────┼─────────────────┼─────────────────────┤
+│ Principle        │ FIFO            │ LIFO                │
+│ Insertion        │ Rear only       │ Top only            │
+│ Deletion         │ Front only      │ Top only            │
+│ Access Points    │ Two (F & R)     │ One (top)           │
+│ Real-world       │ Ticket line     │ Plates stack        │
+│ Used in          │ BFS, Scheduling │ DFS, Recursion      │
+│ Pointers Needed  │ 2 (front, rear) │ 1 (top)             │
+└──────────────────┴─────────────────┴─────────────────────┘
+
+===============================================================================
+                SECTION 6: COMMON QUEUE PROBLEMS & SOLUTIONS
+===============================================================================
+
+🔹 PROBLEM 1: IMPLEMENT QUEUE USING STACKS
+───────────────────────────────────────────────────────────────────────────
+
+Problem: Implement queue using two stacks
+Approach: Use two stacks - one for enqueue, one for dequeue
+
+*/
+
+class QueueUsingStacks {
+    private java.util.Stack<Integer> stack1;  // For enqueue
+    private java.util.Stack<Integer> stack2;  // For dequeue
+    
+    public QueueUsingStacks() {
+        stack1 = new java.util.Stack<>();
+        stack2 = new java.util.Stack<>();
+    }
+    
+    /**
+     * ENQUEUE - O(1)
+     * Simply push to stack1
+     */
+    public void enqueue(int x) {
+        stack1.push(x);
+    }
+    
+    /**
+     * DEQUEUE - Amortized O(1)
+     * Transfer from stack1 to stack2 when stack2 is empty
+     */
+    public int dequeue() {
+        if (stack2.isEmpty()) {
+            // Transfer all elements from stack1 to stack2
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop());
+            }
+        }
+        
+        if (stack2.isEmpty()) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        
+        return stack2.pop();
+    }
+    
+    public boolean isEmpty() {
+        return stack1.isEmpty() && stack2.isEmpty();
+    }
+}
+
+/*
+Time Complexity:
+- enqueue: O(1)
+- dequeue: Amortized O(1) (occasionally O(n) but averages to O(1))
+
+🔹 PROBLEM 2: IMPLEMENT STACK USING QUEUES
+───────────────────────────────────────────────────────────────────────────
+
+Problem: Implement stack using two queues
+Approach: Make push operation costly OR make pop operation costly
+
+*/
+
+class StackUsingQueues {
+    private java.util.Queue<Integer> q1;
+    private java.util.Queue<Integer> q2;
+    
+    public StackUsingQueues() {
+        q1 = new java.util.LinkedList<>();
+        q2 = new java.util.LinkedList<>();
+    }
+    
+    /**
+     * PUSH - O(n)
+     * Add to q2, transfer q1 to q2, swap queues
+     */
+    public void push(int x) {
+        // Add new element to q2
+        q2.add(x);
+        
+        // Transfer all elements from q1 to q2
+        while (!q1.isEmpty()) {
+            q2.add(q1.remove());
+        }
+        
+        // Swap q1 and q2
+        java.util.Queue<Integer> temp = q1;
+        q1 = q2;
+        q2 = temp;
+    }
+    
+    /**
+     * POP - O(1)
+     * Simply remove from q1
+     */
+    public int pop() {
+        if (q1.isEmpty()) {
+            System.out.println("Stack is empty!");
+            return -1;
+        }
+        return q1.remove();
+    }
+    
+    public boolean isEmpty() {
+        return q1.isEmpty();
+    }
+}
+
+/*
+Time Complexity:
+- push: O(n)
+- pop: O(1)
+
+🔹 PROBLEM 3: REVERSE A QUEUE
+───────────────────────────────────────────────────────────────────────────
+
+Problem: Reverse the elements of a queue
+Approach 1: Using stack
+Approach 2: Using recursion
+
+*/
+
+class ReverseQueue {
+    // Method 1: Using Stack - O(n) time, O(n) space
+    public static void reverseUsingStack(java.util.Queue<Integer> queue) {
+        java.util.Stack<Integer> stack = new java.util.Stack<>();
+        
+        // Dequeue all elements and push to stack
+        while (!queue.isEmpty()) {
+            stack.push(queue.remove());
+        }
+        
+        // Pop from stack and enqueue back to queue
+        while (!stack.isEmpty()) {
+            queue.add(stack.pop());
+        }
+    }
+    
+    // Method 2: Using Recursion - O(n) time, O(n) space
+    public static void reverseUsingRecursion(java.util.Queue<Integer> queue) {
+        if (queue.isEmpty()) {
+            return;
+        }
+        
+        // Remove front element
+        int front = queue.remove();
+        
+        // Reverse the remaining queue
+        reverseUsingRecursion(queue);
+        
+        // Add the removed element to the back
+        queue.add(front);
+    }
+}
+
+/*
+🔹 PROBLEM 4: FIRST NON-REPEATING CHARACTER IN A STREAM
+───────────────────────────────────────────────────────────────────────────
+
+Problem: Given a stream of characters, find first non-repeating character
+Example: Stream: "aabcddbe" → Output at each step: a, -1, b, b, b, b, b, e
+
+Approach: Use queue + frequency map
+
+*/
+
+class FirstNonRepeating {
+    public static void printFirstNonRepeating(String stream) {
+        java.util.Queue<Character> queue = new java.util.LinkedList<>();
+        int[] freq = new int[26];  // For lowercase letters
+        
+        for (char ch : stream.toCharArray()) {
+            // Increase frequency
+            freq[ch - 'a']++;
+            
+            // Add to queue
+            queue.add(ch);
+            
+            // Remove repeating characters from front
+            while (!queue.isEmpty() && freq[queue.peek() - 'a'] > 1) {
+                queue.remove();
+            }
+            
+            // Print first non-repeating or -1
+            if (queue.isEmpty()) {
+                System.out.print("-1 ");
+            } else {
+                System.out.print(queue.peek() + " ");
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        System.out.print("Stream: aabcddbe\nOutput: ");
+        printFirstNonRepeating("aabcddbe");
+        // Output: a -1 b b b b b e
+    }
+}
+
+/*
+Time Complexity: O(n) where n is length of stream
+Space Complexity: O(26) = O(1) for frequency array + O(n) for queue
+
+===============================================================================
+              SECTION 7: ADVANCED QUEUE CONCEPTS
+===============================================================================
+
+🔹 CONCEPT 1: DEQUE (Double-Ended Queue)
+───────────────────────────────────────────────────────────────────────────
+
+A Deque allows insertion and deletion at BOTH ends (front and rear).
+
+Operations:
+• insertFront() - Add element at front
+• insertRear() - Add element at rear
+• deleteFront() - Remove from front
+• deleteRear() - Remove from rear
+
+Implementation: Use circular array or doubly linked list
+
+Applications:
+- Implement both stack and queue
+- Sliding window problems
+- Palindrome checking
+
+🔹 CONCEPT 2: PRIORITY QUEUE
+───────────────────────────────────────────────────────────────────────────
+
+Elements are dequeued based on PRIORITY, not arrival order.
+
+Types:
+• Min Priority Queue - Smallest element has highest priority
+• Max Priority Queue - Largest element has highest priority
+
+Implementation: Usually using Heap (not array)
+
+Applications:
+- Dijkstra's shortest path
+- Huffman coding
+- Task scheduling
+- Event-driven simulation
+
+🔹 CONCEPT 3: CIRCULAR DEQUE
+───────────────────────────────────────────────────────────────────────────
+
+Combination of circular queue and deque.
+Allows insertion/deletion at both ends with circular nature.
+
+Full Condition: (rear + 1) % capacity == front
+Empty Condition: front == -1
+
+===============================================================================
+              SECTION 8: INTERVIEW PROBLEMS & PRACTICE SET
+===============================================================================
+
+🔹 EASY LEVEL PROBLEMS:
+───────────────────────────────────────────────────────────────────────────
+
+1. ⭐ Implement Queue using Array
+   - Basic enqueue, dequeue operations
+
+2. ⭐ Implement Circular Queue (LeetCode #622)
+   - Most important array-based implementation
+
+3. ⭐ Implement Queue using Stacks (LeetCode #232)
+   - Classic two-stack approach
+
+4. ⭐ Implement Stack using Queues (LeetCode #225)
+   - Reverse of above problem
+
+5. ⭐ Reverse a Queue
+   - Using stack or recursion
+
+🔹 MEDIUM LEVEL PROBLEMS:
+───────────────────────────────────────────────────────────────────────────
+
+6. ⭐⭐ Design Circular Deque (LeetCode #641)
+   - Double-ended circular queue
+
+7. ⭐⭐ First Non-Repeating Character in Stream
+   - Queue + hash map approach
+
+8. ⭐⭐ Generate Binary Numbers (GFG)
+   - Using queue: 1, 10, 11, 100, 101, 110...
+
+9. ⭐⭐ Implement Deque using Circular Array
+   - All 4 operations efficiently
+
+10. ⭐⭐ Rotten Oranges (LeetCode #994)
+    - BFS using queue (grid problem)
+
+11. ⭐⭐ Time Needed to Buy Tickets (LeetCode #2073)
+    - Simulation using queue
+
+12. ⭐⭐ Number of Recent Calls (LeetCode #933)
+    - Queue for time-based queries
+
+🔹 HARD LEVEL PROBLEMS:
+───────────────────────────────────────────────────────────────────────────
+
+13. ⭐⭐⭐ Sliding Window Maximum (LeetCode #239)
+    - Monotonic deque application
+
+14. ⭐⭐⭐ Design Snake Game (LeetCode #353)
+    - Deque for snake body
+
+15. ⭐⭐⭐ Shortest Subarray with Sum at Least K (LeetCode #862)
+    - Monotonic deque
+
+16. ⭐⭐⭐ Jump Game VI (LeetCode #1696)
+    - DP with monotonic deque optimization
+
+17. ⭐⭐⭐ Minimum Cost to Hire K Workers (LeetCode #857)
+    - Priority queue application
+
+===============================================================================
+           SECTION 9: QUEUE OVERFLOW & UNDERFLOW HANDLING
+===============================================================================
+
+🔹 QUEUE OVERFLOW:
+───────────────────────────────────────────────────────────────────────────
+
+Occurs when: Trying to enqueue into full queue
+
+In Simple Queue:
+- Occurs when rear == capacity - 1
+- Even if front has moved forward (memory waste)
+
+In Circular Queue:
+- Occurs when (rear + 1) % capacity == front
+- Truly full, no wasted space
+
+Solutions:
+1. Check isFull() before enqueuing
+2. Use circular queue instead of simple queue
+3. Use dynamic size (linked list)
+4. Resize array (ArrayList approach)
+
+Prevention Code:
+```java
+public void enqueue(int x) {
+    if (isFull()) {
+        // Option 1: Throw exception
+        throw new RuntimeException("Queue is full");
+        
+        // Option 2: Return false
+        return false;
+        
+        // Option 3: Resize (for dynamic queue)
+        resize();
+    }
+    // Proceed with enqueue
+}
+```
+
+🔹 QUEUE UNDERFLOW:
+───────────────────────────────────────────────────────────────────────────
+
+Occurs when: Trying to dequeue from empty queue
+
+Causes:
+- More dequeue operations than enqueue
+- Not checking isEmpty() before dequeue
+
+Solutions:
+1. Always check isEmpty() before dequeue
+2. Handle gracefully with sentinel value or exception
+
+Prevention Code:
+```java
+public int dequeue() {
+    if (isEmpty()) {
+        // Option 1: Return sentinel
+        return Integer.MIN_VALUE;
+        
+        // Option 2: Throw exception
+        throw new RuntimeException("Queue is empty");
+    }
+    // Proceed with dequeue
+}
+```
+
+===============================================================================
+                   SECTION 10: QUICK REFERENCE CHEAT SHEET
+===============================================================================
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                        QUEUE OPERATIONS SUMMARY                         │
+├─────────────────────────────────────────────────────────────────────────┤
+│ enqueue(x) → Add element x to rear       │ O(1) time                   │
+│ dequeue()  → Remove from front           │ O(1) time                   │
+│ front()    → View front element          │ O(1) time                   │
+│ rear()     → View rear element           │ O(1) time                   │
+│ isEmpty()  → Check if empty              │ O(1) time                   │
+│ isFull()   → Check if full               │ O(1) time                   │
+│ size()     → Return element count        │ O(1) time                   │
+└─────────────────────────────────────────────────────────────────────────┘
+
+🔹 KEY FORMULAS:
+───────────────────────────────────────────────────────────────────────────
+
+Simple Queue:
+    isEmpty: front == -1
+    isFull: rear == capacity - 1
+
+Circular Queue:
+    Circular increment: index = (index + 1) % capacity
+    isEmpty: size == 0 OR front == -1
+    isFull: size == capacity OR (rear + 1) % capacity == front
+
+🔹 KEY POINTS TO REMEMBER:
+───────────────────────────────────────────────────────────────────────────
+
+1. Queue follows FIFO (First In First Out) principle
+2. All basic operations are O(1) time complexity
+3. Simple queue wastes memory, use circular queue
+4. Two pointers needed: front and rear
+5. Circular queue uses modulo operator for wrapping
+6. Always check isEmpty() before dequeue
+7. Always check isFull() before enqueue
+
+🔹 COMMON MISTAKES TO AVOID:
+───────────────────────────────────────────────────────────────────────────
+
+❌ Forgetting to check isEmpty() before dequeue → Underflow
+❌ Not using modulo in circular queue → Index out of bounds
+❌ Wrong full condition in circular queue
+❌ Not initializing front = 0 on first enqueue
+❌ Confusing FIFO with LIFO
+❌ Using simple queue in production (use circular)
+
+🔹 INTERVIEW TIPS:
+───────────────────────────────────────────────────────────────────────────
+
+💡 Always clarify:
+   - Simple queue or circular queue?
+   - Fixed size or dynamic?
+   - What to return on underflow/overflow?
+   - Need thread safety?
+
+💡 Common follow-up questions:
+   - Implement circular queue
+   - Difference between simple and circular
+   - Implement using linked list
+   - Implement deque (double-ended)
+
+💡 During implementation:
+   - Handle edge cases (empty, full)
+   - Use meaningful variable names
+   - Comment the modulo operations
+   - Test with examples
+
+===============================================================================
+                        SECTION 11: PRACTICE EXERCISES
+===============================================================================
+
+🔹 IMPLEMENT THESE YOURSELF:
+───────────────────────────────────────────────────────────────────────────
+
+Exercise 1: Dynamic Queue
+→ Implement queue that automatically resizes
+→ Hint: Double capacity when full, copy elements
+
+Exercise 2: Generic Queue
+→ Queue that works with any data type
+→ Hint: Use Java Generics <T>
+
+Exercise 3: Deque Implementation
+→ Support insertFront, insertRear, deleteFront, deleteRear
+→ Hint: Use circular array with both pointers movable
+
+Exercise 4: Priority Queue (Simple)
+→ Dequeue element with highest priority
+→ Hint: Linear search for max/min element
+
+Exercise 5: Queue with getMin()
+→ Get minimum element in O(1)
+→ Hint: Use auxiliary queue or deque
+
+🔹 SELF-TEST QUESTIONS:
+───────────────────────────────────────────────────────────────────────────
+
+Q1: What is the time complexity of enqueue in array-based queue?
+A1: O(1) - Direct array access
+
+Q2: What is the full condition in circular queue?
+A2: (rear + 1) % capacity == front
+
+Q3: Why is circular queue better than simple queue?
+A3: Circular queue efficiently uses memory by reusing freed space
+
+Q4: What is the initial value of front and rear?
+A4: Both are -1 (indicates empty queue)
+
+Q5: Can we implement queue using one stack?
+A5: Yes, but operations become O(n)
+
+Q6: What is the principle of queue?
+A6: FIFO - First In First Out
+
+Q7: How many pointers does queue need?
+A7: Two - front (for dequeue) and rear (for enqueue)
+
+Q8: What is deque?
+A8: Double-ended queue - insertion/deletion at both ends
+
+===============================================================================
+                        SECTION 12: VISUAL SUMMARY
+===============================================================================
+
+📊 QUEUE OPERATIONS FLOW:
+───────────────────────────────────────────────────────────────────────────
+
+Simple Queue Evolution:
+
+Empty:
+    front = -1, rear = -1
+    [ ] [ ] [ ] [ ] [ ]
+
+After enqueue(10):
+    front = 0, rear = 0
+    [10] [ ] [ ] [ ] [ ]
+     ↑
+
+After enqueue(20), enqueue(30):
+    front = 0, rear = 2
+    [10] [20] [30] [ ] [ ]
+     ↑           ↑
+
+After dequeue(), dequeue():
+    front = 2, rear = 2
+    [ ] [ ] [30] [ ] [ ]  ← Wasted space!
+             ↑
+
+Circular Queue Advantage:
+
+After dequeue, dequeue, enqueue(40), enqueue(50):
+    front = 2, rear = 1 (wrapped around)
+    [50] [ ] [30] [40] [ ]
+      ↑          ↑
+    rear        front
+
+🎯 DECISION TREE: SIMPLE vs CIRCULAR QUEUE
+───────────────────────────────────────────────────────────────────────────
+
+                Need Queue Implementation?
+                          │
+                ┌─────────┴─────────┐
+                │                   │
+        Learning/Theory?    Production Use?
+                │                   │
+         Simple Queue        Circular Queue
+                │                   │
+        Easy to understand  Memory efficient
+        Wasteful            Reuses space
+
+===============================================================================
+                          FINAL SUMMARY & WISDOM
+===============================================================================
+
+🎓 KEY TAKEAWAYS:
+───────────────────────────────────────────────────────────────────────────
+
+1. Queue is FIFO - First In First Out
+2. Two pointers: front (remove) and rear (add)
+3. Simple queue wastes memory → Use Circular Queue
+4. All basic operations are O(1)
+5. Circular queue: Use modulo for wrapping
+6. Perfect for BFS, scheduling, buffering
+7. Master these patterns:
+   - Queue using stacks
+   - Circular queue implementation
+   - First non-repeating character
+   - Sliding window with deque
+
+💪 MASTERY CHECKLIST:
+───────────────────────────────────────────────────────────────────────────
+
+□ Understand FIFO principle
+□ Implement simple queue using array
+□ Understand memory wastage problem
+□ Implement circular queue correctly
+□ Implement queue using stacks
+□ Implement stack using queues
+□ Understand deque concept
+□ Solve sliding window maximum
+□ Know when to use queue vs stack
+□ Practice 15+ LeetCode problems
+
+🚀 NEXT STEPS:
+───────────────────────────────────────────────────────────────────────────
+
+1. Implement all functions yourself
+2. Understand circular queue thoroughly
+3. Solve easy problems on LeetCode
+4. Learn deque (double-ended queue)
+5. Study priority queue (heap-based)
+6. Master BFS algorithm using queue
+7. Practice sliding window problems
+8. Learn monotonic deque pattern
+
+Remember: "A queue is like a line at a ticket counter - whoever comes 
+first gets served first. It's fair and orderly, just like FIFO!" 🎫
+
+Key Insight: Always prefer CIRCULAR QUEUE over simple queue in real 
+applications - it's more memory efficient and practical!
+
+===============================================================================
+                            END OF GUIDE
+          Practice consistently, and you'll master queues! 🎯
+===============================================================================
+*/
