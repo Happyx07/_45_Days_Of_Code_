@@ -1,0 +1,233 @@
+DEQUE (DOUBLE-ENDED QUEUE) MASTERCLASS
+
+====================================================================
+1. FOUNDATIONAL EXPLANATION
+====================================================================
+
+1.1 What Is a Deque?
+- A deque (pronounced “deck”) is a linear data structure that allows insertion and deletion at both the front and the back in O(1) amortized or worst-case time depending on implementation.
+- Internally it can be implemented as a circular array, a block-linked list, or a doubly linked list. The key design goal is to keep head and tail operations symmetric.
+- Within the hierarchy of linear structures, a deque generalizes both a queue (FIFO) and a stack (LIFO). By constraining operations to one end you recover those specialized structures.
+
+1.2 Core Operations and Behavior
+- push_front(x): insert element x at the front.
+- push_back(x): insert element x at the rear.
+- pop_front(): remove and return the front element.
+- pop_back(): remove and return the rear element.
+- peek_front()/peek_back(): read front/rear without removing.
+- size(): number of elements currently stored.
+- empty(): boolean check for zero elements.
+- These operations guarantee constant-time behavior if the underlying representation keeps direct references to both ends (either via head/tail indices or pointers).
+
+1.3 Time Complexity Summary
+- push_front / push_back: O(1).
+- pop_front / pop_back: O(1).
+- peek_front / peek_back: O(1).
+- size / empty: O(1).
+- Iterating through all elements still costs O(n) like any linear structure.
+- Why deques can beat stacks/queues in practice: you avoid data copying when you need both-direction expulsion, you can maintain sliding windows efficiently, and you reduce memory churn when toggling between front/back operations.
+
+1.4 When to Reach for a Deque Instead of Stack/Queue
+- Sliding window problems where you repeatedly add to one side and remove from the other.
+- Maintaining maximum/minimum or monotonic order for online data streams.
+- Simulating both ends of sequences (palindrome checks, undo/redo buffers).
+- BFS variations where you push high-priority states to the front and low-priority states to the back (0–1 BFS).
+
+====================================================================
+2. IMPLEMENTATION DETAILS
+====================================================================
+
+2.1 Language Support Overview
+- Java: `ArrayDeque<E>` from `java.util` offers resizable-array-backed deque with amortized O(1) operations. It forbids null values to avoid ambiguity between empty slots and actual data.
+- Python: `collections.deque` uses a doubly-linked list of fixed-size blocks (a segmented linked list) yielding O(1) appends/pops on either side and thread-safe atomic appends/pops.
+- C++: `std::deque<T>` is typically implemented as a map of contiguous blocks (random access allowed). It supports O(1) push/pop on both ends, and stable iterators except when insertion happens in the middle.
+
+2.2 Array-Based vs Linked-Based Deques
+- Array-Based (e.g., Java ArrayDeque):
+	• Pros: excellent cache locality, predictable performance, smaller memory overhead, fast random access for debugging.
+	• Cons: reallocation or block copying when growth exceeds current capacity; cannot easily splice or insert in the middle.
+- Linked-Based (e.g., classic doubly linked list):
+	• Pros: no resizing cost, constant-time concatenation if you maintain pointers, better for very large elements where pointer manipulation is cheaper than copying.
+	• Cons: poor cache coherence, higher per-element memory footprint, pointer chasing can slow down real performance.
+- Hybrid Block Deques (e.g., Python, C++): aim to capture the best of both worlds: low amortized reallocation cost while still providing decent locality.
+
+====================================================================
+3. PROGRESSIVE PROBLEM SET
+====================================================================
+
+Each problem includes: problem statement, when to choose a deque, intuition, algorithm steps, and an optional dry run if it clarifies the idea. Tackle them in sequence for a smooth difficulty curve.
+
+3.1 Implement a Deque Using a Circular Array (Easy)
+- Problem Statement: Build a deque that supports push/pop operations at both ends using a fixed-size array with wrap-around indexing.
+- When to Choose Deque: You explicitly need amortized O(1) operations at both ends without dynamic memory allocation at runtime.
+- Intuition: Maintain two indices (front, back) that move modulo the array length. Reserve one slot to distinguish between full and empty states or keep a size counter.
+- Algorithm Steps:
+	1. Initialize array of capacity `cap`, set `front = 0`, `back = 0`, `size = 0`.
+	2. On push_front(x): decrement `front` circularly, place x, increment size.
+	3. On push_back(x): place x at `back`, increment `back` circularly, increment size.
+	4. On pops: remove element, move pointer, decrement size.
+	5. Guard against overflow/underflow with size checks.
+- Dry Run: Pushing 1,2,3 to back then popping from front demonstrates pointer wrap-around when the buffer fills.
+- Solution Outline: Track `front` and `rear` pointers modulo `cap`; operations adjust pointers before or after writing while size bounds prevent overflow. Use `(front - 1 + cap) % cap` for front insertions and `(rear + 1) % cap` for back insertions.
+- Complexity: All operations run in O(1); space usage is O(cap).
+
+3.2 Implement a Deque Using a Doubly Linked List (Easy)
+- Problem Statement: Construct a deque from scratch using nodes with prev/next pointers.
+- When to Choose Deque: Need constant-time concatenation of sequences or your environment lacks a built-in deque.
+- Intuition: Maintain two sentinel nodes (head, tail). Insertions adjust adjacent pointers only.
+- Algorithm Steps:
+	1. Create dummy head and tail nodes pointing to each other.
+	2. push_front(x): create node, attach after head.
+	3. push_back(x): create node, attach before tail.
+	4. pop_front/pop_back: detach nodes next to head/tail.
+	5. Maintain a counter for size for O(1) size/empty queries.
+- Solution Outline: Sentinel nodes reduce edge cases; each push/pop adjusts at most four pointers and updates a size counter. Empty state corresponds to head.next == tail.
+- Complexity: All deque operations run in O(1); memory grows with number of stored nodes (O(n)).
+
+3.3 First Negative Number in Every Window (Easy-Medium)
+- Problem Statement: Given an array and window size k, report the first negative number in each sliding window or 0 if none.
+- Why Deque: You need quick removal of elements exiting the window and quick access to the earliest negative within it.
+- Intuition: Store indices of negative numbers in a deque in increasing order. The front always represents the first negative in the current window.
+- Steps:
+	1. Iterate through the array.
+	2. Push current index if value is negative.
+	3. Remove indices from front if they fall out of the window (index <= i - k).
+	4. For i ≥ k-1, record the array value at deque front (or 0 if deque empty).
+- Dry Run Example: For [2, -1, -3, 5, -6], k=2, the deque evolves to always expose the earliest negative.
+- Solution Outline: Maintain a deque `dq` storing indices of negative numbers. Each iteration cleans outdated indices and appends answer from front. If `dq` empties, append 0. This gives direct access to the first negative per window.
+- Complexity: O(n) time because each index enters and leaves deque once; O(k) max space.
+
+3.4 Sliding Window Maximum (Medium)
+- Problem Statement: For each window of width k, find the maximum element.
+- Why Deque: Maintains candidates for the maximum in O(1) amortized per element.
+- Intuition: Keep a decreasing deque of indices. The front is always the maximum for the current window; any smaller elements behind a new larger value can never become max later, so drop them.
+- Steps:
+	1. Iterate indices i.
+	2. While deque not empty and nums[i] ≥ nums[deque.back], pop back.
+	3. Push i to back.
+	4. Remove front if it is outside window (deque.front ≤ i - k).
+	5. Record nums[deque.front] when window first reaches size k.
+- Small Dry Run: For nums = [1,3,-1,-3,5,3,6,7], k=3, watch the deque shrink whenever a larger element arrives.
+- Solution Outline: Use deque of indices with values in decreasing order. Append result once window size hits k. Removal ensures O(1) amortized updates.
+- Complexity: O(n) total operations; O(k) auxiliary space.
+
+3.5 Maximum Score from Card Picks (Medium)
+- Problem Statement: Pick exactly k cards from either end of an array to maximize total score.
+- Why Deque: Conceptually you are maintaining a window of cards you leave behind; walking this window uses both ends.
+- Intuition: Total score minus minimum sum of contiguous (n-k)-length window. Deque helps maintain running minimum subarray sum.
+- Steps:
+	1. Compute total sum of all cards.
+	2. Apply a sliding window of length n-k to find minimal window sum using a deque-based monotonic queue to track prefix sums.
+	3. Answer = total sum - minimal window sum.
+- Alternative View: Use deque to simulate taking from either end by pushing/popping running totals as you move split point from left to right.
+- Solution Outline: Transform to “drop n - k cards” problem. Maintain running window sum; a deque storing prefix sums can track minimum quickly, though a direct sliding window suffices. Best score equals total minus smallest window sum.
+- Complexity: O(n) traversal; O(k) space for deque or O(1) if direct window sum is used.
+
+3.6 Circular Tour / Gas Station Variant (Medium)
+- Problem Statement: Given gas[i] and cost[i], find a starting station to complete the circuit. Variant: allow using deque to track feasible windows in circular consideration.
+- Why Deque: When modelling net gain arrays (gas-cost), you want to maintain a window of cumulative sums to check non-negative minimums efficiently.
+- Intuition: Convert to prefix sums and use a deque to maintain minimum prefix within a moving window of size n. You can check feasibility by ensuring prefix[j] - min ≥ 0.
+- Steps:
+	1. Build doubled prefix array to model circular traversal.
+	2. Slide a window of length n across prefix sums.
+	3. Maintain deque of indices with increasing prefix values to access minimal prefix quickly.
+	4. Validate starting point when prefix[i+n] - prefix[i] ≥ 0 and minimal prefix within interval ≥ prefix[i].
+- Solution Outline: Convert net gains into prefix sums; iterate potential starts using duplicated array. Deque keeps minimum prefix within window to verify feasibility quickly, marking start when net gain non-negative throughout.
+- Complexity: O(n) time due to each index entering/exiting deque once; O(n) space for doubled prefix (can be optimized to O(n)).
+
+3.7 239. Sliding Window Maximum — Deep Dive (Medium+)
+- Problem Statement: LeetCode 239 asks for maximum in each sliding window of size k.
+- Why Deque: The official optimal solution relies on a monotonic deque for O(n) time.
+- Intuition Deep Dive:
+	• The deque stores indices in decreasing order of their values.
+	• Each element is pushed exactly once. It is removed either because it exits the window or because a bigger element arrives making it obsolete.
+	• Potential pitfalls: forgetting to compare indices rather than values when expiring elements, using ≤ vs < depending on whether duplicates should stay.
+- Step-by-Step:
+	1. Pre-fill deque with first k indices while enforcing decreasing order.
+	2. Record first maximum from front.
+	3. For each subsequent index i:
+		 - Pop back while nums[i] ≥ nums[deque.back].
+		 - Push i.
+		 - Pop front if deque.front ≤ i - k.
+		 - Append nums[deque.front] to result.
+- Dry Run Focus: Track indices to ensure duplicates are handled; two identical maxima can coexist if one is newer and the other still relevant.
+- Solution Outline: Identical to section 3.4 but emphasize correctness: ensuring indices stay in-range and values stay monotonic yields linear-time solution beating naive O(nk).
+- Complexity: O(n) time, O(k) space.
+
+3.8 Shortest Subarray with Sum ≥ K (Hard)
+- Problem Statement: Find the length of the shortest subarray with sum at least K in an array that may contain negative numbers.
+- Why Deque: Use a monotonic deque over prefix sums to efficiently locate candidate starts producing sufficient sum.
+- Intuition: Maintain prefix sums in increasing order. When current prefix exceeds the smallest prefix by ≥ K, you can update the answer and eject that prefix since any future subarray starting there would be longer.
+- Steps:
+	1. Build prefix array P where P[0]=0 and P[i+1]=P[i]+A[i].
+	2. Iterate P with index j.
+	3. While deque not empty and P[j] - P[deque.front] ≥ K, update answer with j - deque.front and pop front.
+	4. While deque not empty and P[j] ≤ P[deque.back], pop back (maintain increasing prefix).
+	5. Push j.
+- Dry Run Outline: For A=[2,-1,2], K=3, prefix = [0,2,1,3]; the deque ensures we find subarray [2,-1,2].
+- Solution Outline: Maintain indices of prefix sums in increasing order. When current prefix minus smallest prefix in deque meets threshold, compute candidate length. Removing larger or equal prefixes keeps deque optimal for future checks.
+- Complexity: O(n) time because each prefix index is pushed and popped at most once; O(n) space for prefix and deque.
+
+3.9 Additional Advanced Application: Constrained Subsequence Sum (Hard)
+- Problem Statement: Given array nums and constraint k, find maximum sum of a subsequence where indices differ by at most k. (LeetCode 1425)
+- Why Deque: The dynamic programming transition uses dp[i] = nums[i] + max(0, max_{i-k ≤ j < i} dp[j]). Maintaining this max requires a deque.
+- Intuition: Store indices of dp values in decreasing order. Remove indices out of range and drop smaller dp values so the front remains the best candidate.
+- Steps:
+	1. Initialize deque empty.
+	2. For each index i:
+		 - If deque front is < i - k, pop front (out of window).
+		 - dp[i] = nums[i] + max(0, dp[deque.front]) if deque not empty.
+		 - While deque not empty and dp[i] ≥ dp[deque.back], pop back.
+		 - Push i.
+	3. Track global maximum of dp.
+- Dry Run Suggestion: Use nums=[10,2,-10,5,20], k=2 to observe how the deque preserves the best dp candidates.
+- Solution Outline: Deque stores indices of dp in decreasing order. Transition pulls best dp within last k elements, then new dp[i] is inserted maintaining order. Result is the maximum dp encountered.
+- Complexity: O(n) time since each index enters/leaves deque once; O(n) space for dp and deque.
+
+====================================================================
+4. COMMON DEQUE PATTERNS
+====================================================================
+
+4.1 Sliding Window Optimization
+- Maintain a deque of candidate elements (values or indices) that reflect the window’s invariant (e.g., monotonic order). Push new element, pop invalid ones, expire old elements, read answer from front.
+
+4.2 Monotonic Queue Technique
+- A deque that keeps elements sorted (either increasing or decreasing). Useful for constant-time access to min or max while streaming data. Critical problems: sliding window maximum, shortest subarray ≥ K, constrained subsequence sum.
+
+4.3 Index-Based Maintenance
+- Store indices rather than values when you need to know positions for window eviction or further lookups. This is the default for sliding window tasks.
+
+4.4 Maintaining Max/Min in O(1)
+- Keep deque in monotonic order. When you need the maximum, enforce decreasing order; for minimum, enforce increasing order. The head always holds the current optimum.
+
+4.5 Double-Ended BFS (0-1 BFS / Deque BFS)
+- When edge weights are 0 or 1, push zero-weight transitions to the front and weight-one transitions to the back to achieve O(V+E) shortest path.
+
+====================================================================
+5. SUMMARY, BEST PRACTICES, AND PITFALLS
+====================================================================
+
+5.1 Best Practices
+- Prefer storing indices to maintain flexibility and avoid duplicates ambiguity.
+- Carefully choose inequality direction (`>` vs `>=`) to handle duplicates correctly.
+- Initialize deques cleanly and document the invariant you maintain (e.g., “deque stores indices with values in decreasing order”).
+- Use descriptive names like `window`, `monoDeque`, or `candidates` so the purpose stays clear.
+
+5.2 Common Pitfalls
+- Forgetting to pop elements that exit the window, leading to stale answers.
+- Mismanaging empty deque cases (peeking/popping without checking emptiness).
+- Off-by-one errors with window boundaries (especially when converting between 0-based and 1-based prefix indices).
+- Mixing values and indices in the same deque without clear documentation.
+
+5.3 Recognizing Deque-Friendly Problems Quickly
+- The problem talks about a moving window or stream where end points change dynamically.
+- You need constant-time access to current max/min or earliest/closest element by some criterion.
+- The structure of the optimal solution involves comparing the newest element to older ones and discarding dominated candidates.
+- Dynamic programming transitions refer to “best within the last k positions.”
+
+5.4 Next Steps for Mastery
+- Re-implement each problem without references to cement mechanics.
+- Benchmark with both array-based and linked implementations to feel performance differences.
+- Explore 0–1 BFS, minimum sliding window substring problems, and deque-powered segment tree optimizations as further practice.
+
+You now have a complete path from fundamental concepts to advanced problem solving with deques. Use this as a living reference: revisit sections as you encounter new patterns and add personal notes to reinforce your intuition.

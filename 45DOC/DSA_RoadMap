@@ -1,0 +1,82 @@
+## 📘 Complete DSA Topic Roadmap (Basic to Advanced)
+
+This roadmap outlines all essential topics you need to master for Data Structures & Algorithms, including problem-solving and interview preparation.
+
+---
+
+### 🟢 **Level 1: Fundamentals & Core Concepts**
+
+1. Time & Space Complexity (Big-O Analysis)
+2. Recursion
+3. Arrays
+4. Strings
+5. Mathematics & Bit Manipulation
+6. Sorting Algorithms (Bubble, Selection, Insertion, Merge, Quick)
+7. Searching Algorithms (Linear & Binary Search)
+
+---
+
+### 🔵 **Level 2: Intermediate Data Structures**
+
+1. Hashing (HashMap, HashSet)
+2. Stack
+3. Queue (Linear & Circular)
+4. Linked List (Singly, Doubly, Circular)
+5. Sliding Window Technique
+6. Two Pointers Technique
+7. Prefix Sum & Difference Arrays
+
+---
+
+### 🟠 **Level 3: Advanced Data Structures & Algorithms**
+
+1. Binary Trees
+2. Binary Search Trees (BST)
+3. Tree Traversals (Inorder, Preorder, Postorder)
+4. Heap / Priority Queue
+5. Tries (Prefix Trees)
+6. Disjoint Set Union (Union Find)
+7. Segment Tree & Binary Indexed Tree (Fenwick Tree)
+
+---
+
+### 🟣 **Level 4: Graphs**
+
+1. Graph Representations (Adjacency List / Matrix)
+2. DFS & BFS
+3. Topological Sort
+4. Shortest Path Algorithms (Dijkstra, Bellman-Ford)
+5. Minimum Spanning Tree (Prim's & Kruskal's)
+6. Union-Find in Graphs
+7. Cycle Detection (Directed & Undirected)
+
+---
+
+### 🔴 **Level 5: Dynamic Programming & Advanced Algorithms**
+
+1. 1D DP (Fibonacci, Climbing Stairs, etc.)
+2. 2D DP (Knapsack, Subset Sum, etc.)
+3. DP on Strings (LCS, Edit Distance)
+4. DP on Trees / Graphs
+5. Bitmask DP
+6. Greedy Algorithms
+7. Backtracking (N-Queens, Sudoku Solver)
+8. Sliding Window Maximum / Monotonic Queue
+
+---
+
+### ⚫ **Level 6: Advanced Topics & Interview Strategies**
+
+1. Binary Search on Answer
+2. Meet in the Middle
+3. Trie + Backtracking
+4. Segment Tree with Lazy Propagation
+5. Bit Manipulation Tricks
+6. Math for CP (GCD, LCM, Sieve of Eratosthenes, Modular Arithmetic)
+7. Interview Patterns & Problem Solving Techniques
+
+---
+
+You can build mastery by solving 20–30 quality problems per topic with increasing difficulty.
+
+Let me know when you'd like to tackle a topic or create a checklist per level!
