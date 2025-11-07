@@ -7,12 +7,14 @@ This roadmap outlines all essential topics you need to master for Data Structure
 ### 🟢 **Level 1: Fundamentals & Core Concepts**
 
 1. Time & Space Complexity (Big-O Analysis)
-2. Recursion
-3. Arrays
-4. Strings
-5. Mathematics & Bit Manipulation
-6. Sorting Algorithms (Bubble, Selection, Insertion, Merge, Quick)
-7. Searching Algorithms (Linear & Binary Search)
+2. Recursion   - 5 to 10 problems on basic recursion in 3 days
+3. Arrays        10-15 problems on arrays in 4 days
+4. Strings      - 10-15 problems on strings in 4 days
+5. Mathematics & Bit Manipulation - 5 to 10 problems in 3 days
+6. Sorting Algorithms (Bubble, Selection, Insertion, Merge, Quick) - 10-15 problems in 4 days
+7. Searching Algorithms (Linear & Binary Search) - 5 to 10 problems in 3 days
+
+21 days total
 
 ---
 
