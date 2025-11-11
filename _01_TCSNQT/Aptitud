@@ -1,0 +1,363 @@
+================================================================================
+           TCS NQT NUMERICAL ABILITY - COMPLETE STUDY NOTES
+================================================================================
+                    Interactive Tutor Session Notes
+                    Started: November 11, 2025
+================================================================================
+
+================================================================================
+TOPIC 1: NUMBER SYSTEM
+================================================================================
+
+INTRODUCTION:
+-------------
+The Number System is the foundation of all numerical ability questions in 
+TCS NQT. Understanding numbers, their types, and properties is crucial as 
+this concept appears in almost every arithmetic problem.
+
+Weightage: HIGH (Directly or indirectly tested in 20-25% of questions)
+
+This topic covers:
+- Types of numbers
+- Place value and face value
+- Number properties
+- Basic operations and their properties
+
+
+TYPES OF NUMBERS:
+-----------------
+
+1. NATURAL NUMBERS (N)
+   Definition: Counting numbers starting from 1
+   Set: {1, 2, 3, 4, 5, ...}
+   Symbol: N or ℕ
+
+2. WHOLE NUMBERS (W)
+   Definition: Natural numbers including zero
+   Set: {0, 1, 2, 3, 4, 5, ...}
+   Symbol: W
+
+3. INTEGERS (Z)
+   Definition: Whole numbers including negative numbers
+   Set: {..., -3, -2, -1, 0, 1, 2, 3, ...}
+   Symbol: Z or ℤ
+   Types:
+   - Positive integers: {1, 2, 3, ...}
+   - Negative integers: {-1, -2, -3, ...}
+   - Zero: {0}
+
+4. RATIONAL NUMBERS (Q)
+   Definition: Numbers that can be expressed as p/q where p, q are integers 
+               and q ≠ 0
+   Examples: 1/2, -3/4, 5, 0.75, 0.333...
+   Symbol: Q or ℚ
+
+5. IRRATIONAL NUMBERS
+   Definition: Numbers that CANNOT be expressed as p/q
+   Examples: √2, √3, π, e
+   Decimals: Non-terminating, non-repeating
+
+6. REAL NUMBERS (R)
+   Definition: All rational + irrational numbers
+   Symbol: R or ℝ
+
+7. PRIME NUMBERS
+   Definition: Numbers divisible only by 1 and itself (greater than 1)
+   Examples: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47...
+   Note: 2 is the only EVEN prime number
+
+8. COMPOSITE NUMBERS
+   Definition: Numbers having more than 2 factors
+   Examples: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20...
+
+9. CO-PRIME NUMBERS
+   Definition: Two numbers whose HCF is 1
+   Examples: (3, 5), (7, 9), (15, 16)
+
+10. EVEN NUMBERS
+    Definition: Numbers divisible by 2
+    Form: 2n where n is an integer
+    Examples: 2, 4, 6, 8, 10, 12...
+
+11. ODD NUMBERS
+    Definition: Numbers NOT divisible by 2
+    Form: 2n + 1 or 2n - 1
+    Examples: 1, 3, 5, 7, 9, 11...
+
+
+KEY FORMULAS & PROPERTIES:
+---------------------------
+
+PLACE VALUE vs FACE VALUE:
+--------------------------
+Face Value: The actual value of a digit (0-9)
+Place Value: The value based on position
+
+Example in 5,234:
+Digit | Face Value | Place Value
+------|------------|-------------
+  5   |     5      |   5,000
+  2   |     2      |     200
+  3   |     3      |      30
+  4   |     4      |       4
+
+
+IMPORTANT NUMBER PROPERTIES:
+----------------------------
+
+1. SUM OF FIRST n NATURAL NUMBERS:
+   Formula: n(n + 1) / 2
+   
+2. SUM OF FIRST n EVEN NUMBERS:
+   Formula: n(n + 1)
+   
+3. SUM OF FIRST n ODD NUMBERS:
+   Formula: n²
+   
+4. SUM OF SQUARES OF FIRST n NATURAL NUMBERS:
+   Formula: n(n + 1)(2n + 1) / 6
+   
+5. SUM OF CUBES OF FIRST n NATURAL NUMBERS:
+   Formula: [n(n + 1) / 2]²
+
+6. PROPERTIES OF OPERATIONS:
+
+   Even ± Even = Even
+   Odd ± Odd = Even
+   Even ± Odd = Odd
+   
+   Even × Even = Even
+   Even × Odd = Even
+   Odd × Odd = Odd
+
+
+STEP-BY-STEP EXAMPLE PROBLEMS:
+------------------------------
+
+EXAMPLE 1: Find the sum of first 50 natural numbers.
+-----------
+
+Step 1: Identify the formula
+   Sum of first n natural numbers = n(n + 1) / 2
+   
+Step 2: Substitute n = 50
+   Sum = 50(50 + 1) / 2
+   Sum = 50 × 51 / 2
+   Sum = 2,550 / 2
+   
+Step 3: Calculate final answer
+   Sum = 1,275
+
+ANSWER: 1,275
+
+
+EXAMPLE 2: Find the sum of all odd numbers from 1 to 99.
+-----------
+
+Step 1: Count how many odd numbers exist
+   Odd numbers: 1, 3, 5, 7, ..., 99
+   This is an AP with first term a = 1, common difference d = 2
+   Last term = 99
+   
+Step 2: Find n (number of terms)
+   Formula: Last term = a + (n-1)d
+   99 = 1 + (n-1)2
+   98 = (n-1)2
+   49 = n-1
+   n = 50
+   
+Step 3: Apply the formula
+   Sum of first n odd numbers = n²
+   Sum = 50²
+   Sum = 2,500
+
+ANSWER: 2,500
+
+Alternative shortcut: Count of odd numbers from 1 to 99 = 50
+                      Sum = 50² = 2,500
+
+
+EXAMPLE 3: What is the place value of 7 in the number 476,385?
+-----------
+
+Step 1: Identify position of 7
+   4 7 6, 3 8 5
+   7 is in the ten-thousands place
+   
+Step 2: Calculate place value
+   Place value = 7 × 10,000
+   Place value = 70,000
+
+ANSWER: 70,000 (Face value is just 7)
+
+
+SHORTCUTS & TRICKS:
+-------------------
+
+TRICK 1: Quick sum of consecutive numbers
+---------
+If you need sum from a to b:
+Sum = (Number of terms) × (First term + Last term) / 2
+Number of terms = b - a + 1
+
+Example: Sum from 25 to 75
+Terms = 75 - 25 + 1 = 51
+Sum = 51 × (25 + 75) / 2 = 51 × 50 = 2,550
+
+
+TRICK 2: Identify prime quickly
+---------
+To check if a number n is prime:
+- Check divisibility by primes up to √n
+- If none divide it, n is prime
+
+Example: Is 97 prime?
+√97 ≈ 9.8
+Check primes: 2, 3, 5, 7
+97 ÷ 2 = not divisible (odd)
+97 ÷ 3 = not divisible (9+7=16, not divisible by 3)
+97 ÷ 5 = not divisible (doesn't end in 0 or 5)
+97 ÷ 7 = not divisible
+Therefore, 97 is PRIME
+
+
+TRICK 3: Sum of first n odd numbers
+---------
+Always equals n²
+Want sum of first 25 odd numbers? Answer: 25² = 625
+
+
+TRICK 4: Check if sum is even/odd
+---------
+Don't calculate! Use properties:
+- Sum of even count of odd numbers = EVEN
+- Sum of odd count of odd numbers = ODD
+
+
+COMMON MISTAKES TO AVOID:
+-------------------------
+
+MISTAKE 1: Confusing 1 as a prime number
+❌ WRONG: 1 is a prime number
+✓ CORRECT: 1 is neither prime nor composite
+
+MISTAKE 2: Thinking 2 is not prime (because it's even)
+❌ WRONG: 2 is not prime because all primes are odd
+✓ CORRECT: 2 is the ONLY even prime number
+
+MISTAKE 3: Place value vs Face value confusion
+❌ WRONG: Place value of 5 in 456 is 5
+✓ CORRECT: Face value is 5, Place value is 50
+
+MISTAKE 4: Forgetting 0 in whole numbers
+❌ WRONG: Whole numbers = {1, 2, 3, ...}
+✓ CORRECT: Whole numbers = {0, 1, 2, 3, ...}
+
+MISTAKE 5: Wrong formula application
+❌ WRONG: Sum of first n numbers = n²
+✓ CORRECT: Sum of first n ODD numbers = n²
+           Sum of first n numbers = n(n+1)/2
+
+
+PRACTICE ZONE:
+--------------
+
+Try these questions yourself before checking answers!
+
+QUESTION 1 (Easy):
+Find the sum of first 100 natural numbers.
+
+QUESTION 2 (Easy):
+What is the place value of 8 in 382,647?
+
+QUESTION 3 (Medium):
+Find the sum of all even numbers from 2 to 100.
+
+QUESTION 4 (Medium):
+How many prime numbers are there between 1 and 50?
+
+QUESTION 5 (Hard):
+The sum of three consecutive odd numbers is 177. Find the middle number.
+
+
+PRACTICE ZONE - SOLUTIONS:
+--------------------------
+(Check these AFTER attempting)
+
+SOLUTION 1:
+Formula: n(n+1)/2
+= 100(101)/2
+= 10,100/2
+= 5,050
+
+ANSWER: 5,050
+
+
+SOLUTION 2:
+8 is in the ten-thousands place
+Place value = 8 × 10,000 = 80,000
+
+ANSWER: 80,000
+
+
+SOLUTION 3:
+Even numbers from 2 to 100: 2, 4, 6, ..., 100
+Number of terms = 100/2 = 50
+Formula: n(n+1) = 50(51) = 2,550
+
+Alternative:
+Sum = n × (First + Last)/2
+= 50 × (2 + 100)/2
+= 50 × 51
+= 2,550
+
+ANSWER: 2,550
+
+
+SOLUTION 4:
+Primes between 1 and 50:
+2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47
+
+Count: 15 prime numbers
+
+ANSWER: 15
+
+
+SOLUTION 5:
+Let three consecutive odd numbers be: (x-2), x, (x+2)
+Sum = (x-2) + x + (x+2) = 177
+3x = 177
+x = 59
+
+The three numbers are: 57, 59, 61
+Middle number = 59
+
+ANSWER: 59
+
+
+QUICK RECAP - NUMBER SYSTEM:
+=============================
+
+✓ Natural numbers: 1, 2, 3, ... (N)
+✓ Whole numbers: 0, 1, 2, 3, ... (W)
+✓ Integers: ..., -2, -1, 0, 1, 2, ... (Z)
+✓ Prime: divisible by 1 and itself only (2 is the only even prime)
+✓ 1 is neither prime nor composite
+
+KEY FORMULAS:
+-------------
+1. Sum of first n natural numbers = n(n+1)/2
+2. Sum of first n even numbers = n(n+1)
+3. Sum of first n odd numbers = n²
+4. Sum of squares = n(n+1)(2n+1)/6
+5. Sum of cubes = [n(n+1)/2]²
+
+PROPERTIES:
+-----------
+Even ± Even = Even  |  Even × Even = Even
+Odd ± Odd = Even    |  Even × Odd = Even
+Even ± Odd = Odd    |  Odd × Odd = Odd
+
+================================================================================
+END OF TOPIC 1: NUMBER SYSTEM
+================================================================================

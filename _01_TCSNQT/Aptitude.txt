@@ -1,0 +1,6134 @@
+================================================================================
+           TCS NQT NUMERICAL ABILITY - COMPLETE STUDY NOTES
+================================================================================
+                    Interactive Tutor Session Notes
+                    Started: November 11, 2025
+================================================================================
+
+================================================================================
+TOPIC 1: NUMBER SYSTEM
+================================================================================
+
+INTRODUCTION:
+-------------
+The Number System is the foundation of all numerical ability questions in 
+TCS NQT. Understanding numbers, their types, and properties is crucial as 
+this concept appears in almost every arithmetic problem.
+
+Weightage: HIGH (Directly or indirectly tested in 20-25% of questions)
+
+This topic covers:
+- Types of numbers
+- Place value and face value
+- Number properties
+- Basic operations and their properties
+
+
+TYPES OF NUMBERS:
+-----------------
+
+1. NATURAL NUMBERS (N)
+   Definition: Counting numbers starting from 1
+   Set: {1, 2, 3, 4, 5, ...}
+   Symbol: N or ℕ
+
+2. WHOLE NUMBERS (W)
+   Definition: Natural numbers including zero
+   Set: {0, 1, 2, 3, 4, 5, ...}
+   Symbol: W
+
+3. INTEGERS (Z)
+   Definition: Whole numbers including negative numbers
+   Set: {..., -3, -2, -1, 0, 1, 2, 3, ...}
+   Symbol: Z or ℤ
+   Types:
+   - Positive integers: {1, 2, 3, ...}
+   - Negative integers: {-1, -2, -3, ...}
+   - Zero: {0}
+
+4. RATIONAL NUMBERS (Q)
+   Definition: Numbers that can be expressed as p/q where p, q are integers 
+               and q ≠ 0
+   Examples: 1/2, -3/4, 5, 0.75, 0.333...
+   Symbol: Q or ℚ
+
+5. IRRATIONAL NUMBERS
+   Definition: Numbers that CANNOT be expressed as p/q
+   Examples: √2, √3, π, e
+   Decimals: Non-terminating, non-repeating
+
+6. REAL NUMBERS (R)
+   Definition: All rational + irrational numbers
+   Symbol: R or ℝ
+
+7. PRIME NUMBERS
+   Definition: Numbers divisible only by 1 and itself (greater than 1)
+   Examples: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47...
+   Note: 2 is the only EVEN prime number
+
+8. COMPOSITE NUMBERS
+   Definition: Numbers having more than 2 factors
+   Examples: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20...
+
+9. CO-PRIME NUMBERS
+   Definition: Two numbers whose HCF is 1
+   Examples: (3, 5), (7, 9), (15, 16)
+
+10. EVEN NUMBERS
+    Definition: Numbers divisible by 2
+    Form: 2n where n is an integer
+    Examples: 2, 4, 6, 8, 10, 12...
+
+11. ODD NUMBERS
+    Definition: Numbers NOT divisible by 2
+    Form: 2n + 1 or 2n - 1
+    Examples: 1, 3, 5, 7, 9, 11...
+
+
+KEY FORMULAS & PROPERTIES:
+---------------------------
+
+PLACE VALUE vs FACE VALUE:
+--------------------------
+Face Value: The actual value of a digit (0-9)
+Place Value: The value based on position
+
+Example in 5,234:
+Digit | Face Value | Place Value
+------|------------|-------------
+  5   |     5      |   5,000
+  2   |     2      |     200
+  3   |     3      |      30
+  4   |     4      |       4
+
+
+IMPORTANT NUMBER PROPERTIES:
+----------------------------
+
+1. SUM OF FIRST n NATURAL NUMBERS:
+   Formula: n(n + 1) / 2
+   
+2. SUM OF FIRST n EVEN NUMBERS:
+   Formula: n(n + 1)
+   
+3. SUM OF FIRST n ODD NUMBERS:
+   Formula: n²
+   
+4. SUM OF SQUARES OF FIRST n NATURAL NUMBERS:
+   Formula: n(n + 1)(2n + 1) / 6
+   
+5. SUM OF CUBES OF FIRST n NATURAL NUMBERS:
+   Formula: [n(n + 1) / 2]²
+
+6. PROPERTIES OF OPERATIONS:
+
+   Even ± Even = Even
+   Odd ± Odd = Even
+   Even ± Odd = Odd
+   
+   Even × Even = Even
+   Even × Odd = Even
+   Odd × Odd = Odd
+
+
+STEP-BY-STEP EXAMPLE PROBLEMS:
+------------------------------
+
+EXAMPLE 1: Find the sum of first 50 natural numbers.
+-----------
+
+Step 1: Identify the formula
+   Sum of first n natural numbers = n(n + 1) / 2
+   
+Step 2: Substitute n = 50
+   Sum = 50(50 + 1) / 2
+   Sum = 50 × 51 / 2
+   Sum = 2,550 / 2
+   
+Step 3: Calculate final answer
+   Sum = 1,275
+
+ANSWER: 1,275
+
+
+EXAMPLE 2: Find the sum of all odd numbers from 1 to 99.
+-----------
+
+Step 1: Count how many odd numbers exist
+   Odd numbers: 1, 3, 5, 7, ..., 99
+   This is an AP with first term a = 1, common difference d = 2
+   Last term = 99
+   
+Step 2: Find n (number of terms)
+   Formula: Last term = a + (n-1)d
+   99 = 1 + (n-1)2
+   98 = (n-1)2
+   49 = n-1
+   n = 50
+   
+Step 3: Apply the formula
+   Sum of first n odd numbers = n²
+   Sum = 50²
+   Sum = 2,500
+
+ANSWER: 2,500
+
+Alternative shortcut: Count of odd numbers from 1 to 99 = 50
+                      Sum = 50² = 2,500
+
+
+EXAMPLE 3: What is the place value of 7 in the number 476,385?
+-----------
+
+Step 1: Identify position of 7
+   4 7 6, 3 8 5
+   7 is in the ten-thousands place
+   
+Step 2: Calculate place value
+   Place value = 7 × 10,000
+   Place value = 70,000
+
+ANSWER: 70,000 (Face value is just 7)
+
+
+SHORTCUTS & TRICKS:
+-------------------
+
+TRICK 1: Quick sum of consecutive numbers
+---------
+If you need sum from a to b:
+Sum = (Number of terms) × (First term + Last term) / 2
+Number of terms = b - a + 1
+
+Example: Sum from 25 to 75
+Terms = 75 - 25 + 1 = 51
+Sum = 51 × (25 + 75) / 2 = 51 × 50 = 2,550
+
+
+TRICK 2: Identify prime quickly
+---------
+To check if a number n is prime:
+- Check divisibility by primes up to √n
+- If none divide it, n is prime
+
+Example: Is 97 prime?
+√97 ≈ 9.8
+Check primes: 2, 3, 5, 7
+97 ÷ 2 = not divisible (odd)
+97 ÷ 3 = not divisible (9+7=16, not divisible by 3)
+97 ÷ 5 = not divisible (doesn't end in 0 or 5)
+97 ÷ 7 = not divisible
+Therefore, 97 is PRIME
+
+
+TRICK 3: Sum of first n odd numbers
+---------
+Always equals n²
+Want sum of first 25 odd numbers? Answer: 25² = 625
+
+
+TRICK 4: Check if sum is even/odd
+---------
+Don't calculate! Use properties:
+- Sum of even count of odd numbers = EVEN
+- Sum of odd count of odd numbers = ODD
+
+
+COMMON MISTAKES TO AVOID:
+-------------------------
+
+MISTAKE 1: Confusing 1 as a prime number
+❌ WRONG: 1 is a prime number
+✓ CORRECT: 1 is neither prime nor composite
+
+MISTAKE 2: Thinking 2 is not prime (because it's even)
+❌ WRONG: 2 is not prime because all primes are odd
+✓ CORRECT: 2 is the ONLY even prime number
+
+MISTAKE 3: Place value vs Face value confusion
+❌ WRONG: Place value of 5 in 456 is 5
+✓ CORRECT: Face value is 5, Place value is 50
+
+MISTAKE 4: Forgetting 0 in whole numbers
+❌ WRONG: Whole numbers = {1, 2, 3, ...}
+✓ CORRECT: Whole numbers = {0, 1, 2, 3, ...}
+
+MISTAKE 5: Wrong formula application
+❌ WRONG: Sum of first n numbers = n²
+✓ CORRECT: Sum of first n ODD numbers = n²
+           Sum of first n numbers = n(n+1)/2
+
+
+PRACTICE ZONE:
+--------------
+
+Try these questions yourself before checking answers!
+
+QUESTION 1 (Easy):
+Find the sum of first 100 natural numbers.
+
+QUESTION 2 (Easy):
+What is the place value of 8 in 382,647?
+
+QUESTION 3 (Medium):
+Find the sum of all even numbers from 2 to 100.
+
+QUESTION 4 (Medium):
+How many prime numbers are there between 1 and 50?
+
+QUESTION 5 (Hard):
+The sum of three consecutive odd numbers is 177. Find the middle number.
+
+
+PRACTICE ZONE - SOLUTIONS:
+--------------------------
+(Check these AFTER attempting)
+
+SOLUTION 1:
+Formula: n(n+1)/2
+= 100(101)/2
+= 10,100/2
+= 5,050
+
+ANSWER: 5,050
+
+
+SOLUTION 2:
+8 is in the ten-thousands place
+Place value = 8 × 10,000 = 80,000
+
+ANSWER: 80,000
+
+
+SOLUTION 3:
+Even numbers from 2 to 100: 2, 4, 6, ..., 100
+Number of terms = 100/2 = 50
+Formula: n(n+1) = 50(51) = 2,550
+
+Alternative:
+Sum = n × (First + Last)/2
+= 50 × (2 + 100)/2
+= 50 × 51
+= 2,550
+
+ANSWER: 2,550
+
+
+SOLUTION 4:
+Primes between 1 and 50:
+2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47
+
+Count: 15 prime numbers
+
+ANSWER: 15
+
+
+SOLUTION 5:
+Let three consecutive odd numbers be: (x-2), x, (x+2)
+Sum = (x-2) + x + (x+2) = 177
+3x = 177
+x = 59
+
+The three numbers are: 57, 59, 61
+Middle number = 59
+
+ANSWER: 59
+
+
+QUICK RECAP - NUMBER SYSTEM:
+=============================
+
+✓ Natural numbers: 1, 2, 3, ... (N)
+✓ Whole numbers: 0, 1, 2, 3, ... (W)
+✓ Integers: ..., -2, -1, 0, 1, 2, ... (Z)
+✓ Prime: divisible by 1 and itself only (2 is the only even prime)
+✓ 1 is neither prime nor composite
+
+KEY FORMULAS:
+-------------
+1. Sum of first n natural numbers = n(n+1)/2
+2. Sum of first n even numbers = n(n+1)
+3. Sum of first n odd numbers = n²
+4. Sum of squares = n(n+1)(2n+1)/6
+5. Sum of cubes = [n(n+1)/2]²
+
+PROPERTIES:
+-----------
+Even ± Even = Even  |  Even × Even = Even
+Odd ± Odd = Even    |  Even × Odd = Even
+Even ± Odd = Odd    |  Odd × Odd = Odd
+
+================================================================================
+ADDITIONAL PRACTICE PROBLEMS - NUMBER SYSTEM
+================================================================================
+
+LEVEL 1: BASIC PROBLEMS (Build Your Foundation)
+------------------------------------------------
+
+QUESTION 6:
+Find the sum of first 25 even numbers.
+
+QUESTION 7:
+What is the sum of first 30 odd numbers?
+
+QUESTION 8:
+In the number 9,87,654, what is the difference between the place value and 
+face value of 8?
+
+QUESTION 9:
+How many natural numbers are there between 15 and 85?
+
+QUESTION 10:
+Is 91 a prime number or composite number? Justify your answer.
+
+
+LEVEL 2: INTERMEDIATE PROBLEMS (Apply Concepts)
+------------------------------------------------
+
+QUESTION 11:
+The sum of three consecutive even numbers is 234. Find the smallest number.
+
+QUESTION 12:
+Find the sum of all natural numbers from 50 to 150.
+
+QUESTION 13:
+What is the sum of first 20 natural numbers that are multiples of 3?
+(i.e., 3, 6, 9, 12, ...)
+
+QUESTION 14:
+Two numbers are in the ratio 3:5. If their sum is 160, find both numbers.
+
+QUESTION 15:
+How many two-digit prime numbers are there?
+
+
+LEVEL 3: ADVANCED PROBLEMS (Test Your Speed)
+---------------------------------------------
+
+QUESTION 16:
+Find the sum: 1² + 2² + 3² + 4² + ... + 10²
+
+QUESTION 17:
+The sum of three consecutive multiples of 7 is 777. Find the three numbers.
+
+QUESTION 18:
+What is the remainder when the sum of first 100 natural numbers is divided 
+by 7?
+
+QUESTION 19:
+Find the value of: 1³ + 2³ + 3³ + 4³ + 5³
+
+QUESTION 20:
+How many numbers between 1 and 100 are divisible by both 3 and 5?
+
+
+LEVEL 4: TCS NQT PATTERN QUESTIONS (Exam-Style)
+------------------------------------------------
+
+QUESTION 21:
+If the sum of first n natural numbers is 1830, find the value of n.
+
+QUESTION 22:
+The average of first 50 natural numbers is:
+a) 25     b) 25.5     c) 26     d) 50.5
+
+QUESTION 23:
+How many prime numbers are there between 50 and 100?
+
+QUESTION 24:
+The sum of squares of three consecutive natural numbers is 194. Find the 
+middle number.
+
+QUESTION 25:
+If a two-digit number is 4 times the sum of its digits, and the unit digit 
+is 2 more than the tens digit, find the number.
+
+
+================================================================================
+SOLUTIONS TO ADDITIONAL PRACTICE PROBLEMS
+================================================================================
+
+SOLUTION 6:
+-----------
+Sum of first n even numbers = n(n+1)
+For first 25 even numbers:
+Sum = 25 × 26 = 650
+
+ANSWER: 650
+
+
+SOLUTION 7:
+-----------
+Sum of first n odd numbers = n²
+For first 30 odd numbers:
+Sum = 30² = 900
+
+ANSWER: 900
+
+
+SOLUTION 8:
+-----------
+Number: 9,87,654
+The digit 8 is in the ten-thousands place.
+
+Face value of 8 = 8
+Place value of 8 = 8 × 10,000 = 80,000
+
+Difference = 80,000 - 8 = 79,992
+
+ANSWER: 79,992
+
+
+SOLUTION 9:
+-----------
+Natural numbers between 15 and 85 (excluding 15 and 85)
+= 16, 17, 18, ..., 84
+
+Count = 84 - 16 + 1 = 69
+
+Alternative method:
+Total numbers from 15 to 85 = 85 - 15 + 1 = 71
+Excluding endpoints = 71 - 2 = 69
+
+ANSWER: 69 numbers
+
+
+SOLUTION 10:
+------------
+Check if 91 is prime:
+√91 ≈ 9.5
+Check divisibility by primes up to 9: 2, 3, 5, 7
+
+91 ÷ 2 = Not divisible (odd number)
+91 ÷ 3 = Not divisible (9+1=10, not divisible by 3)
+91 ÷ 5 = Not divisible (doesn't end in 0 or 5)
+91 ÷ 7 = 13 ✓ DIVISIBLE!
+
+91 = 7 × 13
+
+ANSWER: 91 is COMPOSITE (not prime)
+Common trap! Many students think 91 is prime.
+
+
+SOLUTION 11:
+------------
+Let three consecutive even numbers be: x, x+2, x+4
+
+Sum: x + (x+2) + (x+4) = 234
+3x + 6 = 234
+3x = 228
+x = 76
+
+The three numbers are: 76, 78, 80
+Smallest number = 76
+
+ANSWER: 76
+
+
+SOLUTION 12:
+------------
+Sum from 50 to 150:
+
+Method 1 (Using formula):
+Sum = (Number of terms) × (First + Last) / 2
+Number of terms = 150 - 50 + 1 = 101
+Sum = 101 × (50 + 150) / 2
+Sum = 101 × 200 / 2
+Sum = 101 × 100
+Sum = 10,100
+
+Method 2 (Using difference):
+Sum(1 to 150) - Sum(1 to 49)
+= [150×151/2] - [49×50/2]
+= 11,325 - 1,225
+= 10,100
+
+ANSWER: 10,100
+
+
+SOLUTION 13:
+------------
+First 20 multiples of 3: 3, 6, 9, 12, ..., 60
+
+Method 1:
+This is an AP with a=3, d=3, n=20
+Sum = n/2 × (2a + (n-1)d)
+Sum = 20/2 × (2×3 + 19×3)
+Sum = 10 × (6 + 57)
+Sum = 10 × 63
+Sum = 630
+
+Method 2 (Shortcut):
+Sum = 3(1 + 2 + 3 + ... + 20)
+Sum = 3 × [20×21/2]
+Sum = 3 × 210
+Sum = 630
+
+ANSWER: 630
+
+
+SOLUTION 14:
+------------
+Ratio = 3:5
+Let numbers be 3x and 5x
+
+Sum: 3x + 5x = 160
+8x = 160
+x = 20
+
+First number = 3x = 3 × 20 = 60
+Second number = 5x = 5 × 20 = 100
+
+Verification: 60 + 100 = 160 ✓
+Ratio: 60:100 = 3:5 ✓
+
+ANSWER: 60 and 100
+
+
+SOLUTION 15:
+------------
+Two-digit numbers: 10 to 99
+Two-digit primes:
+11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
+
+Count: 21 prime numbers
+
+ANSWER: 21
+
+
+SOLUTION 16:
+------------
+Formula: Sum of squares = n(n+1)(2n+1)/6
+
+For n = 10:
+Sum = 10 × 11 × 21 / 6
+Sum = 2,310 / 6
+Sum = 385
+
+Verification: 1+4+9+16+25+36+49+64+81+100 = 385 ✓
+
+ANSWER: 385
+
+
+SOLUTION 17:
+------------
+Let three consecutive multiples of 7 be: 7x, 7(x+1), 7(x+2)
+Or simply: 7x, 7x+7, 7x+14
+
+Sum: 7x + 7x+7 + 7x+14 = 777
+21x + 21 = 777
+21x = 756
+x = 36
+
+First number = 7 × 36 = 252
+Second number = 7 × 37 = 259
+Third number = 7 × 38 = 266
+
+Verification: 252 + 259 + 266 = 777 ✓
+
+ANSWER: 252, 259, 266
+
+
+SOLUTION 18:
+------------
+Sum of first 100 natural numbers = 100 × 101 / 2 = 5,050
+
+Find remainder when 5,050 ÷ 7:
+5,050 ÷ 7 = 721 remainder ?
+
+7 × 721 = 5,047
+5,050 - 5,047 = 3
+
+ANSWER: Remainder = 3
+
+
+SOLUTION 19:
+------------
+Formula: Sum of cubes = [n(n+1)/2]²
+
+For n = 5:
+Sum = [5 × 6 / 2]²
+Sum = [30/2]²
+Sum = 15²
+Sum = 225
+
+Verification: 1+8+27+64+125 = 225 ✓
+
+ANSWER: 225
+
+
+SOLUTION 20:
+------------
+Numbers divisible by BOTH 3 and 5 = Numbers divisible by LCM(3,5) = 15
+
+Multiples of 15 between 1 and 100:
+15, 30, 45, 60, 75, 90
+
+Count: 6 numbers
+
+Alternative: 100 ÷ 15 = 6.66... → Take integer part = 6
+
+ANSWER: 6 numbers
+
+
+SOLUTION 21:
+------------
+Sum of first n natural numbers = n(n+1)/2 = 1830
+
+n(n+1) = 3,660
+
+Try values:
+60 × 61 = 3,660 ✓
+
+Therefore, n = 60
+
+Verification: 60 × 61 / 2 = 3,660 / 2 = 1,830 ✓
+
+ANSWER: n = 60
+
+
+SOLUTION 22:
+------------
+Average = Sum / Count
+
+Sum of first 50 natural numbers = 50 × 51 / 2 = 1,275
+Average = 1,275 / 50 = 25.5
+
+Shortcut formula:
+Average of first n natural numbers = (n + 1) / 2
+= (50 + 1) / 2 = 51/2 = 25.5
+
+ANSWER: (b) 25.5
+
+
+SOLUTION 23:
+------------
+Prime numbers between 50 and 100 (excluding 50 and 100):
+53, 59, 61, 67, 71, 73, 79, 83, 89, 97
+
+Count: 10 prime numbers
+
+ANSWER: 10
+
+
+SOLUTION 24:
+------------
+Let three consecutive numbers be: (n-1), n, (n+1)
+
+Sum of squares:
+(n-1)² + n² + (n+1)² = 194
+
+Expanding:
+n² - 2n + 1 + n² + n² + 2n + 1 = 194
+3n² + 2 = 194
+3n² = 192
+n² = 64
+n = 8
+
+The three numbers are: 7, 8, 9
+Middle number = 8
+
+Verification: 49 + 64 + 81 = 194 ✓
+
+ANSWER: 8
+
+
+SOLUTION 25:
+------------
+Let the two-digit number be 10a + b
+Where a = tens digit, b = units digit
+
+Given:
+1) Number = 4 × (sum of digits)
+   10a + b = 4(a + b)
+   10a + b = 4a + 4b
+   6a = 3b
+   2a = b  ... equation (1)
+
+2) Unit digit = Tens digit + 2
+   b = a + 2  ... equation (2)
+
+From (1) and (2):
+2a = a + 2
+a = 2
+
+Therefore: b = 2 × 2 = 4
+
+Number = 10(2) + 4 = 24
+
+Verification:
+- Sum of digits = 2 + 4 = 6
+- Number = 24 = 4 × 6 ✓
+- Unit digit (4) = Tens digit (2) + 2 ✓
+
+ANSWER: 24
+
+
+================================================================================
+PRACTICE SUMMARY & TIPS
+================================================================================
+
+YOU JUST SOLVED 20 MORE PROBLEMS! 🎉
+
+KEY PATTERNS YOU SHOULD REMEMBER:
+----------------------------------
+
+1. CONSECUTIVE NUMBERS:
+   - Let them be: x, x+1, x+2 (for any consecutive)
+   - Let them be: x, x+2, x+4 (for consecutive even/odd)
+
+2. RATIO PROBLEMS:
+   - Always use common multiplier: 3:5 → 3x and 5x
+
+3. DIGIT PROBLEMS:
+   - Two-digit number = 10a + b (a=tens, b=units)
+   - Three-digit number = 100a + 10b + c
+
+4. DIVISIBILITY CHECK:
+   - To check prime, test divisibility up to √n only
+
+5. QUICK AVERAGE:
+   - Average of first n numbers = (n+1)/2
+   - Average of any set = (First + Last)/2 (for AP)
+
+SPEED TRICKS YOU LEARNED:
+--------------------------
+✓ Use formulas instead of manual addition
+✓ LCM(a,b) for "both divisible" questions
+✓ Pattern recognition for consecutive numbers
+✓ Verification after solving (catches silly mistakes!)
+
+================================================================================
+END OF TOPIC 1: NUMBER SYSTEM
+================================================================================
+
+
+================================================================================
+TOPIC 2: DIVISIBILITY RULES
+================================================================================
+
+INTRODUCTION:
+-------------
+Divisibility Rules are SUPER IMPORTANT shortcuts that help you quickly determine
+if a number is divisible by another number WITHOUT actually performing division.
+This saves precious time in competitive exams like TCS NQT!
+
+Weightage: VERY HIGH (Appears in 15-20% of questions directly)
+Time Saved: Can reduce 30-second calculations to 3-second mental math!
+
+Why Master This?
+- Solve problems 10x faster
+- Required for: HCF/LCM, Factors, Simplification, Remainders
+- Direct questions + used in complex problems
+
+This topic covers:
+- Divisibility rules for numbers 2 to 19
+- Combined divisibility tests
+- Quick tricks and shortcuts
+- Applications in problem-solving
+
+
+================================================================================
+KEY DIVISIBILITY RULES
+================================================================================
+
+RULE FOR 2:
+-----------
+A number is divisible by 2 if its LAST DIGIT is even (0, 2, 4, 6, 8)
+
+Examples:
+✓ 234 → Last digit is 4 (even) → Divisible by 2
+✓ 1,568 → Last digit is 8 (even) → Divisible by 2
+✗ 347 → Last digit is 7 (odd) → NOT divisible by 2
+
+
+RULE FOR 3:
+-----------
+A number is divisible by 3 if the SUM OF ITS DIGITS is divisible by 3
+
+Examples:
+✓ 123 → Sum = 1+2+3 = 6 (divisible by 3) → 123 is divisible by 3
+✓ 5,271 → Sum = 5+2+7+1 = 15 (divisible by 3) → Divisible by 3
+✗ 245 → Sum = 2+4+5 = 11 (not divisible by 3) → NOT divisible by 3
+
+
+RULE FOR 4:
+-----------
+A number is divisible by 4 if its LAST TWO DIGITS form a number divisible by 4
+
+Examples:
+✓ 316 → Last two digits = 16 (16÷4=4) → Divisible by 4
+✓ 1,524 → Last two digits = 24 (24÷4=6) → Divisible by 4
+✗ 1,526 → Last two digits = 26 (26÷4=6.5) → NOT divisible by 4
+
+Quick Check: If last two digits = 00, 04, 08, 12, 16, 20, 24, 28, 32, 36,
+             40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96
+
+
+RULE FOR 5:
+-----------
+A number is divisible by 5 if its LAST DIGIT is 0 or 5
+
+Examples:
+✓ 345 → Last digit is 5 → Divisible by 5
+✓ 1,230 → Last digit is 0 → Divisible by 5
+✗ 347 → Last digit is 7 → NOT divisible by 5
+
+
+RULE FOR 6:
+-----------
+A number is divisible by 6 if it is divisible by BOTH 2 AND 3
+
+Examples:
+✓ 234 → Even (÷2) + Sum=2+3+4=9 (÷3) → Divisible by 6
+✓ 5,172 → Even (÷2) + Sum=5+1+7+2=15 (÷3) → Divisible by 6
+✗ 345 → Sum=12 (÷3) but ODD (not ÷2) → NOT divisible by 6
+
+
+RULE FOR 7: (Two Methods)
+-----------
+Method 1 (Double & Subtract):
+- Remove last digit
+- Double the last digit
+- Subtract from remaining number
+- If result is divisible by 7 (or 0), original number is divisible by 7
+
+Example: 343
+Step 1: Remove 3 → Remaining = 34
+Step 2: Double 3 → 6
+Step 3: 34 - 6 = 28 (divisible by 7) → 343 is divisible by 7 ✓
+
+Method 2 (Pattern - Advanced):
+For larger numbers, use Method 1 repeatedly
+
+Example: 1,001
+Step 1: Remove 1 → Remaining = 100, Double = 2
+Step 2: 100 - 2 = 98 (Check again)
+Step 3: Remove 8 → Remaining = 9, Double = 16
+Step 4: 9 - 16 = -7 (divisible by 7) → 1,001 is divisible by 7 ✓
+
+
+RULE FOR 8:
+-----------
+A number is divisible by 8 if its LAST THREE DIGITS form a number divisible by 8
+
+Examples:
+✓ 1,024 → Last three = 024 (24÷8=3) → Divisible by 8
+✓ 5,216 → Last three = 216 (216÷8=27) → Divisible by 8
+✗ 1,234 → Last three = 234 (234÷8=29.25) → NOT divisible by 8
+
+Quick Check: Last three digits = 000, 008, 016, 024, 032, 040, 048, 056...
+
+
+RULE FOR 9:
+-----------
+A number is divisible by 9 if the SUM OF ITS DIGITS is divisible by 9
+
+Examples:
+✓ 729 → Sum = 7+2+9 = 18 (divisible by 9) → Divisible by 9
+✓ 5,364 → Sum = 5+3+6+4 = 18 (divisible by 9) → Divisible by 9
+✗ 456 → Sum = 4+5+6 = 15 (not divisible by 9) → NOT divisible by 9
+
+
+RULE FOR 10:
+------------
+A number is divisible by 10 if its LAST DIGIT is 0
+
+Examples:
+✓ 340 → Last digit is 0 → Divisible by 10
+✓ 1,000 → Last digit is 0 → Divisible by 10
+✗ 345 → Last digit is 5 → NOT divisible by 10
+
+
+RULE FOR 11: (Alternating Sum)
+------------
+A number is divisible by 11 if the DIFFERENCE between the sum of digits at 
+ODD positions and the sum of digits at EVEN positions is divisible by 11 
+(including 0)
+
+Position counting: From RIGHT to LEFT (1st, 2nd, 3rd...)
+
+Examples:
+✓ 121
+  Positions: 1 2 1
+             ↓ ↓ ↓
+  Odd:  1 _ 1 (from right)   3 5 7 ...
+  Even: _ 2 _                  2 4 6 ...
+  
+  Sum(odd) = 1+1 = 2
+  Sum(even) = 2
+  Difference = 2-2 = 0 (divisible by 11) → 121 is divisible by 11 ✓
+
+✓ 9,372
+  Positions: 9 3 7 2
+             4 3 2 1
+  Odd positions (1,3): 2+3 = 5
+  Even positions (2,4): 7+9 = 16
+  Difference = 16-5 = 11 (divisible by 11) → Divisible by 11 ✓
+
+Shortcut: (1st+3rd+5th+...) - (2nd+4th+6th+...) should be 0, ±11, ±22, ±33...
+
+
+RULE FOR 12:
+------------
+A number is divisible by 12 if it is divisible by BOTH 3 AND 4
+
+Examples:
+✓ 144 → Sum=1+4+4=9 (÷3) + Last two=44 (÷4) → Divisible by 12
+✓ 5,316 → Sum=15 (÷3) + Last two=16 (÷4) → Divisible by 12
+✗ 324 → Sum=9 (÷3) but Last two=24 (÷4)... Actually ✓ Divisible!
+
+
+RULE FOR 13: (Similar to 7, but harder)
+------------
+Method: Add 4 times the last digit to the remaining number
+Repeat until you get a small number
+
+Example: 169
+Step 1: Remove 9 → Remaining = 16
+Step 2: 4 × 9 = 36
+Step 3: 16 + 36 = 52 (still big, repeat)
+Step 4: Remove 2 → Remaining = 5
+Step 5: 4 × 2 = 8
+Step 6: 5 + 8 = 13 (divisible by 13) → 169 is divisible by 13 ✓
+
+
+RULE FOR 15:
+------------
+A number is divisible by 15 if it is divisible by BOTH 3 AND 5
+
+Examples:
+✓ 345 → Sum=12 (÷3) + Last digit=5 (÷5) → Divisible by 15
+✓ 1,005 → Sum=6 (÷3) + Last digit=5 (÷5) → Divisible by 15
+
+
+RULE FOR 17: (Advanced - Rarely asked)
+------------
+Method: Subtract 5 times the last digit from remaining number
+
+Example: 221
+Step 1: Remove 1 → Remaining = 22
+Step 2: 5 × 1 = 5
+Step 3: 22 - 5 = 17 (divisible by 17) → 221 is divisible by 17 ✓
+
+
+RULE FOR 18:
+------------
+A number is divisible by 18 if it is divisible by BOTH 2 AND 9
+
+Examples:
+✓ 234 → Even (÷2) + Sum=9 (÷9) → Divisible by 18
+✓ 5,418 → Even (÷2) + Sum=18 (÷9) → Divisible by 18
+
+
+RULE FOR 19: (Advanced - Very Rarely asked)
+------------
+Method: Add 2 times the last digit to remaining number
+
+Example: 133
+Step 1: Remove 3 → Remaining = 13
+Step 2: 2 × 3 = 6
+Step 3: 13 + 6 = 19 (divisible by 19) → 133 is divisible by 19 ✓
+
+
+RULE FOR 20:
+------------
+A number is divisible by 20 if its LAST TWO DIGITS are divisible by 20
+
+Examples:
+✓ 340 → Last two = 40 (÷20) → Divisible by 20
+✓ 1,260 → Last two = 60 (÷20) → Divisible by 20
+
+Or: Last digit is 0 AND second-last digit is even
+
+
+RULE FOR 25:
+------------
+A number is divisible by 25 if its LAST TWO DIGITS are 00, 25, 50, or 75
+
+Examples:
+✓ 375 → Last two = 75 → Divisible by 25
+✓ 1,250 → Last two = 50 → Divisible by 25
+
+
+================================================================================
+QUICK REFERENCE TABLE - DIVISIBILITY RULES
+================================================================================
+
+Divisor | What to Check
+--------|---------------------------------------------------------------
+   2    | Last digit is EVEN (0,2,4,6,8)
+   3    | Sum of digits ÷ 3
+   4    | Last 2 digits ÷ 4
+   5    | Last digit is 0 or 5
+   6    | Divisible by BOTH 2 AND 3
+   7    | Double last digit, subtract from rest
+   8    | Last 3 digits ÷ 8
+   9    | Sum of digits ÷ 9
+  10    | Last digit is 0
+  11    | (Odd positions sum) - (Even positions sum) ÷ 11
+  12    | Divisible by BOTH 3 AND 4
+  15    | Divisible by BOTH 3 AND 5
+  18    | Divisible by BOTH 2 AND 9
+  20    | Last 2 digits ÷ 20 (or last digit 0 + 2nd last even)
+  25    | Last 2 digits are 00, 25, 50, or 75
+
+
+================================================================================
+STEP-BY-STEP EXAMPLE PROBLEMS
+================================================================================
+
+EXAMPLE 1: Is 5,724 divisible by 3?
+-----------
+
+Step 1: Apply divisibility rule for 3
+   Sum of digits = 5 + 7 + 2 + 4 = 18
+   
+Step 2: Check if sum is divisible by 3
+   18 ÷ 3 = 6 ✓
+   
+ANSWER: YES, 5,724 is divisible by 3
+
+
+EXAMPLE 2: Is 4,536 divisible by 6?
+-----------
+
+Step 1: Check divisibility by 2
+   Last digit = 6 (even) ✓
+   
+Step 2: Check divisibility by 3
+   Sum of digits = 4 + 5 + 3 + 6 = 18
+   18 ÷ 3 = 6 ✓
+   
+Step 3: Both conditions satisfied
+   Divisible by 2 AND 3 → Divisible by 6
+   
+ANSWER: YES, 4,536 is divisible by 6
+
+
+EXAMPLE 3: Check if 4,312 is divisible by 8.
+-----------
+
+Step 1: Look at last 3 digits
+   Last 3 digits = 312
+   
+Step 2: Check if 312 is divisible by 8
+   312 ÷ 8 = 39 ✓
+   
+ANSWER: YES, 4,312 is divisible by 8
+
+
+EXAMPLE 4: Is 7,293 divisible by 11?
+-----------
+
+Step 1: Identify positions (from right)
+   7  2  9  3
+   4  3  2  1
+   
+Step 2: Sum odd positions (1st, 3rd from right)
+   3 + 2 = 5
+   
+Step 3: Sum even positions (2nd, 4th from right)
+   9 + 7 = 16
+   
+Step 4: Find difference
+   16 - 5 = 11 (divisible by 11) ✓
+   
+ANSWER: YES, 7,293 is divisible by 11
+
+
+EXAMPLE 5: Find the smallest digit to replace * in 76*4 to make it divisible by 3.
+-----------
+
+Step 1: Sum of known digits
+   7 + 6 + 4 = 17
+   
+Step 2: Total sum needed
+   Sum with * = 17 + *
+   This must be divisible by 3
+   
+Step 3: Find smallest * value
+   17 + 1 = 18 (divisible by 3) ✓
+   
+Step 4: Verify
+   Number becomes 7614
+   Sum = 18 ÷ 3 = 6 ✓
+   
+ANSWER: * = 1
+
+
+================================================================================
+SHORTCUTS & TRICKS
+================================================================================
+
+TRICK 1: Combined Divisibility
+-------------------------------
+If divisible by a AND b (where a,b are co-prime), then divisible by a×b
+
+Examples:
+- Divisible by 2 and 3 → Divisible by 6
+- Divisible by 3 and 5 → Divisible by 15
+- Divisible by 4 and 9 → Divisible by 36
+
+Note: Works ONLY if numbers are co-prime (HCF = 1)
+Counter-example: Divisible by 4 and 6 does NOT mean divisible by 24
+                 (Because HCF(4,6) = 2, not co-prime)
+
+
+TRICK 2: Digit Sum for 3 and 9
+-------------------------------
+Keep adding digits until single digit:
+- If final digit is 3, 6, or 9 → Divisible by 3
+- If final digit is 9 → Divisible by 9
+
+Example: 5,724
+5+7+2+4 = 18 → 1+8 = 9 → Divisible by both 3 and 9
+
+
+TRICK 3: Last Digit Patterns
+-----------------------------
+2: Ends in 0,2,4,6,8
+3: Digit sum test
+4: Last 2 digits (quick mental division)
+5: Ends in 0,5
+6: Even + digit sum ÷3
+8: Last 3 digits
+9: Digit sum test
+10: Ends in 0
+
+
+TRICK 4: For 11 (Quick Method)
+-------------------------------
+Alternate + and - from right:
+
+Example: 9,372
+= 2 - 7 + 3 - 9
+= 2 + 3 - 7 - 9
+= 5 - 16
+= -11 (divisible by 11) ✓
+
+
+TRICK 5: Divisibility by 7 (Memory Trick)
+------------------------------------------
+Multiples of 7 to memorize:
+7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105...
+
+For 2-digit numbers, just check from memory!
+
+
+================================================================================
+COMMON MISTAKES TO AVOID
+================================================================================
+
+MISTAKE 1: Rule for 6
+❌ WRONG: If divisible by 3, then divisible by 6
+✓ CORRECT: Must be divisible by BOTH 2 AND 3
+
+MISTAKE 2: Last digit confusion
+❌ WRONG: 345 is divisible by 10 (ends in 5)
+✓ CORRECT: Must end in 0 for divisibility by 10
+
+MISTAKE 3: Rule for 11 position counting
+❌ WRONG: Counting positions from LEFT
+✓ CORRECT: Count positions from RIGHT
+
+MISTAKE 4: Digit sum continuation
+❌ WRONG: 5,724 → Sum=18 → Not checking further
+✓ CORRECT: 18→1+8=9 → Shows divisible by both 3 AND 9
+
+MISTAKE 5: Combined divisibility assumption
+❌ WRONG: Divisible by 4 and 6 → Divisible by 24
+✓ CORRECT: Only works for CO-PRIME numbers
+           4 and 6 are NOT co-prime (HCF=2)
+           Need to check LCM(4,6)=12, not 4×6=24
+
+
+================================================================================
+PRACTICE ZONE - DIVISIBILITY RULES
+================================================================================
+
+LEVEL 1: BASIC TESTS
+--------------------
+
+QUESTION 1:
+Is 4,568 divisible by 4?
+ans - yes as last 2 digits are divisiible by 4 that is 68/4=17
+
+QUESTION 2:
+Is 7,245 divisible by 5?
+
+QUESTION 3:
+Check if 8,127 is divisible by 3.
+
+QUESTION 4:
+Is 2,340 divisible by 10?
+
+QUESTION 5:
+Check if 5,616 is divisible by 8.
+
+
+LEVEL 2: INTERMEDIATE
+---------------------
+
+QUESTION 6:
+Is 9,372 divisible by 6?
+
+QUESTION 7:
+Check if 7,128 is divisible by 9.
+
+QUESTION 8:
+Is 8,415 divisible by 11?
+
+QUESTION 9:
+Check if 5,460 is divisible by 12.
+
+QUESTION 10:
+Is 7,875 divisible by 15?
+
+
+LEVEL 3: ADVANCED
+-----------------
+
+QUESTION 11:
+What is the smallest number that should be added to 5,237 to make it 
+divisible by 9?
+
+QUESTION 12:
+Find the value of * in 8*72 such that the number is divisible by 11.
+
+QUESTION 13:
+A number when divided by 6 leaves remainder 3. What will be the remainder 
+if the same number is divided by 3?
+
+QUESTION 14:
+How many numbers between 200 and 300 are divisible by both 3 and 7?
+
+QUESTION 15:
+The number 4*5*6 is divisible by 12. Find the smallest values of the two *s.
+
+
+================================================================================
+SOLUTIONS - PRACTICE ZONE
+================================================================================
+
+SOLUTION 1:
+-----------
+Rule: Last 2 digits must be divisible by 4
+Last 2 digits = 68
+68 ÷ 4 = 17 ✓
+
+ANSWER: YES, divisible by 4
+
+
+SOLUTION 2:
+-----------
+Rule: Last digit must be 0 or 5
+Last digit = 5 ✓
+
+ANSWER: YES, divisible by 5
+
+
+SOLUTION 3:
+-----------
+Rule: Sum of digits must be divisible by 3
+Sum = 8 + 1 + 2 + 7 = 18
+18 ÷ 3 = 6 ✓
+
+ANSWER: YES, divisible by 3
+
+
+SOLUTION 4:
+-----------
+Rule: Last digit must be 0
+Last digit = 0 ✓
+
+ANSWER: YES, divisible by 10
+
+
+SOLUTION 5:
+-----------
+Rule: Last 3 digits must be divisible by 8
+Last 3 digits = 616
+616 ÷ 8 = 77 ✓
+
+ANSWER: YES, divisible by 8
+
+
+SOLUTION 6:
+-----------
+Rule: Must be divisible by BOTH 2 AND 3
+
+Check for 2: Last digit = 2 (even) ✓
+Check for 3: Sum = 9+3+7+2 = 21, 21÷3=7 ✓
+
+Both conditions satisfied
+
+ANSWER: YES, divisible by 6
+
+
+SOLUTION 7:
+-----------
+Rule: Sum of digits must be divisible by 9
+Sum = 7 + 1 + 2 + 8 = 18
+18 ÷ 9 = 2 ✓
+
+ANSWER: YES, divisible by 9
+
+
+SOLUTION 8:
+-----------
+Rule: (Odd positions sum) - (Even positions sum) divisible by 11
+
+Number: 8 4 1 5
+Positions from right:
+Odd (1,3): 5 + 4 = 9
+Even (2,4): 1 + 8 = 9
+Difference = 9 - 9 = 0 (divisible by 11) ✓
+
+ANSWER: YES, divisible by 11
+
+
+SOLUTION 9:
+-----------
+Rule: Must be divisible by BOTH 3 AND 4
+
+Check for 3: Sum = 5+4+6+0 = 15, 15÷3=5 ✓
+Check for 4: Last 2 = 60, 60÷4=15 ✓
+
+Both conditions satisfied
+
+ANSWER: YES, divisible by 12
+
+
+SOLUTION 10:
+------------
+Rule: Must be divisible by BOTH 3 AND 5
+
+Check for 5: Last digit = 5 ✓
+Check for 3: Sum = 7+8+7+5 = 27, 27÷3=9 ✓
+
+Both conditions satisfied
+
+ANSWER: YES, divisible by 15
+
+
+SOLUTION 11:
+------------
+For divisibility by 9, sum of digits must be divisible by 9
+
+Current sum = 5 + 2 + 3 + 7 = 17
+Next multiple of 9 = 18
+Number to add = 18 - 17 = 1
+
+ANSWER: 1 should be added
+
+
+SOLUTION 12:
+------------
+For divisibility by 11:
+(Odd positions) - (Even positions) = 0, ±11, ±22...
+
+Number: 8 * 7 2
+Positions: 4 3 2 1
+
+Odd positions: 2 + * = 2 + *
+Even positions: 7 + 8 = 15
+
+Difference: (2+*) - 15 = * - 13
+
+For divisibility by 11:
+* - 13 = 0 → * = 13 (not a digit)
+* - 13 = -11 → * = 2 ✓
+* - 13 = 11 → * = 24 (not a digit)
+
+ANSWER: * = 2
+
+
+SOLUTION 13:
+------------
+If number ÷ 6 leaves remainder 3:
+Number = 6k + 3 = 3(2k + 1)
+
+Since 3 is a factor, when divided by 3:
+Remainder = 0
+
+ANSWER: Remainder = 0
+
+
+SOLUTION 14:
+------------
+Numbers divisible by both 3 and 7 = divisible by LCM(3,7) = 21
+
+Multiples of 21 between 200 and 300:
+First: 210 (21 × 10)
+Last: 294 (21 × 14)
+
+Count: 10, 11, 12, 13, 14 → 5 numbers
+(210, 231, 252, 273, 294)
+
+ANSWER: 5 numbers
+
+
+SOLUTION 15:
+------------
+For divisibility by 12: Must be divisible by both 3 and 4
+
+Let number = 4a5b6
+
+For divisibility by 4:
+Last 2 digits = b6 must be divisible by 4
+Possible values: 06, 16, 26, 36, 46, 56, 66, 76, 86, 96
+Smallest b = 0 (giving 06)
+
+For divisibility by 3:
+Sum = 4 + a + 5 + b + 6 = 15 + a + b
+With b = 0: 15 + a must be divisible by 3
+15 is already divisible by 3
+So smallest a = 0
+
+Verification: 40506
+- Last 2 digits = 06 (÷4) ✓
+- Sum = 15 (÷3) ✓
+
+ANSWER: Both *s = 0 (Number: 40506)
+
+
+================================================================================
+QUICK RECAP - DIVISIBILITY RULES
+================================================================================
+
+MOST IMPORTANT (Memorize These!):
+----------------------------------
+✓ 2: Last digit even
+✓ 3: Sum of digits ÷ 3
+✓ 4: Last 2 digits ÷ 4
+✓ 5: Last digit 0 or 5
+✓ 6: Divisible by 2 AND 3
+✓ 8: Last 3 digits ÷ 8
+✓ 9: Sum of digits ÷ 9
+✓ 10: Last digit 0
+✓ 11: Alternating sum ÷ 11
+
+COMBINED RULES:
+---------------
+✓ 6 = 2 × 3 (co-prime)
+✓ 12 = 3 × 4 (co-prime)
+✓ 15 = 3 × 5 (co-prime)
+✓ 18 = 2 × 9 (co-prime)
+
+TIME-SAVING TIPS:
+-----------------
+1. For large numbers, use digit sum (3, 9)
+2. For even checks, look at last digit only (2, 5, 10)
+3. For 4 and 8, focus on last few digits
+4. For 11, use alternating +/- method
+5. For combined (6,12,15,18), check components
+
+================================================================================
+ADDITIONAL PRACTICE PROBLEMS - DIVISIBILITY RULES
+================================================================================
+
+LEVEL 4: MIXED DIVISIBILITY TESTS
+----------------------------------
+
+QUESTION 16:
+Is 123,456 divisible by 8?
+
+QUESTION 17:
+Check if 456,789 is divisible by 9.
+
+QUESTION 18:
+Is 1,21,121 divisible by 11?
+
+QUESTION 19:
+Find the smallest number that must be subtracted from 9,876 to make it 
+divisible by 4.
+
+QUESTION 20:
+A number is divisible by both 4 and 6. Is it necessarily divisible by 24?
+Justify with an example.
+
+
+LEVEL 5: DIGIT REPLACEMENT PROBLEMS
+------------------------------------
+
+QUESTION 21:
+Find all possible values of * in 45*78 such that the number is divisible by 3.
+
+QUESTION 22:
+What should be placed in * so that 7*5462 is divisible by 9?
+
+QUESTION 23:
+The number 8*794*2 is divisible by 88. Find the values of both *s.
+
+QUESTION 24:
+Replace * in 6*5*4 with the smallest digits to make it divisible by 12.
+
+QUESTION 25:
+Find the largest digit to replace * in 9*8*7 to make it divisible by 11.
+
+
+LEVEL 6: ADVANCED WORD PROBLEMS
+--------------------------------
+
+QUESTION 26:
+A 5-digit number is formed using digits 1, 2, 3, 4, 5 (each exactly once).
+How many such numbers are divisible by 4?
+
+QUESTION 27:
+The number 7x52y3 is divisible by 99. Find the values of x and y.
+(Hint: Divisible by both 9 and 11)
+
+QUESTION 28:
+What is the greatest 4-digit number divisible by 15?
+
+QUESTION 29:
+How many 3-digit numbers are divisible by 7?
+
+QUESTION 30:
+A number when successively divided by 5, 3, and 2 leaves remainders 0, 2, and 1 
+respectively. What is the smallest such 3-digit number?
+
+
+LEVEL 7: TRICKY EXAM-STYLE QUESTIONS
+-------------------------------------
+
+QUESTION 31:
+If 6y5 is divisible by 11, and 54y is divisible by 3, find y.
+
+QUESTION 32:
+The sum of digits of a 2-digit number is 12. If the number is divisible by 6, 
+how many such numbers exist?
+
+QUESTION 33:
+A number leaves remainder 1 when divided by 2, remainder 2 when divided by 3,
+and remainder 3 when divided by 4. What is the smallest such number?
+
+QUESTION 34:
+The 7-digit number 54321AB is divisible by 72. Find the smallest values of 
+A and B.
+
+QUESTION 35:
+How many numbers between 300 and 500 are divisible by 2, 3, and 7 simultaneously?
+
+
+LEVEL 8: CHALLENGE PROBLEMS (TCS NQT Advanced)
+-----------------------------------------------
+
+QUESTION 36:
+Prove that if a number is divisible by both 8 and 9, it must be divisible by 72.
+
+QUESTION 37:
+A 4-digit number is formed by using the digits 2, 3, 5, 7 exactly once.
+How many of these numbers are divisible by 4?
+
+QUESTION 38:
+The number N = 123456789101112...979899 is formed by writing all natural 
+numbers from 1 to 99 consecutively. Is N divisible by 3?
+
+QUESTION 39:
+Find the remainder when 2^100 is divided by 7.
+(Hint: Use cyclicity pattern)
+
+QUESTION 40:
+The product of three consecutive natural numbers is always divisible by which 
+of the following: (a) 4 (b) 6 (c) 8 (d) 12
+
+
+================================================================================
+SOLUTIONS TO ADDITIONAL PRACTICE PROBLEMS
+================================================================================
+
+SOLUTION 16:
+------------
+Rule: Last 3 digits must be divisible by 8
+Number: 123,456
+Last 3 digits = 456
+
+Check: 456 ÷ 8 = 57 ✓
+
+ANSWER: YES, 123,456 is divisible by 8
+
+
+SOLUTION 17:
+------------
+Rule: Sum of digits must be divisible by 9
+Number: 456,789
+Sum = 4 + 5 + 6 + 7 + 8 + 9 = 39
+
+Check: 39 ÷ 9 = 4.33... ✗
+
+ANSWER: NO, 456,789 is NOT divisible by 9
+
+
+SOLUTION 18:
+------------
+Rule: (Odd positions sum) - (Even positions sum) ÷ 11
+Number: 1,21,121 = 121121
+
+Positions from right: 1 2 1 1 2 1
+                      1 2 3 4 5 6
+
+Odd positions (1,3,5): 1 + 1 + 2 = 4
+Even positions (2,4,6): 2 + 1 + 1 = 4
+
+Difference = 4 - 4 = 0 (divisible by 11) ✓
+
+ANSWER: YES, 1,21,121 is divisible by 11
+
+
+SOLUTION 19:
+------------
+Rule: Last 2 digits must be divisible by 4
+Number: 9,876
+Last 2 digits = 76
+
+Check: 76 ÷ 4 = 19 ✓
+Already divisible by 4!
+
+But let's check if question asks for next lower multiple:
+76 is divisible by 4, so subtract 0
+
+ANSWER: 0 (already divisible)
+
+If intended to ask for previous multiple of 4:
+76 - 72 = 4, so subtract 4 to get 9,872
+
+
+SOLUTION 20:
+------------
+NO! Divisible by 4 and 6 does NOT guarantee divisibility by 24.
+
+Reason: 4 and 6 are NOT co-prime (HCF = 2)
+For co-prime numbers, divisibility by both → divisibility by product
+For non co-prime: Check LCM instead
+
+LCM(4, 6) = 12
+
+Example: 12 is divisible by both 4 and 6
+12 ÷ 4 = 3 ✓
+12 ÷ 6 = 2 ✓
+But 12 ÷ 24 = 0.5 ✗
+
+ANSWER: NO. A number divisible by both 4 and 6 must be divisible by LCM(4,6)=12,
+        not necessarily by 24.
+
+
+SOLUTION 21:
+------------
+Number: 45*78
+For divisibility by 3: Sum of digits ÷ 3
+
+Sum = 4 + 5 + * + 7 + 8 = 24 + *
+
+For divisibility by 3:
+24 + * must be divisible by 3
+
+Since 24 is already divisible by 3:
+* can be 0, 3, 6, 9
+
+ANSWER: * = 0, 3, 6, or 9
+
+
+SOLUTION 22:
+------------
+Number: 7*5462
+For divisibility by 9: Sum of digits ÷ 9
+
+Sum = 7 + * + 5 + 4 + 6 + 2 = 24 + *
+
+For divisibility by 9:
+24 + * = 27 (next multiple of 9)
+* = 3
+
+ANSWER: * = 3
+
+
+SOLUTION 23:
+------------
+Number: 8*794*2
+Divisible by 88 = Divisible by both 8 AND 11 (since 88 = 8 × 11, co-prime)
+
+For divisibility by 8:
+Last 3 digits = *2 must be divisible by 8
+Possible: 4*2 where * makes it divisible by 8
+402 ÷ 8 = 50.25 ✗
+412 ÷ 8 = 51.5 ✗
+422 ÷ 8 = 52.75 ✗
+432 ÷ 8 = 54 ✓
+442 ÷ 8 = 55.25 ✗
+...
+So second * = 3
+
+For divisibility by 11:
+Number: 8*79432
+Positions: 8 * 7 9 4 3 2
+           7 6 5 4 3 2 1
+
+Odd (1,3,5,7): 2 + 4 + 7 + 8 = 21
+Even (2,4,6): 3 + 9 + * = 12 + *
+
+Difference: 21 - (12 + *) = 9 - *
+
+For ÷11: 9 - * = 0 or ±11
+9 - * = 0 → * = 9
+9 - * = -11 → * = 20 (not a digit)
+9 - * = 11 → * = -2 (not valid)
+
+ANSWER: First * = 9, Second * = 3 (Number: 8979432)
+
+
+SOLUTION 24:
+------------
+Number: 6*5*4
+Divisible by 12 = Divisible by both 3 AND 4
+
+For divisibility by 4:
+Last 2 digits = *4 must be divisible by 4
+Smallest: 04 (÷4) ✓
+So second * = 0
+
+For divisibility by 3:
+Sum = 6 + * + 5 + 0 + 4 = 15 + *
+15 is already divisible by 3
+Smallest * = 0
+
+Check: 60504
+- Last 2 = 04 (÷4) ✓
+- Sum = 15 (÷3) ✓
+
+ANSWER: Both * = 0 (Number: 60504)
+
+
+SOLUTION 25:
+------------
+Number: 9*8*7
+For divisibility by 11:
+
+Positions: 9 * 8 * 7
+           5 4 3 2 1
+
+Odd (1,3,5): 7 + 8 + 9 = 24
+Even (2,4): * + * = 2*
+
+Difference: 24 - 2* 
+
+For ÷11: 24 - 2* = 0, ±11, ±22
+24 - 2* = 0 → * = 12 (not a digit)
+24 - 2* = 11 → * = 6.5 (not an integer)
+24 - 2* = -11 → * = 17.5 (not valid)
+24 - 2* = 22 → * = 1 ✓
+
+Largest single digit satisfying: * = 1
+
+Wait, let me recalculate - the two *s might be different!
+Let number be 9a8b7
+
+Odd: 7 + 8 + 9 = 24
+Even: b + a
+
+24 - (a + b) = 0, ±11, ±22
+
+To maximize, try: 24 - (a+b) = 22
+a + b = 2
+Largest: a=2, b=0 or a=1, b=1 or a=0, b=2
+
+Wait - question asks for largest digit to replace *, suggesting same digit both places.
+If both * are same digit d:
+24 - 2d = 0 → d = 12 (invalid)
+24 - 2d = 11 → d = 6.5 (invalid)
+24 - 2d = 22 → d = 1 ✓
+
+ANSWER: * = 1 (if same digit both places: Number = 91817)
+
+
+SOLUTION 26:
+------------
+For divisibility by 4: Last 2 digits must form a number divisible by 4
+
+Using 1,2,3,4,5, the last 2 digits divisible by 4:
+12 (÷4=3) ✓
+24 (÷4=6) ✓
+32 (÷4=8) ✓
+52 (÷4=13) ✓
+
+4 possibilities for last 2 digits
+For each, remaining 3 digits can be arranged in 3! = 6 ways
+
+Total = 4 × 6 = 24
+
+ANSWER: 24 numbers
+
+
+SOLUTION 27:
+------------
+Number: 7x52y3
+Divisible by 99 = Divisible by both 9 AND 11 (99 = 9 × 11)
+
+For divisibility by 9:
+Sum = 7 + x + 5 + 2 + y + 3 = 17 + x + y
+Must be divisible by 9
+Possible: 18, 27
+17 + x + y = 18 → x + y = 1
+17 + x + y = 27 → x + y = 10
+
+For divisibility by 11:
+Positions: 7 x 5 2 y 3
+           6 5 4 3 2 1
+Odd (1,3,5): 3 + 2 + x = 5 + x
+Even (2,4,6): y + 5 + 7 = 12 + y
+
+Difference: (5+x) - (12+y) = x - y - 7
+
+For ÷11: x - y - 7 = 0, ±11
+x - y = 7 ✓
+x - y = 18 (x too large)
+x - y = -4
+
+Using x - y = 7 and x + y = 1:
+2x = 8 → x = 4, y = -3 (invalid)
+
+Using x - y = 7 and x + y = 10:
+2x = 17 → x = 8.5 (invalid)
+
+Using x - y = -4 and x + y = 10:
+2x = 6 → x = 3, y = 7 ✓
+
+Verify: 735273
+Sum = 27 (÷9) ✓
+Alternating: 3-7+2-5+3-7 = -11 (÷11) ✓
+
+ANSWER: x = 3, y = 7
+
+
+SOLUTION 28:
+------------
+Greatest 4-digit number = 9999
+Divisible by 15 = Divisible by both 3 AND 5
+
+Must end in 0 or 5 (for ÷5)
+Must have digit sum ÷3
+
+Try 9995:
+Sum = 9+9+9+5 = 32 (not ÷3) ✗
+
+Try 9990:
+Sum = 9+9+9+0 = 27 (÷3) ✓
+
+Check: 9990 ÷ 15 = 666 ✓
+
+ANSWER: 9,990
+
+
+SOLUTION 29:
+------------
+3-digit numbers: 100 to 999
+
+First 3-digit multiple of 7: 105 (7×15)
+Last 3-digit multiple of 7: 994 (7×142)
+
+Count = 142 - 15 + 1 = 128
+
+ANSWER: 128 numbers
+
+
+SOLUTION 30:
+------------
+Working backwards:
+- Divided by 2, remainder 1 → Number is ODD
+- Divided by 3, remainder 2 → Number = 3k + 2
+- Divided by 5, remainder 0 → Number = 5m
+
+Number = 5m where m is odd and 5m = 3k + 2
+
+Checking multiples of 5:
+5: 5 = 3(1) + 2 ✓, but 5÷2 has remainder 1 ✓ → Check: 5
+But we need when divided successively...
+
+Actually "successively divided" means:
+N ÷ 5 = Q₁ remainder 0
+Q₁ ÷ 3 = Q₂ remainder 2
+Q₂ ÷ 2 = Q₃ remainder 1
+
+So: Q₂ = 2k + 1
+    Q₁ = 3Q₂ + 2 = 3(2k+1) + 2 = 6k + 5
+    N = 5Q₁ = 5(6k+5) = 30k + 25
+
+Smallest 3-digit: 30k + 25 ≥ 100
+30k ≥ 75 → k ≥ 2.5 → k = 3
+
+N = 30(3) + 25 = 115
+
+ANSWER: 115
+
+
+SOLUTION 31:
+------------
+6y5 divisible by 11:
+Positions: 6 y 5
+           3 2 1
+Odd: 5 + 6 = 11
+Even: y
+
+11 - y = 0, ±11
+y = 11 (invalid) or y = 0 or y = 22 (invalid)
+So y = 0
+
+Verify with second condition:
+54y = 540, Sum = 5+4+0 = 9 (÷3) ✓
+
+ANSWER: y = 0
+
+
+SOLUTION 32:
+------------
+2-digit number, digit sum = 12
+Divisible by 6 → Divisible by 2 AND 3
+
+Let number = 10a + b where a, b are digits (a ≠ 0)
+a + b = 12
+
+For ÷3: Sum = 12 (already ÷3) ✓
+For ÷2: Must be even → b must be even
+
+Possible pairs (a,b) with a+b=12 and b even:
+(4,8), (6,6), (8,4), (10,2) - invalid as a≤9
+Valid: (4,8)→48, (6,6)→66, (8,4)→84
+
+Also: (3,9)→39 odd ✗, (5,7)→57 odd ✗, (7,5)→75 odd ✗, (9,3)→93 odd ✗
+
+ANSWER: 3 numbers (48, 66, 84)
+
+
+SOLUTION 33:
+------------
+N ÷ 2 = remainder 1 → N = 2a + 1
+N ÷ 3 = remainder 2 → N = 3b + 2
+N ÷ 4 = remainder 3 → N = 4c + 3
+
+Pattern: N = LCM(2,3,4) × k - 1
+LCM(2,3,4) = 12
+
+N = 12k - 1
+
+For k=1: N = 11 ✓
+Verify: 11÷2 = 5 R1 ✓, 11÷3 = 3 R2 ✓, 11÷4 = 2 R3 ✓
+
+ANSWER: 11
+
+
+SOLUTION 34:
+------------
+Number: 54321AB
+Divisible by 72 = Divisible by 8 AND 9 (72 = 8 × 9, co-prime)
+
+For ÷8: Last 3 digits = 1AB ÷ 8
+100 + 10A + B must be ÷8
+
+For ÷9: Sum = 5+4+3+2+1+A+B = 15+A+B ÷ 9
+Smallest: 15+A+B = 18 → A+B = 3
+
+With A+B = 3, check 1AB ÷ 8:
+A=0,B=3: 103 ÷ 8 = 12.875 ✗
+A=1,B=2: 112 ÷ 8 = 14 ✓
+A=2,B=1: 121 ÷ 8 = 15.125 ✗
+A=3,B=0: 130 ÷ 8 = 16.25 ✗
+
+ANSWER: A = 1, B = 2 (Number: 5432112)
+
+
+SOLUTION 35:
+------------
+Divisible by 2, 3, and 7 = Divisible by LCM(2,3,7) = 42
+
+Multiples of 42 between 300 and 500:
+First: 42 × 8 = 336
+Last: 42 × 11 = 462
+
+Count: 8, 9, 10, 11 → 4 numbers
+
+ANSWER: 4 numbers (336, 378, 420, 462)
+
+
+SOLUTION 36:
+------------
+Proof:
+If N is divisible by both 8 and 9:
+- N = 8k for some integer k
+- N = 9m for some integer m
+
+Since 8 and 9 are co-prime (HCF(8,9) = 1):
+N must be divisible by LCM(8,9) = 8 × 9 = 72
+
+Therefore, any number divisible by both 8 and 9 is divisible by 72. ✓
+
+ANSWER: Proved using co-prime property
+
+
+SOLUTION 37:
+------------
+Digits: 2, 3, 5, 7
+For ÷4: Last 2 digits must be ÷4
+
+Possible last 2 digits:
+23: 23÷4 = 5.75 ✗
+25: 25÷4 = 6.25 ✗
+27: 27÷4 = 6.75 ✗
+32: 32÷4 = 8 ✓
+35: 35÷4 = 8.75 ✗
+37: 37÷4 = 9.25 ✗
+52: 52÷4 = 13 ✓
+53: 53÷4 = 13.25 ✗
+57: 57÷4 = 14.25 ✗
+72: 72÷4 = 18 ✓
+73: 73÷4 = 18.25 ✗
+75: 75÷4 = 18.75 ✗
+
+Valid endings: 32, 52, 72 (3 options)
+For each, arrange remaining 2 digits: 2! = 2 ways
+
+Total = 3 × 2 = 6
+
+ANSWER: 6 numbers
+
+
+SOLUTION 38:
+------------
+For ÷3: Check if sum of all digits is ÷3
+
+Digits in 1-99:
+1-9: Each appears once in units place
+10-19: 1 appears 10 times in tens, 0-9 once in units
+...
+
+Actually, easier approach:
+Sum of 1 to 99 = 99×100/2 = 4,950
+
+When written consecutively, we're summing all individual digits.
+Sum of digits in 1-9: 1+2+...+9 = 45
+Sum of digits in 10-99:
+- Tens place: 1 appears 10 times, 2 appears 10 times, ..., 9 appears 10 times
+  = 10(1+2+...+9) = 10×45 = 450
+- Units place: 0-9 each appears 9 times
+  = 9(0+1+2+...+9) = 9×45 = 405
+
+Total = 45 + 450 + 405 = 900
+
+900 ÷ 3 = 300 ✓
+
+ANSWER: YES, N is divisible by 3
+
+
+SOLUTION 39:
+------------
+Find pattern of 2ⁿ mod 7:
+
+2¹ ÷ 7 = R 2
+2² ÷ 7 = 4 ÷ 7 = R 4
+2³ ÷ 7 = 8 ÷ 7 = R 1
+2⁴ ÷ 7 = 16 ÷ 7 = R 2
+2⁵ ÷ 7 = 32 ÷ 7 = R 4
+2⁶ ÷ 7 = 64 ÷ 7 = R 1
+
+Cycle: 2, 4, 1 (repeats every 3)
+
+100 ÷ 3 = 33 remainder 1
+
+So 2¹⁰⁰ has same remainder as 2¹ = 2
+
+ANSWER: Remainder = 2
+
+
+SOLUTION 40:
+------------
+Product of 3 consecutive numbers: n(n+1)(n+2)
+
+Among any 3 consecutive numbers:
+- At least one is even (÷2)
+- At least one is ÷3
+
+But we need to check divisibility by 6 always:
+- One number is ÷2 guaranteed
+- One number is ÷3 guaranteed
+- Product is ÷6 ✓
+
+Check for 4: Not always (e.g., 5×6×7 = 210, not ÷4)
+Check for 8: Not always
+Check for 12: Not always (need ÷3 and ÷4, but only guaranteed one even)
+
+ANSWER: (b) 6
+
+
+================================================================================
+BONUS: QUICK REVISION CHECKLIST
+================================================================================
+
+BEFORE EXAM - MEMORIZE THESE:
+------------------------------
+
+□ Rule of 2: Last digit even
+□ Rule of 3: Digit sum ÷ 3
+□ Rule of 4: Last 2 digits ÷ 4
+□ Rule of 5: Ends in 0 or 5
+□ Rule of 6: ÷2 AND ÷3
+□ Rule of 7: Double & subtract method
+□ Rule of 8: Last 3 digits ÷ 8
+□ Rule of 9: Digit sum ÷ 9
+□ Rule of 10: Ends in 0
+□ Rule of 11: Alternating sum ÷ 11
+□ Rule of 12: ÷3 AND ÷4
+□ Rule of 15: ÷3 AND ÷5
+
+COMBINED DIVISIBILITY:
+□ Works ONLY for co-prime numbers
+□ Otherwise, use LCM
+
+POSITION COUNTING for 11:
+□ Always count from RIGHT to LEFT!
+
+COMMON TRAPS:
+□ 91 is NOT prime (= 7 × 13)
+□ Divisible by 4 and 6 ≠ Divisible by 24
+□ 1 is neither prime nor composite
+
+
+================================================================================
+PRACTICE SUMMARY
+================================================================================
+
+TOTAL PROBLEMS SOLVED IN TOPIC 2:
+----------------------------------
+Level 1 (Basic): 5 questions
+Level 2 (Intermediate): 5 questions
+Level 3 (Advanced): 5 questions
+Level 4 (Mixed): 5 questions
+Level 5 (Digit Replacement): 5 questions
+Level 6 (Word Problems): 5 questions
+Level 7 (Tricky): 5 questions
+Level 8 (Challenge): 5 questions
+
+TOTAL: 40 PROBLEMS! 🎉
+
+
+KEY SKILLS MASTERED:
+--------------------
+✓ Basic divisibility tests (2,3,4,5,8,9,10)
+✓ Advanced rules (7,11,13)
+✓ Combined divisibility (6,12,15,18,24)
+✓ Digit replacement problems
+✓ Successive division problems
+✓ Remainder problems
+✓ Counting multiples in ranges
+✓ Proof-based questions
+
+
+EXAM READINESS:
+---------------
+After solving these 40 problems, you should be able to:
+1. Identify divisibility in 3-5 seconds
+2. Solve digit replacement problems quickly
+3. Handle combined divisibility confidently
+4. Tackle any divisibility question in TCS NQT
+
+
+================================================================================
+END OF TOPIC 2: DIVISIBILITY RULES
+================================================================================
+
+
+================================================================================
+TOPIC 3: FACTORS & MULTIPLES
+================================================================================
+
+INTRODUCTION:
+-------------
+Factors and Multiples are fundamental concepts that appear in almost every 
+numerical ability question in TCS NQT. Understanding these concepts is crucial 
+for solving problems related to HCF, LCM, divisibility, and number theory.
+
+Weightage: VERY HIGH (Directly or indirectly tested in 25-30% of questions)
+Related Topics: Uses divisibility rules, leads to HCF/LCM
+
+Why Master This?
+- Foundation for HCF and LCM problems
+- Required for: Time & Work, Ratio, Speed-Distance problems
+- Appears in almost every competitive exam
+- Quick mental calculations save precious time
+
+This topic covers:
+- Factors and their properties
+- Multiples and their properties
+- Prime factorization
+- Finding number of factors
+- Sum and product of factors
+- Perfect numbers, abundant, deficient numbers
+
+
+================================================================================
+BASIC DEFINITIONS
+================================================================================
+
+FACTOR:
+-------
+A factor of a number is a number that divides it completely (remainder = 0).
+
+Example: Factors of 12
+12 ÷ 1 = 12 ✓
+12 ÷ 2 = 6 ✓
+12 ÷ 3 = 4 ✓
+12 ÷ 4 = 3 ✓
+12 ÷ 6 = 2 ✓
+12 ÷ 12 = 1 ✓
+
+Factors of 12: 1, 2, 3, 4, 6, 12
+
+Key Points:
+• 1 is a factor of every number
+• Every number is a factor of itself
+• Factors are always ≤ the number
+
+
+MULTIPLE:
+---------
+A multiple of a number is obtained by multiplying it with any integer.
+
+Example: Multiples of 5
+5 × 1 = 5
+5 × 2 = 10
+5 × 3 = 15
+5 × 4 = 20
+...
+
+Multiples of 5: 5, 10, 15, 20, 25, 30, ...
+
+Key Points:
+• Every number is a multiple of itself
+• Multiples are infinite
+• Multiples are always ≥ the number
+
+
+RELATIONSHIP:
+-------------
+If a is a factor of b, then b is a multiple of a.
+
+Example: 3 is a factor of 12 ⟺ 12 is a multiple of 3
+
+
+================================================================================
+PRIME FACTORIZATION
+================================================================================
+
+DEFINITION:
+-----------
+Expressing a number as a product of its prime factors.
+
+METHOD 1: Division Method (Recommended for exams)
+--------------------------------------------------
+Example: Find prime factorization of 360
+
+2 | 360
+2 | 180
+2 | 90
+3 | 45
+3 | 15
+5 | 5
+  | 1
+
+360 = 2³ × 3² × 5¹
+
+
+METHOD 2: Factor Tree Method
+-----------------------------
+        360
+       /   \
+      2    180
+          /   \
+         2    90
+             /  \
+            2   45
+               /  \
+              3   15
+                 /  \
+                3    5
+
+360 = 2 × 2 × 2 × 3 × 3 × 5 = 2³ × 3² × 5
+
+
+STANDARD FORM:
+--------------
+N = p₁^a × p₂^b × p₃^c × ...
+
+Where p₁, p₂, p₃ are prime numbers
+and a, b, c are their powers
+
+
+================================================================================
+KEY FORMULAS - FACTORS
+================================================================================
+
+FORMULA 1: NUMBER OF FACTORS
+-----------------------------
+If N = p₁^a × p₂^b × p₃^c
+
+Number of factors = (a+1) × (b+1) × (c+1)
+
+Example: 360 = 2³ × 3² × 5¹
+Number of factors = (3+1) × (2+1) × (1+1)
+                  = 4 × 3 × 2
+                  = 24 factors
+
+
+FORMULA 2: SUM OF FACTORS
+--------------------------
+If N = p₁^a × p₂^b
+
+Sum of factors = [(p₁^(a+1) - 1)/(p₁ - 1)] × [(p₂^(b+1) - 1)/(p₂ - 1)]
+
+Example: 12 = 2² × 3¹
+Sum = [(2³ - 1)/(2 - 1)] × [(3² - 1)/(3 - 1)]
+    = [7/1] × [8/2]
+    = 7 × 4
+    = 28
+
+Verification: Factors of 12 = 1, 2, 3, 4, 6, 12
+             Sum = 1+2+3+4+6+12 = 28 ✓
+
+
+FORMULA 3: PRODUCT OF FACTORS
+------------------------------
+If a number N has k factors:
+
+Product of all factors = N^(k/2)
+
+Example: 12 has 6 factors
+Product = 12^(6/2) = 12³ = 1,728
+
+Verification: 1×2×3×4×6×12 = 1,728 ✓
+
+
+FORMULA 4: NUMBER OF EVEN/ODD FACTORS
+--------------------------------------
+For N = 2^a × (odd factors)
+
+Number of even factors = a × (number of odd factors)
+Number of odd factors = Product of (power+1) of all odd primes
+
+Example: 360 = 2³ × 3² × 5¹
+Odd factors = (2+1) × (1+1) = 3 × 2 = 6
+Total factors = 24
+Even factors = 24 - 6 = 18
+
+Or: Even factors = 3 × 6 = 18 ✓
+
+
+FORMULA 5: NUMBER OF PRIME FACTORS
+-----------------------------------
+If N = p₁^a × p₂^b × p₃^c
+
+Number of distinct prime factors = 3 (count of different primes)
+Total prime factors (with repetition) = a + b + c
+
+Example: 360 = 2³ × 3² × 5¹
+Distinct prime factors = 3 (i.e., 2, 3, 5)
+Total prime factors = 3 + 2 + 1 = 6 (i.e., 2,2,2,3,3,5)
+
+
+================================================================================
+SPECIAL TYPES OF NUMBERS
+================================================================================
+
+PERFECT NUMBER:
+---------------
+A number equal to the sum of its proper divisors (excluding itself).
+
+Example: 6
+Factors: 1, 2, 3, 6
+Proper divisors: 1, 2, 3
+Sum = 1 + 2 + 3 = 6 ✓
+
+Perfect numbers: 6, 28, 496, 8128...
+
+
+ABUNDANT NUMBER:
+----------------
+Sum of proper divisors > the number
+
+Example: 12
+Proper divisors: 1, 2, 3, 4, 6
+Sum = 16 > 12 ✓
+
+
+DEFICIENT NUMBER:
+-----------------
+Sum of proper divisors < the number
+
+Example: 8
+Proper divisors: 1, 2, 4
+Sum = 7 < 8 ✓
+
+
+CO-PRIME NUMBERS (Relatively Prime):
+-------------------------------------
+Two numbers whose only common factor is 1 (HCF = 1)
+
+Examples:
+(8, 15) → HCF = 1 ✓
+(14, 25) → HCF = 1 ✓
+(12, 18) → HCF = 6 ✗ (not co-prime)
+
+
+TWIN PRIMES:
+------------
+Pair of prime numbers that differ by 2
+
+Examples: (3,5), (5,7), (11,13), (17,19), (29,31)
+
+
+================================================================================
+STEP-BY-STEP EXAMPLE PROBLEMS
+================================================================================
+
+EXAMPLE 1: Find all factors of 36.
+-----------
+
+Method 1: List pairs
+√36 = 6
+
+1 × 36 = 36
+2 × 18 = 36
+3 × 12 = 36
+4 × 9 = 36
+6 × 6 = 36
+
+Factors: 1, 2, 3, 4, 6, 9, 12, 18, 36
+
+Method 2: Using prime factorization
+36 = 2² × 3²
+Number of factors = (2+1)(2+1) = 9 factors ✓
+
+ANSWER: 1, 2, 3, 4, 6, 9, 12, 18, 36 (9 factors)
+
+
+EXAMPLE 2: How many factors does 720 have?
+-----------
+
+Step 1: Prime factorization
+720 = 2⁴ × 3² × 5¹
+
+Step 2: Apply formula
+Number of factors = (4+1) × (2+1) × (1+1)
+                  = 5 × 3 × 2
+                  = 30
+
+ANSWER: 720 has 30 factors
+
+
+EXAMPLE 3: Find the sum of all factors of 20.
+-----------
+
+Step 1: Prime factorization
+20 = 2² × 5¹
+
+Step 2: Apply formula
+Sum = [(2³-1)/(2-1)] × [(5²-1)/(5-1)]
+    = [7/1] × [24/4]
+    = 7 × 6
+    = 42
+
+Verification: Factors of 20: 1, 2, 4, 5, 10, 20
+             Sum = 1+2+4+5+10+20 = 42 ✓
+
+ANSWER: 42
+
+
+EXAMPLE 4: Find the number of even factors of 360.
+-----------
+
+Step 1: Prime factorization
+360 = 2³ × 3² × 5¹
+
+Step 2: Find odd factors
+Odd part = 3² × 5¹
+Odd factors = (2+1) × (1+1) = 6
+
+Step 3: Total factors
+Total factors = (3+1) × (2+1) × (1+1) = 24
+
+Step 4: Even factors
+Even factors = Total - Odd = 24 - 6 = 18
+
+Alternative:
+For even factors, 2 must appear at least once
+Even factors = (3) × (2+1) × (1+1) = 3 × 3 × 2 = 18 ✓
+
+ANSWER: 18 even factors
+
+
+EXAMPLE 5: How many factors of 1200 are perfect squares?
+-----------
+
+Step 1: Prime factorization
+1200 = 2⁴ × 3¹ × 5²
+
+Step 2: For perfect square factors
+Each prime must appear in even power (including 0)
+
+For 2⁴: Can use 2⁰, 2², 2⁴ → 3 choices
+For 3¹: Can use 3⁰ only → 1 choice
+For 5²: Can use 5⁰, 5² → 2 choices
+
+Perfect square factors = 3 × 1 × 2 = 6
+
+These are: 1, 4, 16, 25, 100, 400
+
+ANSWER: 6 perfect square factors
+
+
+================================================================================
+SHORTCUTS & TRICKS
+================================================================================
+
+TRICK 1: Finding Factors Quickly
+---------------------------------
+Check only up to √n
+
+For 36: √36 = 6
+Check: 1, 2, 3, 4, 5, 6
+Pairs: (1,36), (2,18), (3,12), (4,9), (6,6)
+
+Saves time! Don't check beyond square root.
+
+
+TRICK 2: Quick Prime Factorization
+-----------------------------------
+Start with smallest prime (2), keep dividing
+Move to next prime when not divisible
+
+360: 360→180→90→45 (divide by 2)
+     45→15→5 (divide by 3)
+     5→1 (divide by 5)
+
+Result: 2³ × 3² × 5
+
+
+TRICK 3: Factors of Numbers with Power of 2
+--------------------------------------------
+If N = 2^n, factors = n+1
+
+Examples:
+16 = 2⁴ → 5 factors (1,2,4,8,16)
+64 = 2⁶ → 7 factors
+128 = 2⁷ → 8 factors
+
+
+TRICK 4: Common Multiples Pattern
+----------------------------------
+Common multiples of a and b = Multiples of LCM(a,b)
+
+Example: Common multiples of 4 and 6
+LCM(4,6) = 12
+Common multiples: 12, 24, 36, 48...
+
+
+TRICK 5: Factor Pairs Symmetry
+-------------------------------
+Factors come in pairs that multiply to give the number
+Exception: Perfect squares (middle factor pairs with itself)
+
+36: (1,36), (2,18), (3,12), (4,9), (6,6) ← perfect square
+
+
+================================================================================
+COMMON MISTAKES TO AVOID
+================================================================================
+
+MISTAKE 1: Forgetting 1 and the number itself
+❌ WRONG: Factors of 10 = 2, 5
+✓ CORRECT: Factors of 10 = 1, 2, 5, 10
+
+MISTAKE 2: Confusing factors and multiples
+❌ WRONG: Factors are infinite
+✓ CORRECT: Multiples are infinite, factors are finite
+
+MISTAKE 3: Wrong formula application
+❌ WRONG: 24 = 2³ × 3¹ → Factors = 3 × 1 = 3
+✓ CORRECT: Factors = (3+1) × (1+1) = 8 (add 1 to powers!)
+
+MISTAKE 4: Missing proper divisors
+❌ WRONG: Proper divisors include the number itself
+✓ CORRECT: Proper divisors EXCLUDE the number itself
+
+MISTAKE 5: Perfect square factors
+❌ WRONG: Any factor works
+✓ CORRECT: All prime powers must be EVEN (including 0)
+
+
+================================================================================
+IMPORTANT PATTERNS TO REMEMBER
+================================================================================
+
+PRIME NUMBERS UP TO 100:
+------------------------
+2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 
+73, 79, 83, 89, 97
+
+Total: 25 prime numbers
+
+
+PERFECT SQUARES UP TO 400:
+---------------------------
+1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 
+324, 361, 400
+
+
+PERFECT CUBES UP TO 1000:
+--------------------------
+1, 8, 27, 64, 125, 216, 343, 512, 729, 1000
+
+
+COMMON PRIME FACTORIZATIONS:
+-----------------------------
+24 = 2³ × 3
+36 = 2² × 3²
+48 = 2⁴ × 3
+60 = 2² × 3 × 5
+72 = 2³ × 3²
+90 = 2 × 3² × 5
+100 = 2² × 5²
+120 = 2³ × 3 × 5
+144 = 2⁴ × 3²
+180 = 2² × 3² × 5
+200 = 2³ × 5²
+360 = 2³ × 3² × 5
+
+
+================================================================================
+PRACTICE ZONE - FACTORS & MULTIPLES
+================================================================================
+
+LEVEL 1: BASIC PROBLEMS
+-----------------------
+
+QUESTION 1:
+List all factors of 48.
+
+QUESTION 2:
+How many factors does 100 have?
+
+QUESTION 3:
+Find the prime factorization of 144.
+
+QUESTION 4:
+Write the first 5 multiples of 13.
+
+QUESTION 5:
+Is 28 a perfect number? Verify.
+
+
+LEVEL 2: INTERMEDIATE PROBLEMS
+-------------------------------
+
+QUESTION 6:
+Find the sum of all factors of 36.
+
+QUESTION 7:
+How many even factors does 240 have?
+
+QUESTION 8:
+Find the product of all factors of 16.
+
+QUESTION 9:
+How many factors of 180 are perfect squares?
+
+QUESTION 10:
+Are 15 and 28 co-prime? Justify.
+
+
+LEVEL 3: ADVANCED PROBLEMS
+---------------------------
+
+QUESTION 11:
+A number has exactly 3 factors. What type of number is it?
+
+QUESTION 12:
+Find the smallest number that has exactly 10 factors.
+
+QUESTION 13:
+How many factors of 7200 are multiples of 6?
+
+QUESTION 14:
+Find a number between 50 and 100 that has exactly 12 factors.
+
+QUESTION 15:
+The product of two numbers is 216 and their HCF is 6. Find the numbers if 
+their LCM is 108.
+
+
+LEVEL 4: TCS NQT PATTERN
+-------------------------
+
+QUESTION 16:
+How many factors of 10800 are perfect cubes?
+
+QUESTION 17:
+Find the sum of odd factors of 360.
+
+QUESTION 18:
+A number N = 2^a × 3^b has 15 factors. Find the values of a and b.
+
+QUESTION 19:
+How many numbers less than 1000 are perfect squares and perfect cubes 
+simultaneously?
+
+QUESTION 20:
+The number of factors of N is 24. If N = 2^x × 3^y × 5^z, find the number 
+of possible values of (x,y,z).
+
+
+================================================================================
+SOLUTIONS - PRACTICE ZONE
+================================================================================
+
+SOLUTION 1:
+-----------
+48 = 2⁴ × 3¹
+
+Method 1: List pairs up to √48 ≈ 6.9
+1 × 48
+2 × 24
+3 × 16
+4 × 12
+6 × 8
+
+Factors: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48
+
+Method 2: Count using formula
+Number of factors = (4+1)(1+1) = 10 ✓
+
+ANSWER: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48
+
+
+SOLUTION 2:
+-----------
+100 = 2² × 5²
+
+Number of factors = (2+1) × (2+1)
+                  = 3 × 3
+                  = 9
+
+ANSWER: 9 factors
+
+
+SOLUTION 3:
+-----------
+144 = 2 × 72
+    = 2 × 2 × 36
+    = 2 × 2 × 2 × 18
+    = 2 × 2 × 2 × 2 × 9
+    = 2 × 2 × 2 × 2 × 3 × 3
+
+144 = 2⁴ × 3²
+
+ANSWER: 2⁴ × 3²
+
+
+SOLUTION 4:
+-----------
+13 × 1 = 13
+13 × 2 = 26
+13 × 3 = 39
+13 × 4 = 52
+13 × 5 = 65
+
+ANSWER: 13, 26, 39, 52, 65
+
+
+SOLUTION 5:
+-----------
+Factors of 28: 1, 2, 4, 7, 14, 28
+Proper divisors (excluding 28): 1, 2, 4, 7, 14
+
+Sum of proper divisors = 1 + 2 + 4 + 7 + 14 = 28
+
+Since sum equals the number itself:
+28 is a PERFECT NUMBER ✓
+
+ANSWER: YES, 28 is perfect
+
+
+SOLUTION 6:
+-----------
+36 = 2² × 3²
+
+Sum = [(2³-1)/(2-1)] × [(3³-1)/(3-1)]
+    = [7/1] × [26/2]
+    = 7 × 13
+    = 91
+
+ANSWER: 91
+
+
+SOLUTION 7:
+-----------
+240 = 2⁴ × 3¹ × 5¹
+
+For even factors, at least one 2 must be present
+Even factors = (choices for 2¹,2²,2³,2⁴) × (choices for 3) × (choices for 5)
+             = 4 × 2 × 2
+             = 16
+
+Alternative:
+Total factors = (4+1)(1+1)(1+1) = 20
+Odd factors (no 2) = (1+1)(1+1) = 4
+Even factors = 20 - 4 = 16 ✓
+
+ANSWER: 16 even factors
+
+
+SOLUTION 8:
+-----------
+16 = 2⁴
+Number of factors = 4+1 = 5
+
+Product of all factors = N^(k/2)
+                       = 16^(5/2)
+                       = 16² × √16
+                       = 256 × 4
+                       = 1,024
+
+Or: 16^2.5 = (2⁴)^2.5 = 2¹⁰ = 1,024
+
+Verification: Factors = 1, 2, 4, 8, 16
+Product = 1×2×4×8×16 = 1,024 ✓
+
+ANSWER: 1,024
+
+
+SOLUTION 9:
+-----------
+180 = 2² × 3² × 5¹
+
+For perfect square factors, all primes must have even powers:
+2: Can use 2⁰, 2² → 2 choices
+3: Can use 3⁰, 3² → 2 choices
+5: Can use 5⁰ only → 1 choice
+
+Perfect square factors = 2 × 2 × 1 = 4
+
+These are: 1, 4, 9, 36
+
+ANSWER: 4 perfect square factors
+
+
+SOLUTION 10:
+------------
+Find HCF of 15 and 28:
+
+15 = 3 × 5
+28 = 2² × 7
+
+No common prime factors
+HCF(15, 28) = 1
+
+Since HCF = 1, they are CO-PRIME ✓
+
+ANSWER: YES, 15 and 28 are co-prime
+
+
+SOLUTION 11:
+------------
+If a number has exactly 3 factors:
+N = p₁^a
+Factors = a + 1 = 3
+a = 2
+
+So N = p² (square of a prime)
+
+Examples: 4 = 2², 9 = 3², 25 = 5², 49 = 7²
+
+ANSWER: Square of a prime number
+
+
+SOLUTION 12:
+------------
+Number of factors = 10 = (a+1)(b+1)...
+
+Possibilities:
+10 = 10 × 1 → N = p⁹ → smallest = 2⁹ = 512
+10 = 5 × 2 → N = p⁴ × q¹ → smallest = 2⁴ × 3 = 48
+10 = 2 × 5 → N = p¹ × q⁴ → smallest = 3 × 2⁴ = 48
+
+Smallest = 48
+
+ANSWER: 48
+
+
+SOLUTION 13:
+------------
+7200 = 2⁴ × 3² × 5²
+
+Factors that are multiples of 6 = Factors divisible by 6
+6 = 2 × 3
+
+For divisibility by 6, factor must have at least 2¹ × 3¹:
+2: Can use 2¹, 2², 2³, 2⁴ → 4 choices
+3: Can use 3¹, 3² → 2 choices
+5: Can use 5⁰, 5¹, 5² → 3 choices
+
+Count = 4 × 2 × 3 = 24
+
+ANSWER: 24 factors
+
+
+SOLUTION 14:
+------------
+Need number with exactly 12 factors between 50 and 100.
+
+12 = (a+1)(b+1)...
+Possibilities:
+12 = 12 → p¹¹ (too large)
+12 = 6×2 → p⁵×q¹ → 2⁵×3 = 96 ✓
+12 = 4×3 → p³×q² → 2³×3² = 72 ✓
+12 = 3×2×2 → p²×q×r (checking...)
+
+Check 72: 2³ × 3² → (3+1)(2+1) = 12 ✓
+Check 96: 2⁵ × 3 → (5+1)(1+1) = 12 ✓
+
+ANSWER: 72 or 96 (both valid)
+
+
+SOLUTION 15:
+------------
+Given:
+- Product = 216
+- HCF = 6
+- LCM = 108
+
+Verify: HCF × LCM = Product of two numbers
+6 × 108 = 648 ✗ (doesn't match 216)
+
+Actually, let the numbers be 6a and 6b (since HCF = 6)
+where a and b are co-prime.
+
+6a × 6b = 216
+36ab = 216
+ab = 6
+
+Since a and b are co-prime and ab = 6:
+Possible: (a,b) = (1,6) or (2,3) or (6,1) or (3,2)
+
+Check (2,3): Numbers = 12, 18
+HCF(12,18) = 6 ✓
+LCM(12,18) = 36 ✗
+
+Check (1,6): Numbers = 6, 36
+HCF = 6 ✓
+LCM = 36 ✗
+
+There seems to be inconsistency in problem. 
+If Product=216 and HCF=6, then LCM should be 36, not 108.
+
+ANSWER: Problem has inconsistent data. Check the question.
+
+
+SOLUTION 16:
+------------
+10800 = 2⁴ × 3³ × 5²
+
+For perfect cube factors, all prime powers must be multiples of 3:
+2: Can use 2⁰, 2³ → 2 choices
+3: Can use 3⁰, 3³ → 2 choices
+5: Can use 5⁰ only → 1 choice
+
+Perfect cube factors = 2 × 2 × 1 = 4
+
+These are: 1, 8, 27, 216
+
+ANSWER: 4 perfect cube factors
+
+
+SOLUTION 17:
+------------
+360 = 2³ × 3² × 5¹
+
+Odd factors = factors without any 2
+= 3² × 5¹
+
+Sum of odd factors = [(3³-1)/(3-1)] × [(5²-1)/(5-1)]
+                   = [26/2] × [24/4]
+                   = 13 × 6
+                   = 78
+
+ANSWER: 78
+
+
+SOLUTION 18:
+------------
+N = 2^a × 3^b
+Factors = (a+1)(b+1) = 15
+
+15 = 15×1 or 5×3 or 3×5 or 1×15
+
+Case 1: (a+1)=15, (b+1)=1 → a=14, b=0 ✓
+Case 2: (a+1)=5, (b+1)=3 → a=4, b=2 ✓
+Case 3: (a+1)=3, (b+1)=5 → a=2, b=4 ✓
+Case 4: (a+1)=1, (b+1)=15 → a=0, b=14 ✓
+
+ANSWER: (a,b) can be (14,0), (4,2), (2,4), or (0,14)
+
+
+SOLUTION 19:
+------------
+Number must be both perfect square and perfect cube
+→ Must be a perfect 6th power (LCM of 2 and 3 = 6)
+
+Perfect 6th powers < 1000:
+1⁶ = 1 ✓
+2⁶ = 64 ✓
+3⁶ = 729 ✓
+4⁶ = 4096 > 1000 ✗
+
+ANSWER: 3 numbers (1, 64, 729)
+
+
+SOLUTION 20:
+------------
+N = 2^x × 3^y × 5^z
+Factors = (x+1)(y+1)(z+1) = 24
+
+Find all factor combinations of 24:
+24 = 24×1×1 → (23,0,0)
+24 = 12×2×1 → (11,1,0) and permutations
+24 = 8×3×1 → (7,2,0) and permutations
+24 = 6×4×1 → (5,3,0) and permutations
+24 = 6×2×2 → (5,1,1) and permutations
+24 = 4×3×2 → (3,2,1) and permutations
+24 = 3×2×2×2 (not valid, need exactly 3 primes)
+
+Count ordered triplets:
+(23,0,0): 3 permutations
+(11,1,0): 6 permutations
+(7,2,0): 6 permutations
+(5,3,0): 6 permutations
+(5,1,1): 3 permutations
+(3,2,1): 6 permutations
+
+Total = 3+6+6+6+3+6 = 30
+
+ANSWER: 30 possible values
+
+
+================================================================================
+QUICK RECAP - FACTORS & MULTIPLES
+================================================================================
+
+KEY FORMULAS:
+-------------
+✓ Number of factors: (a+1)(b+1)(c+1)
+✓ Sum of factors: [(p₁^(a+1)-1)/(p₁-1)] × [(p₂^(b+1)-1)/(p₂-1)]
+✓ Product of factors: N^(k/2) where k = number of factors
+✓ Perfect square factors: All prime powers must be EVEN
+✓ Perfect cube factors: All prime powers must be multiples of 3
+
+REMEMBER:
+---------
+✓ 1 is a factor of all numbers
+✓ Every number is a factor of itself
+✓ Factors are finite, multiples are infinite
+✓ Perfect number: Sum of proper divisors = number
+✓ Co-prime: HCF = 1
+
+SPECIAL NUMBERS:
+----------------
+✓ Perfect: 6, 28, 496...
+✓ If exactly 3 factors → p² (square of prime)
+✓ If exactly 2 factors → prime number
+
+================================================================================
+END OF TOPIC 3: FACTORS & MULTIPLES
+================================================================================
+
+
+================================================================================
+TOPIC 4: HCF & LCM
+================================================================================
+
+INTRODUCTION:
+-------------
+HCF (Highest Common Factor) and LCM (Lowest Common Multiple) are among the 
+MOST FREQUENTLY asked topics in TCS NQT. These concepts appear both directly 
+and indirectly in various problem types including time & work, trains, clocks, 
+and gear problems.
+
+Weightage: EXTREMELY HIGH (20-30% of questions use HCF/LCM concepts)
+Difficulty: Medium (Easy if you know the methods!)
+
+Why Master This?
+- Direct questions on HCF/LCM calculation
+- Applied in: Time & Work, Trains, Bells ringing, Gears rotating
+- Foundation for Ratio & Proportion problems
+- Quick methods save 2-3 minutes per question
+
+This topic covers:
+- HCF (Highest Common Factor / GCD)
+- LCM (Lowest Common Multiple)
+- Multiple methods to find HCF and LCM
+- Relationship between HCF and LCM
+- Word problems and applications
+
+
+================================================================================
+BASIC DEFINITIONS
+================================================================================
+
+HCF (Highest Common Factor):
+-----------------------------
+Also called GCD (Greatest Common Divisor)
+
+The LARGEST number that divides all given numbers completely.
+
+Example: Find HCF of 12 and 18
+Factors of 12: 1, 2, 3, 4, 6, 12
+Factors of 18: 1, 2, 3, 6, 9, 18
+Common factors: 1, 2, 3, 6
+HIGHEST common factor: 6
+
+HCF(12, 18) = 6
+
+
+LCM (Lowest Common Multiple):
+------------------------------
+Also called Least Common Multiple
+
+The SMALLEST number that is divisible by all given numbers.
+
+Example: Find LCM of 12 and 18
+Multiples of 12: 12, 24, 36, 48, 60, 72...
+Multiples of 18: 18, 36, 54, 72, 90...
+Common multiples: 36, 72, 108...
+LOWEST common multiple: 36
+
+LCM(12, 18) = 36
+
+
+KEY PROPERTIES:
+---------------
+1. HCF ≤ Smallest number
+2. LCM ≥ Largest number
+3. HCF divides LCM
+4. HCF × LCM = Product of numbers (for 2 numbers only)
+5. If numbers are co-prime, HCF = 1 and LCM = Product
+
+
+================================================================================
+METHODS TO FIND HCF
+================================================================================
+
+METHOD 1: PRIME FACTORIZATION METHOD (Best for exams!)
+-------------------------------------------------------
+
+Step 1: Find prime factorization of each number
+Step 2: Take COMMON prime factors with MINIMUM power
+Step 3: Multiply them
+
+Example: HCF of 48 and 180
+
+48 = 2⁴ × 3¹
+180 = 2² × 3² × 5¹
+
+Common primes: 2 and 3
+Minimum powers: 2² and 3¹
+
+HCF = 2² × 3¹ = 4 × 3 = 12
+
+
+METHOD 2: DIVISION METHOD (Long Division)
+------------------------------------------
+
+Step 1: Divide larger by smaller
+Step 2: Divide previous divisor by remainder
+Step 3: Continue until remainder = 0
+Step 4: Last divisor is HCF
+
+Example: HCF of 48 and 180
+
+180 = 48 × 3 + 36
+48 = 36 × 1 + 12
+36 = 12 × 3 + 0
+
+HCF = 12
+
+
+METHOD 3: LISTING FACTORS (For small numbers only)
+---------------------------------------------------
+
+List all factors and find highest common
+
+Example: HCF of 24 and 36
+
+Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24
+Factors of 36: 1, 2, 3, 4, 6, 9, 12, 18, 36
+
+Common: 1, 2, 3, 4, 6, 12
+Highest: 12
+
+
+METHOD 4: FOR MORE THAN 2 NUMBERS
+----------------------------------
+
+Find HCF of first two, then find HCF of result with third number, and so on.
+
+Example: HCF of 12, 18, 24
+
+HCF(12, 18) = 6
+HCF(6, 24) = 6
+
+Final HCF = 6
+
+
+================================================================================
+METHODS TO FIND LCM
+================================================================================
+
+METHOD 1: PRIME FACTORIZATION METHOD (Best for exams!)
+-------------------------------------------------------
+
+Step 1: Find prime factorization of each number
+Step 2: Take ALL prime factors with MAXIMUM power
+Step 3: Multiply them
+
+Example: LCM of 48 and 180
+
+48 = 2⁴ × 3¹
+180 = 2² × 3² × 5¹
+
+All primes: 2, 3, 5
+Maximum powers: 2⁴, 3², 5¹
+
+LCM = 2⁴ × 3² × 5¹ = 16 × 9 × 5 = 720
+
+
+METHOD 2: DIVISION METHOD (Continuous Division)
+------------------------------------------------
+
+Step 1: Divide all numbers by smallest prime that divides at least one
+Step 2: Continue until all quotients are 1
+Step 3: LCM = Product of all divisors
+
+Example: LCM of 12, 18, 24
+
+2 | 12  18  24
+2 | 6   9   12
+2 | 3   9   6
+3 | 3   9   3
+3 | 1   3   1
+  | 1   1   1
+
+LCM = 2 × 2 × 2 × 3 × 3 = 72
+
+
+METHOD 3: USING HCF (For 2 numbers only)
+-----------------------------------------
+
+Formula: LCM × HCF = Product of two numbers
+
+LCM = (a × b) / HCF
+
+Example: For 12 and 18
+HCF(12, 18) = 6
+LCM = (12 × 18) / 6 = 216 / 6 = 36
+
+
+METHOD 4: FOR MORE THAN 2 NUMBERS
+----------------------------------
+
+Find LCM of first two, then find LCM of result with third number, and so on.
+
+Example: LCM of 4, 6, 8
+
+LCM(4, 6) = 12
+LCM(12, 8) = 24
+
+Final LCM = 24
+
+
+================================================================================
+KEY FORMULAS & RELATIONSHIPS
+================================================================================
+
+FORMULA 1: Fundamental Relationship (For 2 numbers only)
+---------------------------------------------------------
+HCF(a, b) × LCM(a, b) = a × b
+
+Example: For 12 and 18
+HCF × LCM = 6 × 36 = 216
+12 × 18 = 216 ✓
+
+
+FORMULA 2: When numbers are co-prime
+-------------------------------------
+If HCF(a, b) = 1, then LCM(a, b) = a × b
+
+Example: For 7 and 11
+HCF = 1 (co-prime)
+LCM = 7 × 11 = 77
+
+
+FORMULA 3: HCF of fractions
+----------------------------
+HCF of fractions = HCF of numerators / LCM of denominators
+
+Example: HCF of 2/3 and 4/9
+= HCF(2, 4) / LCM(3, 9)
+= 2 / 9
+
+
+FORMULA 4: LCM of fractions
+----------------------------
+LCM of fractions = LCM of numerators / HCF of denominators
+
+Example: LCM of 2/3 and 4/9
+= LCM(2, 4) / HCF(3, 9)
+= 4 / 3
+
+
+FORMULA 5: HCF and LCM of decimals
+-----------------------------------
+Convert to integers first, then solve
+
+Example: HCF of 0.12 and 0.18
+= 0.12 = 12/100, 0.18 = 18/100
+= HCF(12, 18) / 100
+= 6 / 100 = 0.06
+
+
+================================================================================
+IMPORTANT PROPERTIES
+================================================================================
+
+PROPERTY 1: Divisibility
+-------------------------
+HCF divides both numbers
+Both numbers divide LCM
+
+Example: HCF(12, 18) = 6
+6 divides 12 ✓
+6 divides 18 ✓
+LCM(12, 18) = 36
+12 divides 36 ✓
+18 divides 36 ✓
+
+
+PROPERTY 2: HCF divides LCM
+----------------------------
+HCF always divides LCM
+
+Example: HCF = 6, LCM = 36
+36 ÷ 6 = 6 ✓
+
+
+PROPERTY 3: Ratio relationship
+-------------------------------
+If a/b = m/n (in lowest terms), then:
+HCF(a, b) = HCF(m, n) × k (for some k)
+
+Example: 12/18 = 2/3 (in lowest terms)
+HCF(12, 18) = 6
+HCF(2, 3) = 1
+6 = 1 × 6 ✓
+
+
+PROPERTY 4: For three numbers
+------------------------------
+HCF(a, b, c) × LCM(a, b, c) ≠ a × b × c
+(Works only for 2 numbers!)
+
+
+PROPERTY 5: Comparison
+-----------------------
+For same set of numbers:
+HCF ≤ Each number ≤ LCM
+
+Example: For 12, 18
+6 ≤ 12 ≤ 36 ✓
+6 ≤ 18 ≤ 36 ✓
+
+
+================================================================================
+STEP-BY-STEP EXAMPLE PROBLEMS
+================================================================================
+
+EXAMPLE 1: Find HCF and LCM of 36 and 48.
+-----------
+
+Step 1: Prime factorization
+36 = 2² × 3²
+48 = 2⁴ × 3¹
+
+Step 2: HCF (minimum powers)
+Common primes: 2, 3
+HCF = 2² × 3¹ = 4 × 3 = 12
+
+Step 3: LCM (maximum powers)
+All primes: 2, 3
+LCM = 2⁴ × 3² = 16 × 9 = 144
+
+Step 4: Verify
+HCF × LCM = 12 × 144 = 1,728
+36 × 48 = 1,728 ✓
+
+ANSWER: HCF = 12, LCM = 144
+
+
+EXAMPLE 2: Find the greatest number that divides 285 and 1249, leaving 
+-----------remainders 9 and 7 respectively.
+
+Key insight: The number divides (285-9) and (1249-7) completely
+
+Numbers to find HCF: 276 and 1242
+
+276 = 2² × 3 × 23
+1242 = 2 × 3³ × 23
+
+HCF = 2¹ × 3¹ × 23¹ = 2 × 3 × 23 = 138
+
+ANSWER: 138
+
+
+EXAMPLE 3: Three bells ring at intervals of 6, 8, and 12 minutes. If they 
+-----------ring together at 12:00 PM, when will they ring together again?
+
+We need LCM of 6, 8, 12
+
+6 = 2 × 3
+8 = 2³
+12 = 2² × 3
+
+LCM = 2³ × 3 = 8 × 3 = 24 minutes
+
+Next time = 12:00 PM + 24 minutes = 12:24 PM
+
+ANSWER: 12:24 PM
+
+
+EXAMPLE 4: Find the smallest number which when divided by 12, 15, and 20 
+-----------leaves a remainder of 5 in each case.
+
+Step 1: Find LCM of 12, 15, 20
+12 = 2² × 3
+15 = 3 × 5
+20 = 2² × 5
+
+LCM = 2² × 3 × 5 = 60
+
+Step 2: Add the remainder
+Number = 60 + 5 = 65
+
+ANSWER: 65
+
+
+EXAMPLE 5: The product of two numbers is 4107. If their HCF is 37, find 
+-----------their LCM.
+
+Using: HCF × LCM = Product of numbers
+
+37 × LCM = 4107
+LCM = 4107 / 37
+LCM = 111
+
+ANSWER: 111
+
+
+================================================================================
+SHORTCUTS & TRICKS
+================================================================================
+
+TRICK 1: Quick HCF for consecutive numbers
+-------------------------------------------
+HCF of consecutive numbers = 1
+
+Example: HCF(15, 16) = 1
+HCF(99, 100) = 1
+
+
+TRICK 2: HCF of numbers in ratio
+---------------------------------
+If numbers are in ratio a:b and their HCF is h:
+Numbers = ah and bh
+
+Example: Two numbers in ratio 3:4, HCF = 5
+Numbers = 3×5 and 4×5 = 15 and 20
+
+
+TRICK 3: LCM using HCF shortcut
+--------------------------------
+For two numbers: LCM = (a × b) / HCF
+
+Faster than prime factorization when HCF is known!
+
+
+TRICK 4: Problems with remainders
+----------------------------------
+Type 1: Same remainder r
+Find LCM and add r
+
+Type 2: Different remainders
+Subtract remainders first, then find HCF
+
+
+TRICK 5: Co-prime numbers
+--------------------------
+If HCF = 1:
+- LCM = Product
+- Numbers are co-prime
+
+Example: 8 and 15
+HCF = 1 → LCM = 8 × 15 = 120
+
+
+TRICK 6: For perfect squares
+-----------------------------
+HCF of perfect squares = (HCF of numbers)²
+LCM of perfect squares = (LCM of numbers)²
+
+Example: 36 and 64
+HCF(6, 8)² = 2² = 4 ✓
+LCM(6, 8)² = 24² = 576 ✓
+
+
+================================================================================
+COMMON MISTAKES TO AVOID
+================================================================================
+
+MISTAKE 1: Using product formula for 3+ numbers
+❌ WRONG: HCF × LCM = a × b × c (for 3 numbers)
+✓ CORRECT: This formula works ONLY for 2 numbers
+
+MISTAKE 2: Confusing minimum and maximum
+❌ WRONG: HCF = maximum powers, LCM = minimum powers
+✓ CORRECT: HCF = MINIMUM powers, LCM = MAXIMUM powers
+
+MISTAKE 3: Forgetting all prime factors
+❌ WRONG: 12=2²×3, 18=2×3², LCM=2²×3²=36
+✓ CORRECT: Must check all primes! (Calculation was correct here)
+
+MISTAKE 4: Remainder problems
+❌ WRONG: If remainder is same, find HCF directly
+✓ CORRECT: Find LCM of divisors, then add remainder
+
+MISTAKE 5: Co-prime confusion
+❌ WRONG: If HCF > 1, numbers might still be co-prime
+✓ CORRECT: Co-prime means HCF = 1 exactly
+
+
+================================================================================
+WORD PROBLEM PATTERNS
+================================================================================
+
+PATTERN 1: When will events occur together?
+--------------------------------------------
+Find LCM of time intervals
+
+Example: Bells ring at 4, 6, 8 minutes
+LCM(4, 6, 8) = 24 minutes
+
+
+PATTERN 2: Largest number that divides with same remainder
+-----------------------------------------------------------
+Subtract remainders, find HCF
+
+Example: Divides 285 leaving 9, and 1249 leaving 7
+HCF(285-9, 1249-7) = HCF(276, 1242)
+
+
+PATTERN 3: Smallest number divisible by all
+--------------------------------------------
+Find LCM
+
+Example: Divisible by 12, 15, 20
+LCM(12, 15, 20) = 60
+
+
+PATTERN 4: Largest number that divides all
+-------------------------------------------
+Find HCF
+
+Example: Divides 24, 36, 48
+HCF(24, 36, 48) = 12
+
+
+PATTERN 5: Number with specific remainder
+------------------------------------------
+LCM + remainder (same remainder)
+HCF of differences (different remainders)
+
+
+PATTERN 6: Two numbers with known HCF/LCM and sum/product
+----------------------------------------------------------
+Use: a + b = sum, a × b = HCF × LCM
+Form quadratic: x² - (sum)x + (product) = 0
+
+
+================================================================================
+PRACTICE ZONE - HCF & LCM
+================================================================================
+
+LEVEL 1: BASIC CALCULATIONS
+----------------------------
+
+QUESTION 1:
+Find HCF and LCM of 24 and 36.
+
+QUESTION 2:
+Find HCF of 12, 18, and 24.
+
+QUESTION 3:
+Find LCM of 15, 25, and 30.
+
+QUESTION 4:
+The HCF of two numbers is 12 and their product is 1728. Find their LCM.
+
+QUESTION 5:
+Find HCF and LCM of 2/3 and 4/5.
+
+
+LEVEL 2: INTERMEDIATE PROBLEMS
+-------------------------------
+
+QUESTION 6:
+Find the greatest number that divides 97, 124, and 173 leaving the same 
+remainder in each case.
+
+QUESTION 7:
+Find the smallest number that when divided by 12, 15, 18, and 27 leaves no 
+remainder.
+
+QUESTION 8:
+Two numbers are in the ratio 3:4. If their HCF is 7, find the numbers.
+
+QUESTION 9:
+The LCM of two numbers is 180 and their HCF is 15. If one number is 45, 
+find the other.
+
+QUESTION 10:
+Three bells toll at intervals of 9, 12, and 15 minutes. If they toll 
+together at 8:00 AM, when will they toll together again?
+
+
+LEVEL 3: ADVANCED PROBLEMS
+---------------------------
+
+QUESTION 11:
+Find the least number which when divided by 6, 7, 8, 9, and 12 leaves a 
+remainder of 1 in each case.
+
+QUESTION 12:
+The HCF of two numbers is 16 and their LCM is 160. If one number is 32, 
+find the other number.
+
+QUESTION 13:
+Find the greatest 4-digit number which is exactly divisible by 12, 18, 
+and 30.
+
+QUESTION 14:
+Six bells commence tolling together and toll at intervals of 2, 4, 6, 8, 
+10, and 12 seconds. How many times will they toll together in 30 minutes?
+
+QUESTION 15:
+The sum of two numbers is 216 and their HCF is 27. How many such pairs are 
+possible?
+
+
+LEVEL 4: TCS NQT PATTERN
+-------------------------
+
+QUESTION 16:
+Find the smallest number which leaves remainders 8 and 12 when divided by 
+28 and 32 respectively.
+
+QUESTION 17:
+The LCM of two numbers is 14 times their HCF. The sum of LCM and HCF is 
+600. If one number is 80, find the other.
+
+QUESTION 18:
+Three measuring tapes of lengths 6m, 8m, and 12m are to be cut into pieces 
+of equal length. What is the minimum number of pieces possible?
+
+QUESTION 19:
+Two numbers differ by 3. The LCM of these numbers is 17 times their HCF. 
+What is the sum of the numbers?
+
+QUESTION 20:
+In a morning assembly, students are arranged in rows. When arranged in 
+rows of 12, 15, or 18 students, 7 students are left. What is the minimum 
+number of students?
+
+
+================================================================================
+SOLUTIONS - PRACTICE ZONE
+================================================================================
+
+SOLUTION 1:
+-----------
+24 = 2³ × 3
+36 = 2² × 3²
+
+HCF = 2² × 3 = 12
+LCM = 2³ × 3² = 72
+
+Verify: 12 × 72 = 864 = 24 × 36 ✓
+
+ANSWER: HCF = 12, LCM = 72
+
+
+SOLUTION 2:
+-----------
+12 = 2² × 3
+18 = 2 × 3²
+24 = 2³ × 3
+
+HCF = 2¹ × 3¹ = 6
+
+ANSWER: HCF = 6
+
+
+SOLUTION 3:
+-----------
+15 = 3 × 5
+25 = 5²
+30 = 2 × 3 × 5
+
+LCM = 2 × 3 × 5² = 150
+
+ANSWER: LCM = 150
+
+
+SOLUTION 4:
+-----------
+Using: HCF × LCM = Product of numbers
+
+12 × LCM = 1728
+LCM = 1728 / 12
+LCM = 144
+
+ANSWER: LCM = 144
+
+
+SOLUTION 5:
+-----------
+HCF of fractions = HCF(numerators) / LCM(denominators)
+HCF(2, 4) / LCM(3, 5) = 2 / 15
+
+LCM of fractions = LCM(numerators) / HCF(denominators)
+LCM(2, 4) / HCF(3, 5) = 4 / 1 = 4
+
+ANSWER: HCF = 2/15, LCM = 4
+
+
+SOLUTION 6:
+-----------
+Same remainder means the number divides the differences:
+124 - 97 = 27
+173 - 124 = 49
+173 - 97 = 76
+
+HCF(27, 49, 76):
+27 = 3³
+49 = 7²
+76 = 2² × 19
+
+HCF = 1 (no common factors)
+
+Wait, let me recalculate:
+Actually need to find what divides differences:
+HCF(27, 49) = 1
+This suggests remainder is unique for each.
+
+Let me try differently:
+Number divides (97-r), (124-r), (173-r) where r is the remainder
+So it divides differences: 27, 49, 76
+
+Actually HCF(27, 49) = 1, but let's check 76:
+27 = 3³ = 27
+49 = 7² = 49  
+76 = 4 × 19
+
+These have no common factor, so HCF = 1
+
+But the question says "same remainder", so:
+The number must divide the differences between pairs:
+124 - 97 = 27
+173 - 124 = 49
+
+HCF(27, 49) = 1
+
+Hmm, this seems odd. Let me verify the question approach:
+If the remainder is same (r):
+97 = qn + r → 97 - r divisible by n
+124 = pn + r → 124 - r divisible by n
+
+So n divides (124-97) = 27 and (173-97) = 76
+
+HCF(27, 76) = 1? No wait:
+27 = 27
+76 = 4 × 19
+HCF = 1
+
+Let me try: HCF(27, 49, 76) more carefully
+27 and 49 share no factors
+So HCF = 1? That can't be right for this type of problem.
+
+Actually, I should find HCF of ALL differences:
+HCF(27, 49, 76)
+
+After checking: The greatest number is 1.
+But typically these problems have meaningful answers.
+
+Let me reconsider: Maybe HCF of (97, 124, 173)?
+Actually if same remainder: need HCF(124-97, 173-124, 173-97)
+= HCF(27, 49, 76)
+= 1
+
+ANSWER: 1 (though unusual for this problem type)
+
+
+SOLUTION 7:
+-----------
+Need LCM of 12, 15, 18, 27
+
+12 = 2² × 3
+15 = 3 × 5
+18 = 2 × 3²
+27 = 3³
+
+LCM = 2² × 3³ × 5 = 4 × 27 × 5 = 540
+
+ANSWER: 540
+
+
+SOLUTION 8:
+-----------
+Ratio = 3:4, HCF = 7
+
+Numbers = 3 × 7 = 21 and 4 × 7 = 28
+
+ANSWER: 21 and 28
+
+
+SOLUTION 9:
+-----------
+Using: HCF × LCM = Product of two numbers
+
+15 × 180 = 45 × other number
+2700 = 45 × other number
+Other number = 2700 / 45 = 60
+
+ANSWER: 60
+
+
+SOLUTION 10:
+------------
+LCM(9, 12, 15):
+
+9 = 3²
+12 = 2² × 3
+15 = 3 × 5
+
+LCM = 2² × 3² × 5 = 180 minutes = 3 hours
+
+Next time = 8:00 AM + 3 hours = 11:00 AM
+
+ANSWER: 11:00 AM
+
+
+SOLUTION 11:
+------------
+LCM(6, 7, 8, 9, 12):
+
+6 = 2 × 3
+7 = 7
+8 = 2³
+9 = 3²
+12 = 2² × 3
+
+LCM = 2³ × 3² × 7 = 8 × 9 × 7 = 504
+
+Number = 504 + 1 = 505
+
+ANSWER: 505
+
+
+SOLUTION 12:
+------------
+HCF × LCM = Product
+16 × 160 = 32 × other
+2560 = 32 × other
+Other = 80
+
+ANSWER: 80
+
+
+SOLUTION 13:
+------------
+LCM(12, 18, 30):
+
+12 = 2² × 3
+18 = 2 × 3²
+30 = 2 × 3 × 5
+
+LCM = 2² × 3² × 5 = 180
+
+Greatest 4-digit multiple of 180:
+9999 ÷ 180 = 55.55...
+So 180 × 55 = 9900
+
+ANSWER: 9900
+
+
+SOLUTION 14:
+------------
+LCM(2, 4, 6, 8, 10, 12):
+
+2 = 2
+4 = 2²
+6 = 2 × 3
+8 = 2³
+10 = 2 × 5
+12 = 2² × 3
+
+LCM = 2³ × 3 × 5 = 120 seconds = 2 minutes
+
+30 minutes = 1800 seconds
+Times tolling together = 1800 / 120 = 15 times
+
+Including initial toll = 15 + 1 = 16 times
+
+ANSWER: 16 times
+
+
+SOLUTION 15:
+------------
+Let numbers be 27a and 27b where a and b are co-prime
+Sum: 27a + 27b = 216
+27(a + b) = 216
+a + b = 8
+
+Co-prime pairs with sum 8:
+(1,7), (3,5), (5,3), (7,1)
+
+But (1,7) and (7,1) give same pair of numbers
+Similarly (3,5) and (5,3)
+
+Unique pairs: 2
+
+Numbers: (27, 189) and (81, 135)
+
+ANSWER: 2 pairs
+
+
+SOLUTION 16:
+------------
+Remainder 8 when divided by 28: Number = 28k + 8 = 28k + 8
+Remainder 12 when divided by 32: Number = 32m + 12 = 32m + 12
+
+Notice: 28k + 8 = 4(7k + 2)
+        32m + 12 = 4(8m + 3)
+
+Rewrite: Number - 8 divisible by 28
+         Number - 12 divisible by 32
+
+This is complex. Let's use:
+Number = 28k + 8 and Number = 32m + 12
+
+28k + 8 = 32m + 12
+28k = 32m + 4
+7k = 8m + 1
+
+Try values: k=9: 63 = 8m + 1, m = 62/8 (no)
+k = 1: 7 = 8m + 1, m = 3/4 (no)
+k = 5: 35 = 8m + 1, 8m = 34 (no)
+k = 13: 91 = 8m + 1, m = 90/8 (no)
+k = 9: already tried
+
+Using LCM approach:
+LCM(28, 32) = 224
+
+But remainders are different (8 and 12).
+The difference: 12 - 8 = 4
+
+Let's solve: N ≡ 8 (mod 28) and N ≡ 12 (mod 32)
+
+By inspection or Chinese Remainder:
+Smallest N = 140
+
+Check: 140 ÷ 28 = 5 R 0 ✗
+
+Let me recalculate systematically:
+N = 28a + 8 = 32b + 12
+28a = 32b + 4
+7a = 8b + 1
+
+For a=9: 63 = 8b + 1, b = 62/8 ✗
+For a=17: 119 = 8b + 1, b = 118/8 ✗
+For a=25: 175 = 8b + 1, b = 174/8 ✗
+For a=33: 231 = 8b + 1, b = 230/8 ✗
+For a=41: 287 = 8b + 1, b = 286/8 ✗
+For a=5: 35 = 8b + 1, b = 34/8 ✗
+For a=13: 91 = 8b + 1, b = 90/8 ✗
+For a=21: 147 = 8b + 1, b = 146/8 ✗  
+For a=29: 203 = 8b + 1, b = 202/8 ✗
+
+Hmm, let me try a=1: 7 = 8b + 1, b = 3/4 ✗
+
+Actually trying direct values:
+N = 8: 8÷28 R8 ✓, 8÷32 R8 ✗
+N = 36: 36÷28 R8 ✓, 36÷32 R4 ✗
+N = 64: 64÷28 R8 ✓, 64÷32 R0 ✗
+N = 92: 92÷28 R8 ✓, 92÷32 R28 ✗
+N = 120: 120÷28 R8 ✓, 120÷32 R24 ✗
+N = 148: 148÷28 R8 ✓, 148÷32 R20 ✗
+N = 176: 176÷28 R8 ✓, 176÷32 R16 ✗
+N = 204: 204÷28 R8 ✓, 204÷32 R12 ✓
+
+ANSWER: 204
+
+
+SOLUTION 17:
+------------
+Let HCF = h, LCM = 14h
+h + 14h = 600
+15h = 600
+h = 40
+
+So HCF = 40, LCM = 560
+
+Using: HCF × LCM = Product
+40 × 560 = 80 × other
+22400 = 80 × other
+Other = 280
+
+ANSWER: 280
+
+
+SOLUTION 18:
+------------
+Equal pieces means we find HCF of 6, 8, 12 (in meters)
+
+HCF(6, 8, 12) = 2 meters
+
+Pieces from each tape:
+6m → 6/2 = 3 pieces
+8m → 8/2 = 4 pieces
+12m → 12/2 = 6 pieces
+
+Total = 3 + 4 + 6 = 13 pieces
+
+ANSWER: 13 pieces
+
+
+SOLUTION 19:
+------------
+Let numbers be n and n+3
+HCF = h
+Numbers = ah and bh where a and b are co-prime
+
+ah - bh = 3
+h(a - b) = 3
+
+LCM = abh = 17h
+ab = 17
+
+Since ab = 17 and 17 is prime:
+a = 17, b = 1 (or vice versa)
+
+h(17 - 1) = 3
+16h = 3
+h = 3/16 (not integer!)
+
+Try: a = 1, b = 17
+h(1 - 17) = 3
+-16h = 3 (negative!)
+
+Hmm, let me reconsider. If numbers differ by 3:
+Larger - Smaller = 3
+
+Let's say a > b, so:
+ah - bh = 3
+h(a - b) = 3
+
+And LCM = abh = 17h
+So ab = 17
+
+Since 17 is prime: (a,b) = (17,1)
+But a and b must be co-prime (which they are)
+
+h(17-1) = 3
+h = 3/16
+
+This gives non-integer, suggesting error in problem or my approach.
+
+Let me try different: maybe HCF is not 1 between a and b?
+
+Actually, for LCM: If HCF=h and numbers are m and n:
+LCM = (m × n)/h
+
+Given: n - m = 3, LCM = 17 × HCF
+
+Let m = hx, n = hy where HCF(x,y) = 1
+LCM = hxy
+
+hxy = 17h
+xy = 17 → (x,y) = (1,17) or (17,1)
+
+hy - hx = 3
+h(y-x) = 3
+h(17-1) = 3 or h(1-17) = 3
+16h = 3 or -16h = 3
+
+Neither gives integer h.
+
+There might be an error in the problem statement.
+
+ANSWER: Problem appears to have inconsistent constraints
+
+
+SOLUTION 20:
+------------
+Rows of 12, 15, or 18 leave 7 students
+
+Number = LCM(12, 15, 18) × k + 7
+
+LCM(12, 15, 18):
+12 = 2² × 3
+15 = 3 × 5
+18 = 2 × 3²
+
+LCM = 2² × 3² × 5 = 180
+
+Minimum students = 180 × 1 + 7 = 187
+
+ANSWER: 187 students
+
+
+================================================================================
+QUICK RECAP - HCF & LCM
+================================================================================
+
+KEY FORMULAS:
+-------------
+✓ HCF × LCM = a × b (for 2 numbers ONLY)
+✓ HCF: MINIMUM powers of COMMON primes
+✓ LCM: MAXIMUM powers of ALL primes
+✓ HCF of fractions = HCF(num)/LCM(den)
+✓ LCM of fractions = LCM(num)/HCF(den)
+
+WORD PROBLEM PATTERNS:
+----------------------
+✓ When together again? → LCM
+✓ Largest dividing all? → HCF
+✓ Smallest divisible by all? → LCM
+✓ Same remainder? → LCM + remainder
+✓ Different remainders? → HCF of differences
+
+REMEMBER:
+---------
+✓ HCF ≤ smallest number
+✓ LCM ≥ largest number
+✓ HCF divides LCM always
+✓ Co-prime → HCF=1, LCM=product
+✓ Consecutive numbers → HCF=1
+
+QUICK METHODS:
+--------------
+✓ Use prime factorization for accuracy
+✓ Use product formula when one is known
+✓ For remainders: observe the pattern
+✓ For ratios: multiply by HCF
+
+================================================================================
+END OF TOPIC 4: HCF & LCM
+================================================================================
+
+
+================================================================================
+TOPIC 5: REMAINDERS & UNIT DIGIT
+================================================================================
+
+INTRODUCTION:
+-------------
+Remainders and Unit Digit problems are EXTREMELY common in TCS NQT and test 
+your understanding of cyclicity, patterns, and modular arithmetic. These 
+questions often look complex but become very easy once you know the patterns!
+
+Weightage: VERY HIGH (15-20% of questions directly or indirectly)
+Difficulty: Medium (Easy if you know cyclicity patterns!)
+
+Why Master This?
+- Quick pattern-based solutions (10-15 seconds per question!)
+- Direct questions on last digit, remainder
+- Required for: Large number divisions, power calculations
+- Cyclicity is a HUGE time-saver
+- Combines concepts from divisibility and number system
+
+This topic covers:
+- Remainder theorem and properties
+- Cyclicity of digits (unit digit patterns)
+- Euler's theorem basics
+- Fermat's little theorem (simplified)
+- Last digit of powers
+- Remainder with large numbers
+
+
+================================================================================
+BASIC CONCEPTS - REMAINDERS
+================================================================================
+
+REMAINDER:
+----------
+When a number 'a' is divided by 'b', we get:
+a = b × q + r
+
+where:
+- a = dividend
+- b = divisor
+- q = quotient
+- r = remainder (always: 0 ≤ r < b)
+
+Example: 17 ÷ 5
+17 = 5 × 3 + 2
+Remainder = 2
+
+
+MODULAR ARITHMETIC NOTATION:
+-----------------------------
+"a mod b = r" means remainder when a is divided by b is r
+Also written as: a ≡ r (mod b)
+
+Example: 17 mod 5 = 2
+Or: 17 ≡ 2 (mod 5)
+
+
+================================================================================
+KEY REMAINDER PROPERTIES
+================================================================================
+
+PROPERTY 1: Addition
+--------------------
+(a + b) mod n = [(a mod n) + (b mod n)] mod n
+
+Example: (17 + 23) mod 5
+= [(17 mod 5) + (23 mod 5)] mod 5
+= [2 + 3] mod 5
+= 5 mod 5 = 0 ✓
+
+Verification: 40 mod 5 = 0 ✓
+
+
+PROPERTY 2: Subtraction
+-----------------------
+(a - b) mod n = [(a mod n) - (b mod n)] mod n
+
+Example: (23 - 17) mod 5
+= [(23 mod 5) - (17 mod 5)] mod 5
+= [3 - 2] mod 5 = 1 ✓
+
+Verification: 6 mod 5 = 1 ✓
+
+
+PROPERTY 3: Multiplication
+---------------------------
+(a × b) mod n = [(a mod n) × (b mod n)] mod n
+
+Example: (17 × 23) mod 5
+= [(17 mod 5) × (23 mod 5)] mod 5
+= [2 × 3] mod 5
+= 6 mod 5 = 1 ✓
+
+Verification: 391 mod 5 = 1 ✓
+
+
+PROPERTY 4: Power (Most Important!)
+------------------------------------
+a^n mod m = [(a mod m)^n] mod m
+
+Example: 7³ mod 5
+= [(7 mod 5)³] mod 5
+= [2³] mod 5
+= 8 mod 5 = 3 ✓
+
+Verification: 343 mod 5 = 3 ✓
+
+
+PROPERTY 5: Division (Special Case)
+------------------------------------
+(a ÷ b) mod n: NOT directly applicable
+Convert to multiplication by modular inverse
+
+
+PROPERTY 6: Negative Remainders
+--------------------------------
+If remainder is negative, add the divisor
+
+Example: -17 mod 5
+= -17 + 20 (add multiples of 5)
+= 3
+
+Or: -17 = 5 × (-4) + 3
+
+
+================================================================================
+CYCLICITY OF DIGITS (UNIT DIGIT PATTERNS)
+================================================================================
+
+DEFINITION:
+-----------
+Cyclicity is the pattern in which unit digits repeat for successive powers 
+of a number.
+
+Unit digit of n^k depends ONLY on:
+1. Unit digit of n
+2. The value of k
+
+
+CYCLICITY TABLE (MUST MEMORIZE!):
+----------------------------------
+
+Digit | Powers | Unit Digits | Cycle Length
+------|--------|-------------|-------------
+  0   | Any    | 0           | 1
+  1   | Any    | 1           | 1
+  2   | 1,2,3,4,5... | 2,4,8,6,2,4,8,6... | 4
+  3   | 1,2,3,4,5... | 3,9,7,1,3,9,7,1... | 4
+  4   | 1,2,3,4,5... | 4,6,4,6,4,6... | 2
+  5   | Any    | 5           | 1
+  6   | Any    | 6           | 1
+  7   | 1,2,3,4,5... | 7,9,3,1,7,9,3,1... | 4
+  8   | 1,2,3,4,5... | 8,4,2,6,8,4,2,6... | 4
+  9   | 1,2,3,4,5... | 9,1,9,1,9,1... | 2
+
+
+DETAILED PATTERNS:
+------------------
+
+For digit 2: Cycle = 4 (2, 4, 8, 6)
+2¹ = 2
+2² = 4
+2³ = 8
+2⁴ = 16 → 6
+2⁵ = 32 → 2 (cycle repeats)
+
+For digit 3: Cycle = 4 (3, 9, 7, 1)
+3¹ = 3
+3² = 9
+3³ = 27 → 7
+3⁴ = 81 → 1
+3⁵ = 243 → 3 (cycle repeats)
+
+For digit 4: Cycle = 2 (4, 6)
+4¹ = 4
+4² = 16 → 6
+4³ = 64 → 4 (cycle repeats)
+
+For digit 7: Cycle = 4 (7, 9, 3, 1)
+7¹ = 7
+7² = 49 → 9
+7³ = 343 → 3
+7⁴ = 2401 → 1
+7⁵ = 16807 → 7 (cycle repeats)
+
+For digit 8: Cycle = 4 (8, 4, 2, 6)
+8¹ = 8
+8² = 64 → 4
+8³ = 512 → 2
+8⁴ = 4096 → 6
+8⁵ = 32768 → 8 (cycle repeats)
+
+For digit 9: Cycle = 2 (9, 1)
+9¹ = 9
+9² = 81 → 1
+9³ = 729 → 9 (cycle repeats)
+
+
+HOW TO USE CYCLICITY:
+---------------------
+
+Step 1: Identify unit digit of base number
+Step 2: Find cycle length for that digit
+Step 3: Divide power by cycle length
+Step 4: Use remainder to find position in cycle
+Step 5: If remainder = 0, use last position in cycle
+
+Example: Find unit digit of 7²³
+
+Unit digit of base = 7
+Cycle of 7 = 4 (pattern: 7,9,3,1)
+23 ÷ 4 = 5 remainder 3
+Position 3 in cycle = 3
+
+Unit digit of 7²³ = 3
+
+
+================================================================================
+IMPORTANT REMAINDER THEOREMS
+================================================================================
+
+WILSON'S THEOREM (For checking primes):
+----------------------------------------
+If p is prime:
+(p-1)! ≡ -1 (mod p)
+Or: (p-1)! ≡ p-1 (mod p)
+
+Example: Is 5 prime?
+4! = 24 ≡ -1 (mod 5) or 4 (mod 5) ✓
+So 5 is prime
+
+
+CHINESE REMAINDER THEOREM (Simplified):
+----------------------------------------
+If you know remainders with different divisors, you can find the number
+
+Example: Find number that gives:
+- Remainder 2 when divided by 3
+- Remainder 3 when divided by 5
+- Remainder 2 when divided by 7
+
+Answer: 23 (can be found systematically)
+
+
+FERMAT'S LITTLE THEOREM:
+------------------------
+If p is prime and a is not divisible by p:
+a^(p-1) ≡ 1 (mod p)
+
+Example: 2⁶ mod 7
+Since 7 is prime: 2⁶ ≡ 1 (mod 7)
+Verification: 64 mod 7 = 1 ✓
+
+Application: For large powers
+2⁴⁰ mod 7 = 2^(6×6+4) = (2⁶)⁶ × 2⁴ ≡ 1⁶ × 16 ≡ 2 (mod 7)
+
+
+EULER'S THEOREM (Generalized):
+-------------------------------
+If gcd(a,n) = 1:
+a^φ(n) ≡ 1 (mod n)
+
+where φ(n) = Euler's totient function
+
+For prime p: φ(p) = p-1
+For p^k: φ(p^k) = p^k - p^(k-1)
+
+
+================================================================================
+SPECIAL REMAINDER PATTERNS
+================================================================================
+
+PATTERN 1: Powers of 2 with divisor 3
+--------------------------------------
+2¹ mod 3 = 2
+2² mod 3 = 1
+2³ mod 3 = 2
+2⁴ mod 3 = 1
+...
+Cycle = 2 (pattern: 2, 1)
+
+
+PATTERN 2: Powers of 3 with divisor 7
+--------------------------------------
+3¹ mod 7 = 3
+3² mod 7 = 2
+3³ mod 7 = 6
+3⁴ mod 7 = 4
+3⁵ mod 7 = 5
+3⁶ mod 7 = 1
+3⁷ mod 7 = 3
+Cycle = 6
+
+
+PATTERN 3: Any number with divisor 9
+-------------------------------------
+Remainder = (sum of digits) mod 9
+
+Example: 12345 mod 9
+= (1+2+3+4+5) mod 9
+= 15 mod 9 = 6
+
+
+PATTERN 4: Any number with divisor 11
+--------------------------------------
+Remainder = (alternating sum of digits) mod 11
+
+Example: 12345 mod 11
+= (5-4+3-2+1) mod 11
+= 3 mod 11 = 3
+
+
+PATTERN 5: Factorial remainders
+--------------------------------
+For n! mod p where p is prime:
+If n ≥ p, then n! ≡ 0 (mod p)
+
+Example: 10! mod 7 = 0 (since 10 ≥ 7)
+
+
+================================================================================
+STEP-BY-STEP EXAMPLE PROBLEMS
+================================================================================
+
+EXAMPLE 1: Find the unit digit of 3⁴⁵.
+-----------
+
+Step 1: Unit digit of base = 3
+Step 2: Cycle of 3 = 4 (pattern: 3,9,7,1)
+Step 3: Divide power by cycle
+   45 ÷ 4 = 11 remainder 1
+Step 4: Remainder = 1, so position 1 in cycle
+   Position 1 = 3
+
+ANSWER: Unit digit = 3
+
+
+EXAMPLE 2: Find the unit digit of 7¹²³.
+-----------
+
+Step 1: Unit digit of base = 7
+Step 2: Cycle of 7 = 4 (pattern: 7,9,3,1)
+Step 3: 123 ÷ 4 = 30 remainder 3
+Step 4: Position 3 in cycle = 3
+
+ANSWER: Unit digit = 3
+
+
+EXAMPLE 3: Find the unit digit of 23⁴⁵⁶.
+-----------
+
+Step 1: Unit digit of base = 3
+Step 2: Cycle of 3 = 4 (pattern: 3,9,7,1)
+Step 3: 456 ÷ 4 = 114 remainder 0
+Step 4: Remainder = 0, use last position (4th) = 1
+
+ANSWER: Unit digit = 1
+
+
+EXAMPLE 4: Find remainder when 2⁵⁰ is divided by 7.
+-----------
+
+Method 1: Using Fermat's Little Theorem
+Since 7 is prime: 2⁶ ≡ 1 (mod 7)
+2⁵⁰ = 2^(6×8+2) = (2⁶)⁸ × 2²
+≡ 1⁸ × 4 (mod 7)
+≡ 4 (mod 7)
+
+Method 2: Finding pattern
+2¹ mod 7 = 2
+2² mod 7 = 4
+2³ mod 7 = 1
+2⁴ mod 7 = 2
+2⁵ mod 7 = 4
+2⁶ mod 7 = 1
+Cycle = 3 (pattern: 2,4,1)
+
+50 ÷ 3 = 16 remainder 2
+Position 2 = 4
+
+ANSWER: Remainder = 4
+
+
+EXAMPLE 5: Find the unit digit of 6⁴⁵ + 8³⁴ + 3²¹.
+-----------
+
+Step 1: Unit digit of 6⁴⁵
+   Cycle of 6 = 1 (always 6)
+   Unit digit = 6
+
+Step 2: Unit digit of 8³⁴
+   Cycle of 8 = 4 (pattern: 8,4,2,6)
+   34 ÷ 4 = 8 remainder 2
+   Position 2 = 4
+
+Step 3: Unit digit of 3²¹
+   Cycle of 3 = 4 (pattern: 3,9,7,1)
+   21 ÷ 4 = 5 remainder 1
+   Position 1 = 3
+
+Step 4: Add unit digits
+   6 + 4 + 3 = 13
+   Unit digit = 3
+
+ANSWER: Unit digit = 3
+
+
+================================================================================
+SHORTCUTS & TRICKS
+================================================================================
+
+TRICK 1: Quick Cyclicity Memory
+--------------------------------
+Cycle 1: 0, 1, 5, 6 (always same digit)
+Cycle 2: 4, 9 (alternating)
+Cycle 4: 2, 3, 7, 8 (longer pattern)
+
+
+TRICK 2: Last digit of product
+-------------------------------
+Unit digit of (a × b) = Unit digit of [(unit of a) × (unit of b)]
+
+Example: Unit digit of 23 × 47
+= Unit digit of (3 × 7)
+= Unit digit of 21 = 1
+
+
+TRICK 3: Remainder with 9 (Super Fast!)
+----------------------------------------
+Just add all digits and find remainder
+
+Example: 12345678 mod 9
+= (1+2+3+4+5+6+7+8) mod 9
+= 36 mod 9 = 0
+
+
+TRICK 4: Remainder with 11 (Alternating sum)
+---------------------------------------------
+Alternating sum from right: +, -, +, -, ...
+
+Example: 54321 mod 11
+= (1-2+3-4+5) mod 11
+= 3 mod 11 = 3
+
+
+TRICK 5: Power of 2 patterns
+-----------------------------
+2¹⁰ = 1024 (unit digit pattern after 10 powers)
+2²⁰ ends in 6
+2³⁰ ends in 4
+2⁴⁰ ends in 6
+
+
+TRICK 6: Negative powers (unit digit)
+--------------------------------------
+Last digit of fractions = 0 (not applicable for integers)
+For modular: use modular inverse
+
+
+================================================================================
+COMMON MISTAKES TO AVOID
+================================================================================
+
+MISTAKE 1: Confusing cycle position
+❌ WRONG: Power = 12, Cycle = 4 → Position 12
+✓ CORRECT: 12 ÷ 4 = 3 R 0 → Use position 4 (last in cycle)
+
+MISTAKE 2: Adding remainders incorrectly
+❌ WRONG: (15 mod 7) + (20 mod 7) = 35 mod 7 = 0
+✓ CORRECT: 1 + 6 = 7 mod 7 = 0 ✓ (but calculate carefully!)
+
+MISTAKE 3: Using cycle of full number
+❌ WRONG: Finding cycle of 23 (should use 3)
+✓ CORRECT: Use UNIT DIGIT of base (3) for cyclicity
+
+MISTAKE 4: Remainder with 0
+❌ WRONG: Any number mod 0 = undefined
+✓ CORRECT: Division by 0 is undefined
+
+MISTAKE 5: Negative remainders
+❌ WRONG: -5 mod 3 = -2
+✓ CORRECT: -5 mod 3 = 1 (add divisor to make positive)
+
+
+================================================================================
+ADVANCED PATTERNS
+================================================================================
+
+PATTERN 1: Last two digits of powers
+-------------------------------------
+Find pattern by checking powers:
+2¹⁰ = 1024 → last 2 digits = 24
+2²⁰ → last 2 = 76
+Use pattern or mod 100
+
+
+PATTERN 2: Sum of unit digits of factorials
+--------------------------------------------
+1! = 1 (unit = 1)
+2! = 2 (unit = 2)
+3! = 6 (unit = 6)
+4! = 24 (unit = 4)
+5! = 120 (unit = 0)
+n! for n≥5 → unit = 0
+
+
+PATTERN 3: Remainder of large factorials
+-----------------------------------------
+For n! mod p where p is prime:
+If n ≥ p: remainder = 0
+If n < p: calculate using Wilson's theorem
+
+
+PATTERN 4: Consecutive products
+--------------------------------
+Product of n consecutive numbers is divisible by n!
+
+Example: 5×6×7×8 is divisible by 4! = 24
+
+
+PATTERN 5: Power tower (a^b^c)
+-------------------------------
+For unit digit: Reduce from top
+3^(2³) = 3⁸
+
+Find: 8 ÷ 4 = 2 R 0
+Use position 4 in cycle of 3 = 1
+
+
+================================================================================
+PRACTICE ZONE - REMAINDERS & UNIT DIGIT
+================================================================================
+
+LEVEL 1: BASIC UNIT DIGIT
+--------------------------
+
+QUESTION 1:
+Find the unit digit of 7¹⁵.
+
+QUESTION 2:
+Find the unit digit of 4²⁰.
+
+QUESTION 3:
+Find the unit digit of 9³³.
+
+QUESTION 4:
+Find the unit digit of 3⁴ + 5⁶ + 7⁸.
+
+QUESTION 5:
+What is the unit digit of 2¹⁰⁰?
+
+
+LEVEL 2: REMAINDER BASICS
+--------------------------
+
+QUESTION 6:
+Find the remainder when 123 is divided by 7.
+
+QUESTION 7:
+Find the remainder when 2⁵ is divided by 3.
+
+QUESTION 8:
+What is the remainder when 1234 is divided by 9?
+
+QUESTION 9:
+Find the remainder when 54321 is divided by 11.
+
+QUESTION 10:
+What is the remainder when 17 × 23 is divided by 5?
+
+
+LEVEL 3: ADVANCED UNIT DIGIT
+-----------------------------
+
+QUESTION 11:
+Find the unit digit of 23⁴⁵ × 34⁵⁶ × 45⁶⁷.
+
+QUESTION 12:
+Find the unit digit of (7¹⁷)²³.
+
+QUESTION 13:
+What is the unit digit of 3^(3^3)?
+
+QUESTION 14:
+Find the last digit of 7! + 8! + 9! + 10!.
+
+QUESTION 15:
+What is the unit digit of 1! + 2! + 3! + ... + 100!?
+
+
+LEVEL 4: ADVANCED REMAINDERS
+-----------------------------
+
+QUESTION 16:
+Find the remainder when 3⁴⁰ is divided by 7.
+
+QUESTION 17:
+What is the remainder when 2⁵⁰ + 3⁵⁰ is divided by 5?
+
+QUESTION 18:
+Find the remainder when 7¹⁰³ is divided by 25.
+
+QUESTION 19:
+What is the remainder when 123456789 is divided by 11?
+
+QUESTION 20:
+Find the remainder when (15!)² is divided by 17.
+
+
+================================================================================
+SOLUTIONS - PRACTICE ZONE
+================================================================================
+
+SOLUTION 1:
+-----------
+Unit digit of base = 7
+Cycle of 7 = 4 (pattern: 7,9,3,1)
+15 ÷ 4 = 3 remainder 3
+Position 3 = 3
+
+ANSWER: 3
+
+
+SOLUTION 2:
+-----------
+Unit digit of base = 4
+Cycle of 4 = 2 (pattern: 4,6)
+20 ÷ 2 = 10 remainder 0
+Remainder 0 → use position 2 = 6
+
+ANSWER: 6
+
+
+SOLUTION 3:
+-----------
+Unit digit of base = 9
+Cycle of 9 = 2 (pattern: 9,1)
+33 ÷ 2 = 16 remainder 1
+Position 1 = 9
+
+ANSWER: 9
+
+
+SOLUTION 4:
+-----------
+3⁴: Cycle of 3 = 4, 4÷4=1 R0 → position 4 = 1
+5⁶: Cycle of 5 = 1 → always 5
+7⁸: Cycle of 7 = 4, 8÷4=2 R0 → position 4 = 1
+
+Sum = 1 + 5 + 1 = 7
+
+ANSWER: 7
+
+
+SOLUTION 5:
+-----------
+Unit digit of base = 2
+Cycle of 2 = 4 (pattern: 2,4,8,6)
+100 ÷ 4 = 25 remainder 0
+Remainder 0 → position 4 = 6
+
+ANSWER: 6
+
+
+SOLUTION 6:
+-----------
+123 ÷ 7 = 17 remainder ?
+7 × 17 = 119
+123 - 119 = 4
+
+ANSWER: 4
+
+
+SOLUTION 7:
+-----------
+2⁵ = 32
+32 ÷ 3 = 10 remainder 2
+
+Or using pattern:
+2¹ mod 3 = 2
+2² mod 3 = 1
+2³ mod 3 = 2
+Cycle = 2
+5 ÷ 2 = 2 R 1 → position 1 = 2
+
+ANSWER: 2
+
+
+SOLUTION 8:
+-----------
+Remainder with 9 = sum of digits mod 9
+1+2+3+4 = 10
+10 mod 9 = 1
+
+ANSWER: 1
+
+
+SOLUTION 9:
+-----------
+Alternating sum from right:
+1 - 2 + 3 - 4 + 5 = 3
+3 mod 11 = 3
+
+ANSWER: 3
+
+
+SOLUTION 10:
+------------
+17 × 23 = 391
+391 ÷ 5 = 78 remainder 1
+
+Or using property:
+(17 mod 5) × (23 mod 5) mod 5
+= (2 × 3) mod 5
+= 6 mod 5 = 1
+
+ANSWER: 1
+
+
+SOLUTION 11:
+------------
+23⁴⁵: unit = 3, cycle 4, 45÷4=11 R1 → position 1 = 3
+34⁵⁶: unit = 4, cycle 2, 56÷2=28 R0 → position 2 = 6
+45⁶⁷: unit = 5, cycle 1 → always 5
+
+Product: 3 × 6 × 5 = 90
+Unit digit = 0
+
+ANSWER: 0
+
+
+SOLUTION 12:
+------------
+7¹⁷: unit = 7, cycle 4, 17÷4=4 R1 → position 1 = 7
+
+Now find unit of 7²³:
+Cycle 4, 23÷4=5 R3 → position 3 = 3
+
+ANSWER: 3
+
+
+SOLUTION 13:
+------------
+3³ = 27
+3²⁷: unit = 3, cycle 4
+27 ÷ 4 = 6 R 3
+Position 3 = 7
+
+ANSWER: 7
+
+
+SOLUTION 14:
+------------
+7! = 5040 → unit = 0
+8! = 40320 → unit = 0
+9! = 362880 → unit = 0
+10! → unit = 0
+
+All factorials ≥5! have unit digit 0
+
+Sum = 0 + 0 + 0 + 0 = 0
+
+ANSWER: 0
+
+
+SOLUTION 15:
+------------
+1! = 1
+2! = 2
+3! = 6
+4! = 24 → unit = 4
+5! onwards → unit = 0
+
+Sum of units = 1 + 2 + 6 + 4 + 0 + 0 + ... = 13
+Unit digit = 3
+
+ANSWER: 3
+
+
+SOLUTION 16:
+------------
+Using Fermat's Little Theorem:
+Since 7 is prime: 3⁶ ≡ 1 (mod 7)
+
+3⁴⁰ = 3^(6×6+4) = (3⁶)⁶ × 3⁴
+≡ 1⁶ × 81 (mod 7)
+≡ 81 mod 7
+= 81 - 77 = 4
+
+ANSWER: 4
+
+
+SOLUTION 17:
+------------
+2⁵⁰ mod 5:
+2¹ mod 5 = 2
+2² mod 5 = 4
+2³ mod 5 = 3
+2⁴ mod 5 = 1
+Cycle = 4
+50÷4 = 12 R2 → 2² mod 5 = 4
+
+3⁵⁰ mod 5:
+3¹ mod 5 = 3
+3² mod 5 = 4
+3³ mod 5 = 2
+3⁴ mod 5 = 1
+Cycle = 4
+50÷4 = 12 R2 → 3² mod 5 = 4
+
+Sum: 4 + 4 = 8 mod 5 = 3
+
+ANSWER: 3
+
+
+SOLUTION 18:
+------------
+Finding pattern of 7^n mod 25:
+7¹ = 7
+7² = 49 mod 25 = 24 ≡ -1
+7³ = 7 × 24 = 168 mod 25 = 18
+7⁴ = 7 × 18 = 126 mod 25 = 1
+
+Cycle = 4
+
+103 ÷ 4 = 25 R 3
+7³ mod 25 = 18
+
+ANSWER: 18
+
+
+SOLUTION 19:
+------------
+Alternating sum:
+9-8+7-6+5-4+3-2+1 = 5
+5 mod 11 = 5
+
+ANSWER: 5
+
+
+SOLUTION 20:
+------------
+Using Wilson's Theorem:
+For prime p: (p-1)! ≡ -1 (mod p)
+
+16! ≡ -1 (mod 17)
+(16!)² ≡ 1 (mod 17)
+
+But 15! = 16!/16
+So we need (15!)² mod 17
+
+(15!)² = (16!/16)² = (16!)²/256
+
+Since (16!)² ≡ 1 (mod 17)
+Need to find 1/256 mod 17
+
+256 mod 17 = 256 - 15×17 = 256 - 255 = 1
+
+So (15!)² ≡ 1/1 ≡ 1 (mod 17)
+
+ANSWER: 1
+
+
+================================================================================
+QUICK RECAP - REMAINDERS & UNIT DIGIT
+================================================================================
+
+CYCLICITY TABLE (MEMORIZE!):
+-----------------------------
+Digit | Cycle | Pattern
+------|-------|------------------
+ 0,1  |   1   | Always same
+ 5,6  |   1   | Always same
+ 4,9  |   2   | Alternates
+2,3,7,8|  4   | 4-number pattern
+
+REMAINDER SHORTCUTS:
+--------------------
+✓ With 9: Sum of digits
+✓ With 11: Alternating sum
+✓ With 3: Sum of digits
+✓ With 4: Last 2 digits
+✓ With 8: Last 3 digits
+
+KEY FORMULAS:
+-------------
+✓ (a+b) mod n = [(a mod n)+(b mod n)] mod n
+✓ (a×b) mod n = [(a mod n)×(b mod n)] mod n
+✓ a^n mod m = [(a mod m)^n] mod m
+✓ Fermat: a^(p-1) ≡ 1 (mod p) for prime p
+
+REMEMBER:
+---------
+✓ Use UNIT DIGIT for cyclicity, not full number
+✓ Remainder 0 in cycle → use LAST position
+✓ For n≥5: n! has unit digit 0
+✓ Negative remainder → add divisor
+
+================================================================================
+END OF TOPIC 5: REMAINDERS & UNIT DIGIT
+================================================================================
+
+
+================================================================================
+TOPIC 6: CYCLICITY OF NUMBERS (DEEP DIVE)
+================================================================================
+
+INTRODUCTION:
+-------------
+Cyclicity is a GAME-CHANGER for TCS NQT! While we covered basic cyclicity in 
+Topic 5, this topic goes DEEPER into advanced patterns, power towers, complex 
+calculations, and special cases that frequently appear in competitive exams.
+
+Weightage: HIGH (10-15% direct questions + used in other topics)
+Difficulty: Medium (becomes EASY with practice!)
+
+Why This Topic is Crucial?
+- Solves questions in 5-10 seconds (vs 1-2 minutes manual calculation!)
+- Essential for: Power calculations, last digits, remainders
+- Appears in: Data Sufficiency, Quantitative Aptitude
+- Combines with: Number systems, remainders, simplification
+- High accuracy once patterns are memorized
+
+This topic covers:
+- Advanced cyclicity patterns for all digits
+- Last 2 digits and last 3 digits of powers
+- Power towers (a^b^c)
+- Cyclicity in multiplication and division
+- Special cases and exceptions
+- Complex number patterns
+
+
+================================================================================
+COMPLETE CYCLICITY REFERENCE
+================================================================================
+
+DIGIT 0:
+--------
+Pattern: 0
+Cycle Length: 1
+
+0¹ = 0
+0² = 0
+0³ = 0
+... (always 0)
+
+Rule: ANY power of 0 = 0
+
+
+DIGIT 1:
+--------
+Pattern: 1
+Cycle Length: 1
+
+1¹ = 1
+1² = 1
+1³ = 1
+... (always 1)
+
+Rule: ANY power of 1 = 1
+
+
+DIGIT 2:
+--------
+Pattern: 2, 4, 8, 6
+Cycle Length: 4
+
+2¹ = 2
+2² = 4
+2³ = 8
+2⁴ = 16 → 6
+2⁵ = 32 → 2 (repeats)
+
+Position Formula: 
+- Power mod 4 = 1 → unit digit 2
+- Power mod 4 = 2 → unit digit 4
+- Power mod 4 = 3 → unit digit 8
+- Power mod 4 = 0 → unit digit 6
+
+
+DIGIT 3:
+--------
+Pattern: 3, 9, 7, 1
+Cycle Length: 4
+
+3¹ = 3
+3² = 9
+3³ = 27 → 7
+3⁴ = 81 → 1
+3⁵ = 243 → 3 (repeats)
+
+Position Formula:
+- Power mod 4 = 1 → unit digit 3
+- Power mod 4 = 2 → unit digit 9
+- Power mod 4 = 3 → unit digit 7
+- Power mod 4 = 0 → unit digit 1
+
+
+DIGIT 4:
+--------
+Pattern: 4, 6
+Cycle Length: 2
+
+4¹ = 4
+4² = 16 → 6
+4³ = 64 → 4 (repeats)
+
+Position Formula:
+- Odd power → unit digit 4
+- Even power → unit digit 6
+
+
+DIGIT 5:
+--------
+Pattern: 5
+Cycle Length: 1
+
+5¹ = 5
+5² = 25 → 5
+5³ = 125 → 5
+... (always 5)
+
+Rule: ANY power of 5 = 5
+
+
+DIGIT 6:
+--------
+Pattern: 6
+Cycle Length: 1
+
+6¹ = 6
+6² = 36 → 6
+6³ = 216 → 6
+... (always 6)
+
+Rule: ANY power of 6 = 6
+
+
+DIGIT 7:
+--------
+Pattern: 7, 9, 3, 1
+Cycle Length: 4
+
+7¹ = 7
+7² = 49 → 9
+7³ = 343 → 3
+7⁴ = 2401 → 1
+7⁵ = 16807 → 7 (repeats)
+
+Position Formula:
+- Power mod 4 = 1 → unit digit 7
+- Power mod 4 = 2 → unit digit 9
+- Power mod 4 = 3 → unit digit 3
+- Power mod 4 = 0 → unit digit 1
+
+
+DIGIT 8:
+--------
+Pattern: 8, 4, 2, 6
+Cycle Length: 4
+
+8¹ = 8
+8² = 64 → 4
+8³ = 512 → 2
+8⁴ = 4096 → 6
+8⁵ = 32768 → 8 (repeats)
+
+Position Formula:
+- Power mod 4 = 1 → unit digit 8
+- Power mod 4 = 2 → unit digit 4
+- Power mod 4 = 3 → unit digit 2
+- Power mod 4 = 0 → unit digit 6
+
+
+DIGIT 9:
+--------
+Pattern: 9, 1
+Cycle Length: 2
+
+9¹ = 9
+9² = 81 → 1
+9³ = 729 → 9 (repeats)
+
+Position Formula:
+- Odd power → unit digit 9
+- Even power → unit digit 1
+
+
+================================================================================
+ADVANCED CYCLICITY - LAST 2 DIGITS
+================================================================================
+
+CONCEPT:
+--------
+To find last 2 digits = Find remainder when divided by 100
+
+Method: Use cyclicity but track last 2 digits instead of just last digit
+
+IMPORTANT PATTERNS:
+-------------------
+
+Powers of 2 (Last 2 digits):
+2¹ = 02
+2² = 04
+2³ = 08
+2⁴ = 16
+2⁵ = 32
+2⁶ = 64
+2⁷ = 128 → 28
+2⁸ = 256 → 56
+2⁹ = 512 → 12
+2¹⁰ = 1024 → 24
+2¹¹ = 2048 → 48
+2¹² = 4096 → 96
+2¹³ = 8192 → 92
+2¹⁴ = 16384 → 84
+2¹⁵ = 32768 → 68
+2¹⁶ = 65536 → 36
+2¹⁷ = 131072 → 72
+2¹⁸ = 262144 → 44
+2¹⁹ = 524288 → 88
+2²⁰ = 1048576 → 76
+
+Cycle for last 2 digits of 2^n = 20
+
+
+Powers of 3 (Last 2 digits):
+3¹ = 03
+3² = 09
+3³ = 27
+3⁴ = 81
+3⁵ = 243 → 43
+3⁶ = 729 → 29
+3⁷ = 2187 → 87
+3⁸ = 6561 → 61
+3⁹ = 19683 → 83
+3¹⁰ = 59049 → 49
+3¹¹ = 177147 → 47
+3¹² = 531441 → 41
+3¹³ = 1594323 → 23
+3¹⁴ = 4782969 → 69
+3¹⁵ = 14348907 → 07
+3¹⁶ = 43046721 → 21
+3¹⁷ = 129140163 → 63
+3¹⁸ = 387420489 → 89
+3¹⁹ = 1162261467 → 67
+3²⁰ = 3486784401 → 01
+
+Cycle for last 2 digits of 3^n = 20
+
+
+SHORTCUT FOR LAST 2 DIGITS:
+----------------------------
+For a^n mod 100:
+
+Step 1: If a ends in 0, 00, 000... → Last 2 digits = 00
+Step 2: If a ends in 5 and n≥2 → Last 2 digits = 25
+Step 3: If a ends in 1 → Last 2 digits = 01
+Step 4: If a ends in 6 → Last 2 digits depend on power
+Step 5: For others, use Euler's theorem or find pattern
+
+
+EULER'S THEOREM APPLICATION:
+-----------------------------
+φ(100) = 100 × (1-1/2) × (1-1/5) = 100 × 1/2 × 4/5 = 40
+
+For gcd(a,100) = 1:
+a⁴⁰ ≡ 1 (mod 100)
+
+Example: 3⁴⁵ mod 100
+3⁴⁵ = 3⁴⁰ × 3⁵
+≡ 1 × 243 (mod 100)
+≡ 43 (mod 100)
+
+Last 2 digits = 43
+
+
+================================================================================
+POWER TOWERS (a^b^c)
+================================================================================
+
+DEFINITION:
+-----------
+Power tower: a^(b^c)
+
+Read from TOP to BOTTOM (right to left):
+2^3^4 = 2^(3^4) = 2^81 (NOT (2³)⁴)
+
+
+STRATEGY FOR UNIT DIGIT:
+-------------------------
+Step 1: Find b^c mod (cycle of a)
+Step 2: Use that remainder as power
+Step 3: Find unit digit
+
+Example: Find unit digit of 3^(2^5)
+
+Step 1: Cycle of 3 = 4
+Step 2: Find 2⁵ mod 4 = 32 mod 4 = 0
+Step 3: Remainder 0 → use position 4
+        Position 4 of cycle 3 = 1
+
+Answer: Unit digit = 1
+
+
+DETAILED EXAMPLES:
+------------------
+
+EXAMPLE 1: Find unit digit of 7^(6^5)
+
+Step 1: Cycle of 7 = 4
+Step 2: Find 6⁵ mod 4
+        6 always gives remainder 2 when divided by 4
+        So 6⁵ mod 4 = 2⁵ mod 4
+        But wait: 6 mod 4 = 2
+        Any power of 6 mod 4 = 0 (for power ≥ 2)
+        So 6⁵ mod 4 = 0
+Step 3: Remainder 0 → position 4 = 1
+
+Answer: 1
+
+
+EXAMPLE 2: Find unit digit of 3^(4^5)
+
+Step 1: Cycle of 3 = 4
+Step 2: Find 4⁵ mod 4
+        4⁵ is divisible by 4
+        So 4⁵ mod 4 = 0
+Step 3: Remainder 0 → position 4 = 1
+
+Answer: 1
+
+
+EXAMPLE 3: Find unit digit of 2^(3^4)
+
+Step 1: Cycle of 2 = 4
+Step 2: 3⁴ = 81
+        81 mod 4 = 1
+Step 3: Position 1 = 2
+
+Answer: 2
+
+
+GENERAL RULE FOR POWER TOWERS:
+-------------------------------
+For finding unit digit of a^(b^c):
+
+1. Find cycle length of 'a' = n
+2. Calculate b^c mod n
+3. Use remainder as position in cycle
+4. If remainder = 0, use position n
+
+
+================================================================================
+CYCLICITY IN MULTIPLICATION
+================================================================================
+
+RULE:
+-----
+Unit digit of product = Unit digit of (product of unit digits)
+
+Example: Find unit digit of 23 × 47 × 89
+
+Unit digits: 3 × 7 × 9
+= 21 × 9 (unit of 21 = 1)
+= 1 × 9 = 9
+
+Answer: 9
+
+
+FOR LARGE PRODUCTS:
+-------------------
+Example: Unit digit of 12 × 23 × 34 × 45 × 56 × 67 × 78 × 89
+
+Unit digits: 2 × 3 × 4 × 5 × 6 × 7 × 8 × 9
+
+When multiplying, if ANY factor has unit 0, result = 0
+If we have 5 × even number, unit digit = 0
+
+Here: 5 × 6 = 30 (contains 0)
+So final unit digit = 0
+
+Answer: 0
+
+
+SHORTCUT:
+---------
+✓ If product contains 5 and any even number → unit = 0
+✓ If product contains 0 → unit = 0
+✓ Otherwise, multiply unit digits step by step
+
+
+================================================================================
+SPECIAL CYCLICITY PATTERNS
+================================================================================
+
+PATTERN 1: Numbers ending in 11
+--------------------------------
+11¹ = 11
+11² = 121 → 21
+11³ = 1331 → 31
+11⁴ = 14641 → 41
+
+Last 2 digits follow pattern: 11, 21, 31, 41, 51...
+But this breaks, so use modular arithmetic
+
+
+PATTERN 2: Numbers ending in 25
+--------------------------------
+25¹ = 25
+25² = 625 → 25
+25³ = 15625 → 25
+
+Last 2 digits always = 25 (for n ≥ 1)
+
+
+PATTERN 3: Numbers ending in 76
+--------------------------------
+76¹ = 76
+76² = 5776 → 76
+76³ = 438976 → 76
+
+Last 2 digits always = 76
+
+
+PATTERN 4: Perfect squares
+---------------------------
+Unit digit of n² can only be: 0, 1, 4, 5, 6, 9
+
+NEVER: 2, 3, 7, 8
+
+Mapping:
+0² → 0
+1² → 1
+2² → 4
+3² → 9
+4² → 6
+5² → 5
+6² → 6
+7² → 9
+8² → 4
+9² → 1
+
+
+PATTERN 5: Perfect cubes
+-------------------------
+Unit digit of n³ follows:
+
+0³ → 0
+1³ → 1
+2³ → 8
+3³ → 7
+4³ → 4
+5³ → 5
+6³ → 6
+7³ → 3
+8³ → 2
+9³ → 9
+
+
+================================================================================
+CYCLICITY WITH NEGATIVE POWERS
+================================================================================
+
+CONCEPT:
+--------
+For negative powers (fractions), unit digit concept doesn't apply directly.
+
+However, in modular arithmetic:
+a⁻¹ mod n = multiplicative inverse
+
+Example: 2⁻¹ mod 7
+Find x such that 2x ≡ 1 (mod 7)
+2 × 4 = 8 ≡ 1 (mod 7)
+So 2⁻¹ ≡ 4 (mod 7)
+
+
+================================================================================
+CYCLICITY IN COMPLEX EXPRESSIONS
+================================================================================
+
+EXAMPLE 1: (23⁴⁵ + 34⁵⁶) / 7 - unit digit of quotient
+-----------------------------------------------------------
+Not directly applicable. Find remainder first.
+
+
+EXAMPLE 2: Unit digit of 2¹ + 2² + 2³ + ... + 2¹⁰⁰
+----------------------------------------------------
+Unit digits: 2, 4, 8, 6, 2, 4, 8, 6... (cycle 4)
+
+100 terms ÷ 4 = 25 complete cycles
+Each cycle sum = 2+4+8+6 = 20 (unit = 0)
+
+25 × 20 = 500 (unit = 0)
+
+Answer: 0
+
+
+EXAMPLE 3: Unit digit of 1! + 2! + 3! + 4! + 5! + ... + 100!
+-------------------------------------------------------------
+1! = 1
+2! = 2
+3! = 6
+4! = 24 → 4
+5! onwards → 0
+
+Sum = 1+2+6+4+0+0+... = 13
+Unit = 3
+
+Answer: 3
+
+
+================================================================================
+ADVANCED SHORTCUTS
+================================================================================
+
+SHORTCUT 1: For a^a^a... (same base and exponent)
+--------------------------------------------------
+Example: 7^7^7
+
+Cycle of 7 = 4
+7 mod 4 = 3
+7^7 mod 4 = 3^7 mod 4
+3² = 9 mod 4 = 1
+3^7 = 3^6 × 3 = (3²)³ × 3 = 1 × 3 = 3
+
+Position 3 in cycle of 7 = 3
+
+Answer: 3
+
+
+SHORTCUT 2: Alternating operations
+-----------------------------------
+Example: 3⁵ - 2⁴ + 5³ (unit digit)
+
+3⁵: cycle 4, 5 mod 4 = 1 → 3
+2⁴: cycle 4, 4 mod 4 = 0 → 6
+5³: always 5
+
+3 - 6 + 5 = 2
+
+Answer: 2
+
+
+SHORTCUT 3: Binomial theorem for last digit
+--------------------------------------------
+(a+b)^n last digit = Use binomial only if small n
+
+For large n, better to find (a+b) first, then use cyclicity
+
+
+================================================================================
+COMMON MISTAKES TO AVOID
+================================================================================
+
+MISTAKE 1: Wrong reading of power tower
+❌ WRONG: 2^3^4 = (2³)⁴ = 8⁴
+✓ CORRECT: 2^3^4 = 2^(3⁴) = 2^81
+
+MISTAKE 2: Forgetting remainder 0 → last position
+❌ WRONG: Power 20, Cycle 4 → 20÷4=5 R0 → position 0
+✓ CORRECT: Remainder 0 → use position 4 (last)
+
+MISTAKE 3: Using cyclicity for base, not unit digit
+❌ WRONG: Cyclicity of 23 (thinking it has special pattern)
+✓ CORRECT: Use unit digit 3, cycle = 4
+
+MISTAKE 4: Negative results in unit digit
+❌ WRONG: 3 - 7 = -4 (unit = -4)
+✓ CORRECT: 3 - 7 = -4 → 10-4 = 6 (unit = 6)
+
+MISTAKE 5: Applying cyclicity to division
+❌ WRONG: Unit digit of 100/5 using cyclicity
+✓ CORRECT: Division gives 20, unit = 0
+
+
+================================================================================
+PRACTICE ZONE - CYCLICITY
+================================================================================
+
+LEVEL 1: BASIC CYCLICITY
+-------------------------
+
+QUESTION 1:
+Find the unit digit of 8¹⁷.
+
+QUESTION 2:
+Find the unit digit of 9⁹⁹.
+
+QUESTION 3:
+What is the unit digit of 4⁵⁰?
+
+QUESTION 4:
+Find the unit digit of 6¹⁰⁰⁰.
+
+QUESTION 5:
+What is the unit digit of 2²⁰²⁵?
+
+
+LEVEL 2: MULTIPLICATION & ADDITION
+-----------------------------------
+
+QUESTION 6:
+Find the unit digit of 13 × 27 × 49.
+
+QUESTION 7:
+What is the unit digit of 123 + 456 + 789?
+
+QUESTION 8:
+Find the unit digit of 7⁵ × 8⁶ × 9⁷.
+
+QUESTION 9:
+What is the unit digit of (12³⁴) × (23⁴⁵) × (34⁵⁶)?
+
+QUESTION 10:
+Find the unit digit of 11¹¹ + 22²² + 33³³.
+
+
+LEVEL 3: POWER TOWERS
+----------------------
+
+QUESTION 11:
+Find the unit digit of 2^(3^5).
+
+QUESTION 12:
+What is the unit digit of 7^(7^7)?
+
+QUESTION 13:
+Find the unit digit of 3^(4^5^6).
+
+QUESTION 14:
+What is the unit digit of 9^(8^7)?
+
+QUESTION 15:
+Find the unit digit of 2^(2^2^2).
+
+
+LEVEL 4: COMPLEX EXPRESSIONS
+-----------------------------
+
+QUESTION 16:
+Find the unit digit of 1! + 2! + 3! + ... + 50!.
+
+QUESTION 17:
+What is the unit digit of 2¹ + 2² + 2³ + ... + 2⁵⁰?
+
+QUESTION 18:
+Find the last 2 digits of 3⁴⁵.
+
+QUESTION 19:
+What is the unit digit of (7⁸⁹)²³⁴?
+
+QUESTION 20:
+Find the unit digit of 3⁹⁹⁹ - 2⁸⁸⁸ + 7⁷⁷⁷.
+
+
+LEVEL 5: ADVANCED PATTERNS
+---------------------------
+
+QUESTION 21:
+Find the unit digit of 123⁴⁵⁶.
+
+QUESTION 22:
+What is the last 2 digits of 7⁸⁰?
+
+QUESTION 23:
+Find the unit digit of √(123456789)² (if it's a perfect square).
+
+QUESTION 24:
+What is the unit digit of 13¹³ × 17¹⁷ × 19¹⁹?
+
+QUESTION 25:
+Find the unit digit of (2³ + 3⁴ + 4⁵)⁶⁷.
+
+
+================================================================================
+SOLUTIONS - PRACTICE ZONE
+================================================================================
+
+SOLUTION 1:
+-----------
+Unit digit = 8, Cycle = 4 (8,4,2,6)
+17 ÷ 4 = 4 R 1
+Position 1 = 8
+
+ANSWER: 8
+
+
+SOLUTION 2:
+-----------
+Unit digit = 9, Cycle = 2 (9,1)
+99 ÷ 2 = 49 R 1
+Position 1 = 9
+
+ANSWER: 9
+
+
+SOLUTION 3:
+-----------
+Unit digit = 4, Cycle = 2 (4,6)
+50 ÷ 2 = 25 R 0
+Remainder 0 → Position 2 = 6
+
+ANSWER: 6
+
+
+SOLUTION 4:
+-----------
+Unit digit = 6, Cycle = 1 (always 6)
+
+ANSWER: 6
+
+
+SOLUTION 5:
+-----------
+Unit digit = 2, Cycle = 4 (2,4,8,6)
+2025 ÷ 4 = 506 R 1
+Position 1 = 2
+
+ANSWER: 2
+
+
+SOLUTION 6:
+-----------
+Unit digits: 3 × 7 × 9
+= 21 × 9
+= (1) × 9 = 9
+
+ANSWER: 9
+
+
+SOLUTION 7:
+-----------
+Unit digits: 3 + 6 + 9 = 18
+Unit digit = 8
+
+ANSWER: 8
+
+
+SOLUTION 8:
+-----------
+7⁵: Cycle 4, 5÷4=1 R1 → 7
+8⁶: Cycle 4, 6÷4=1 R2 → 4
+9⁷: Cycle 2, 7÷2=3 R1 → 9
+
+Product: 7 × 4 × 9 = 252
+Unit = 2
+
+ANSWER: 2
+
+
+SOLUTION 9:
+-----------
+12³⁴: unit 2, cycle 4, 34÷4=8 R2 → 4
+23⁴⁵: unit 3, cycle 4, 45÷4=11 R1 → 3
+34⁵⁶: unit 4, cycle 2, 56÷2=28 R0 → 6
+
+Product: 4 × 3 × 6 = 72
+Unit = 2
+
+ANSWER: 2
+
+
+SOLUTION 10:
+------------
+11¹¹: unit 1, always 1
+22²²: unit 2, cycle 4, 22÷4=5 R2 → 4
+33³³: unit 3, cycle 4, 33÷4=8 R1 → 3
+
+Sum: 1 + 4 + 3 = 8
+
+ANSWER: 8
+
+
+SOLUTION 11:
+------------
+Cycle of 2 = 4
+3⁵ = 243
+243 mod 4 = 3
+Position 3 = 8
+
+ANSWER: 8
+
+
+SOLUTION 12:
+------------
+Cycle of 7 = 4
+7⁷ = huge number
+7 mod 4 = 3
+7⁷ mod 4 = 3⁷ mod 4
+3² = 9 mod 4 = 1
+3⁷ = 3⁶ × 3 = (3²)³ × 3 = 1 × 3 = 3
+
+Position 3 in cycle of 7 = 3
+
+ANSWER: 3
+
+
+SOLUTION 13:
+------------
+Work from inside out:
+5⁶ is huge, but we need it mod (cycle of 4) = mod 2
+5 is odd, so 5⁶ is odd
+5⁶ mod 2 = 1
+
+4¹ = 4
+4 mod 4 = 0
+
+Position 0 (last position 4) in cycle of 3 = 1
+
+ANSWER: 1
+
+
+SOLUTION 14:
+------------
+Cycle of 9 = 2
+8⁷ = huge (even or odd?)
+8 is even, 8⁷ is even
+
+Even power → position 2 = 1
+
+ANSWER: 1
+
+
+SOLUTION 15:
+------------
+2² = 4
+2⁴ = 16
+2¹⁶: cycle 4, 16÷4=4 R0 → position 4 = 6
+
+ANSWER: 6
+
+
+SOLUTION 16:
+------------
+1! = 1
+2! = 2
+3! = 6
+4! = 24 → 4
+5! onwards → 0
+
+Sum = 1+2+6+4 = 13
+Unit = 3
+
+ANSWER: 3
+
+
+SOLUTION 17:
+------------
+Pattern: 2,4,8,6,2,4,8,6... (cycle 4)
+50 terms = 12.5 cycles = 12 complete + 2 extra
+
+12 cycles: 12 × (2+4+8+6) = 12 × 20 = 240
+Extra 2: 2 + 4 = 6
+Total: 240 + 6 = 246
+Unit = 6
+
+ANSWER: 6
+
+
+SOLUTION 18:
+------------
+Using pattern or Euler's theorem:
+φ(100) = 40
+3⁴⁵ = 3⁴⁰ × 3⁵
+≡ 1 × 243 (mod 100)
+= 43
+
+ANSWER: 43
+
+
+SOLUTION 19:
+------------
+First find unit of 7⁸⁹:
+Cycle 4, 89÷4=22 R1 → 7
+
+Now 7²³⁴:
+Cycle 4, 234÷4=58 R2 → 9
+
+ANSWER: 9
+
+
+SOLUTION 20:
+------------
+3⁹⁹⁹: cycle 4, 999÷4=249 R3 → 7
+2⁸⁸⁸: cycle 4, 888÷4=222 R0 → 6
+7⁷⁷⁷: cycle 4, 777÷4=194 R1 → 7
+
+7 - 6 + 7 = 8
+
+ANSWER: 8
+
+
+SOLUTION 21:
+------------
+Unit digit = 3, Cycle = 4
+456 ÷ 4 = 114 R 0
+Position 4 = 1
+
+ANSWER: 1
+
+
+SOLUTION 22:
+------------
+Need pattern of 7^n mod 100
+Using Euler: φ(100) = 40
+7⁸⁰ = (7⁴⁰)²
+7⁴⁰ ≡ 1 (mod 100)
+7⁸⁰ ≡ 1 (mod 100)
+
+ANSWER: 01
+
+
+SOLUTION 23:
+------------
+If perfect square, √(n²) = n
+Last digit of 123456789 = 9
+
+ANSWER: 9
+
+
+SOLUTION 24:
+------------
+13¹³: unit 3, cycle 4, 13÷4=3 R1 → 3
+17¹⁷: unit 7, cycle 4, 17÷4=4 R1 → 7
+19¹⁹: unit 9, cycle 2, 19÷2=9 R1 → 9
+
+Product: 3 × 7 × 9 = 189
+Unit = 9
+
+ANSWER: 9
+
+
+SOLUTION 25:
+------------
+2³ = 8
+3⁴ = 81 → 1
+4⁵ = 1024 → 4
+
+Sum = 8 + 1 + 4 = 13 (unit = 3)
+
+Now 3⁶⁷:
+Cycle 4, 67÷4=16 R3 → 7
+
+ANSWER: 7
+
+
+================================================================================
+QUICK RECAP - CYCLICITY
+================================================================================
+
+CYCLE LENGTHS (MEMORIZE!):
+--------------------------
+1 → 0,1,5,6
+2 → 4,9
+4 → 2,3,7,8
+
+POWER TOWERS:
+-------------
+a^(b^c): Calculate b^c mod (cycle of a)
+
+MULTIPLICATION:
+---------------
+Unit of product = Unit of (product of units)
+
+LAST 2 DIGITS:
+--------------
+Use φ(100) = 40 or find pattern
+
+KEY RULES:
+----------
+✓ Remainder 0 → use last position
+✓ Read power towers right to left
+✓ 5 × even = 0 (unit digit)
+✓ Factorials ≥5! end in 0
+
+================================================================================
+END OF TOPIC 6: CYCLICITY OF NUMBERS
+================================================================================
+
+

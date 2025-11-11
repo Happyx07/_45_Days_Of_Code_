@@ -1,0 +1,605 @@
+============================================================
+Sliding Window & Two Pointer Guide (Java Focus)
+============================================================
+
+1. Introduction
+------------------------------------------------------------
+Definition:
+- Sliding Window: Track a dynamic range (window) within arrays or strings that moves by adding/removing elements at the ends.
+- Two Pointer: Use two indices that traverse the data structure from same or different directions to exploit order or constraints.
+
+When/Why:
+- Use when you need contiguous subarrays/substrings or ordered pair relationships with optimal O(n) passes instead of O(n^2) brute force.
+- Sliding window excels at contiguous segments with constraints (sum, distinct counts).
+- Two pointers shines in sorted arrays or when you can pivot around two ends to meet a target condition.
+
+Overlap and Differences:
+- Both use pointer indices; sliding window always maintains a contiguous segment and often moves left/right pointers independently.
+- Two pointer can be non-contiguous (e.g., pairs in sorted array) and typically moves pointers based on comparisons.
+
+Real-World Analogies:
+- Sliding window: reading text through a moving magnifier that shows only a few characters at a time.
+- Two pointer: two shoppers walking from opposite ends of an aisle, coordinating when to stop based on their combined budgets.
+
+
+2. Concept Visualization
+------------------------------------------------------------
+Key Ideas:
+- left pointer: start of the current window/segment.
+- right pointer: end of the current window/segment.
+- Expansion: move right pointer to include new elements.
+- Contraction: move left pointer to remove elements and restore validity.
+
+Fixed-Size Sliding Window:
+- Window length stays constant (e.g., sum of 5 consecutive elements).
+- Process: expand until size K, record result, shrink by moving left and expand again.
+
+Variable-Size Sliding Window:
+- Window length changes to satisfy constraints (e.g., longest substring with <= K distinct characters).
+- Maintain auxiliary structures (map/counters). Expand right; while window invalid, shrink from left.
+
+Dry Run Illustration (Fixed Window length 3):
+- array = [2, 1, 5, 1, 3]
+- start with left=0, add right until size==3 => window [2,1,5], compute sum.
+- Slide: subtract arr[left], increment left, add arr[right+1], repeat.
+
+Dry Run Illustration (Variable Window longest distinct 2):
+- string = "eceba", track map of frequencies.
+- Expand right, update map. If distinct > 2, move left and decrease counts until valid.
+
+
+3. Core Intuition
+------------------------------------------------------------
+- Replace O(n^2) nested loops with a single pass where each pointer moves at most n steps.
+- Maintain running metrics: sums for numeric windows, frequency maps for character problems, or counters tracking remaining budget (e.g., flips allowed).
+- Valid Window Logic: Expand until constraint breaks, shrink until restored; capture best measurements along the way.
+- Two pointer optimization: Use sorted order or monotonic relationships to discard impossible combinations without full scan.
+
+
+4. Learning Path
+------------------------------------------------------------
+Phase 1 — Easy:
+1. Pair Sum in Sorted Array (Two Pointer)
+2. Move Zeroes (Two Pointer same direction)
+3. Squares of a Sorted Array (Opposite-end Two Pointer)
+4. Maximum Sum Subarray of Size K (Fixed Window)
+5. Count Occurrences of Anagrams (Variable Window)
+
+Phase 2 — Intermediate:
+1. Longest Substring Without Repeating Characters
+2. Minimum Size Subarray Sum
+3. Max Consecutive Ones III
+4. Longest Repeating Character Replacement
+5. Fruits Into Baskets
+
+Phase 3 — Advanced:
+1. Sliding Window Maximum (Deque aided)
+2. Minimum Window Substring
+3. Substring with Concatenation of All Words
+4. Container With Most Water
+5. Trapping Rain Water
+
+
+5. Problem Walkthroughs
+------------------------------------------------------------
+--- Phase 1 ---
+
+Problem Name: Pair Sum in Sorted Array
+Pattern Type: Two Pointer (opposite ends)
+Intuition: Sorted order lets us adjust sum by moving pointers inward based on comparison to target.
+Approach:
+1. Place left at start, right at end.
+2. While left < right, compute sum.
+3. If sum equals target, return indices; if sum < target, move left++; else move right--.
+4. Stop when pointers cross.
+Java Code:
+```java
+public int[] twoSumSorted(int[] nums, int target) {
+    int left = 0, right = nums.length - 1;
+    while (left < right) {
+        int sum = nums[left] + nums[right];
+        if (sum == target) return new int[]{left, right};
+        if (sum < target) {
+            left++; // need larger sum
+        } else {
+            right--; // need smaller sum
+        }
+    }
+    return new int[]{-1, -1};
+}
+```
+Complexity: O(n) time, O(1) space.
+Dry Run: nums = [1,2,3,4,6], target=6 -> start (1,6)=7>6 -> right-- to 4 -> (1,4)=5<6 -> left++ to 2 -> (2,4)=6 return (1,3).
+
+Problem Name: Move Zeroes
+Pattern Type: Two Pointer (same direction)
+Intuition: Keep a left pointer marking position for next non-zero; sweep right pointer through array.
+Approach:
+1. left=0 scans destination.
+2. For each right element: if non-zero, swap with nums[left], increment left.
+3. Zeros automatically pushed to end.
+Java Code:
+```java
+public void moveZeroes(int[] nums) {
+    int left = 0;
+    for (int right = 0; right < nums.length; right++) {
+        if (nums[right] != 0) {
+            int tmp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = tmp;
+            left++;
+        }
+    }
+}
+```
+Complexity: O(n) time, O(1) space.
+Dry Run: [0,1,0,3,12] -> swap index1 -> [1,0,0,3,12] -> swap index3 -> [1,3,0,0,12] -> swap index4 -> [1,3,12,0,0].
+
+Problem Name: Squares of a Sorted Array
+Pattern Type: Two Pointer (opposite ends)
+Intuition: Largest squares come from the extreme absolute values; fill result from end backwards.
+Approach:
+1. left=0, right=n-1, idx=n-1.
+2. Compare |nums[left]| and |nums[right]|.
+3. Place larger square at result[idx], move respective pointer, decrement idx.
+Java Code:
+```java
+public int[] sortedSquares(int[] nums) {
+    int n = nums.length;
+    int[] res = new int[n];
+    int left = 0, right = n - 1, idx = n - 1;
+    while (left <= right) {
+        int leftSq = nums[left] * nums[left];
+        int rightSq = nums[right] * nums[right];
+        if (leftSq > rightSq) {
+            res[idx--] = leftSq;
+            left++;
+        } else {
+            res[idx--] = rightSq;
+            right--;
+        }
+    }
+    return res;
+}
+```
+Complexity: O(n) time, O(n) space for result.
+Dry Run: nums = [-4,-1,0,3,10] -> place 100,16,9,1,0 into res.
+
+Problem Name: Maximum Sum Subarray of Size K
+Pattern Type: Sliding Window (fixed size)
+Intuition: Maintain sum of last K elements; update by removing leftmost and adding new element.
+Approach:
+1. Compute initial sum of first K elements.
+2. Slide window: subtract nums[left], increment left, add nums[right].
+3. Track max sum.
+Java Code:
+```java
+public int maxSumSubarraySizeK(int[] nums, int k) {
+    int windowSum = 0;
+    for (int i = 0; i < k; i++) windowSum += nums[i];
+    int maxSum = windowSum;
+    for (int right = k; right < nums.length; right++) {
+        windowSum += nums[right] - nums[right - k];
+        if (windowSum > maxSum) maxSum = windowSum;
+    }
+    return maxSum;
+}
+```
+Complexity: O(n) time, O(1) space.
+Dry Run: nums=[2,1,5,1,3,2], k=3 -> sums: 8,7,9 -> max=9.
+
+Problem Name: Count Occurrences of Anagrams (Count Anagram Substrings)
+Pattern Type: Sliding Window (variable size with fixed length constraint)
+Intuition: Keep frequency map of target string and sliding window of same length; match when counts align.
+Approach:
+1. Prepare freq arrays of size 26 (or map) for pattern.
+2. Expand right; update window count.
+3. When window size equals pattern length, compare counts, record match, then shrink by removing left char.
+Java Code:
+```java
+public int countAnagrams(String s, String p) {
+    if (p.length() > s.length()) return 0;
+    int[] target = new int[26];
+    for (char c : p.toCharArray()) target[c - 'a']++;
+    int[] window = new int[26];
+    int match = 0;
+    int k = p.length();
+    for (int right = 0; right < s.length(); right++) {
+        window[s.charAt(right) - 'a']++;
+        if (right >= k) {
+            window[s.charAt(right - k) - 'a']--;
+        }
+        if (right >= k - 1 && matches(window, target)) {
+            match++;
+        }
+    }
+    return match;
+}
+
+private boolean matches(int[] a, int[] b) {
+    for (int i = 0; i < 26; i++) {
+        if (a[i] != b[i]) return false;
+    }
+    return true;
+}
+```
+Complexity: O(n * alphabet) time, O(1) space (fixed alphabet).
+Dry Run: s="cbaebabacd", p="abc" -> windows "cba","bae","aeb" etc -> count=2.
+
+--- Phase 2 ---
+
+Problem Name: Longest Substring Without Repeating Characters
+Pattern Type: Sliding Window (variable size)
+Intuition: Use map to track last-seen index; shrink window when duplicate enters.
+Approach:
+1. Maintain left pointer; for each char, update left to max(left, lastIndex+1).
+2. Record length as right - left + 1.
+Java Code:
+```java
+public int lengthOfLongestSubstring(String s) {
+    Map<Character, Integer> lastSeen = new HashMap<>();
+    int left = 0, best = 0;
+    for (int right = 0; right < s.length(); right++) {
+        char c = s.charAt(right);
+        if (lastSeen.containsKey(c) && lastSeen.get(c) >= left) {
+            left = lastSeen.get(c) + 1; // shrink past duplicate
+        }
+        lastSeen.put(c, right);
+        best = Math.max(best, right - left + 1);
+    }
+    return best;
+}
+```
+Complexity: O(n) time, O(min(n, alphabet)) space.
+Dry Run: "abcabcbb" -> best lengths 3, keep left adjusting.
+
+Problem Name: Minimum Size Subarray Sum
+Pattern Type: Sliding Window (variable size)
+Intuition: Expand until sum >= target; shrink from left to minimize length.
+Approach:
+1. left=0, sum=0, best=n+1.
+2. For each right, add nums[right].
+3. While sum >= target, update best, subtract nums[left], left++.
+4. Return best or 0 if unchanged.
+Java Code:
+```java
+public int minSubArrayLen(int target, int[] nums) {
+    int left = 0, sum = 0, best = Integer.MAX_VALUE;
+    for (int right = 0; right < nums.length; right++) {
+        sum += nums[right];
+        while (sum >= target) {
+            best = Math.min(best, right - left + 1);
+            sum -= nums[left++];
+        }
+    }
+    return best == Integer.MAX_VALUE ? 0 : best;
+}
+```
+Complexity: O(n) time, O(1) space.
+Dry Run: nums=[2,3,1,2,4,3], target=7 -> best=2 (subarray [4,3]).
+
+Problem Name: Max Consecutive Ones III
+Pattern Type: Sliding Window (variable size with budget)
+Intuition: Track number of zero flips used; shrink when exceeding k.
+Approach:
+1. left=0, zeros=0, best=0.
+2. For each right, increment zeros if nums[right]==0.
+3. While zeros>k, move left and decrement zeros when leaving zero.
+4. Update best length.
+Java Code:
+```java
+public int longestOnes(int[] nums, int k) {
+    int left = 0, zeros = 0, best = 0;
+    for (int right = 0; right < nums.length; right++) {
+        if (nums[right] == 0) zeros++;
+        while (zeros > k) {
+            if (nums[left++] == 0) {
+                zeros--;
+            }
+        }
+        best = Math.max(best, right - left + 1);
+    }
+    return best;
+}
+```
+Complexity: O(n) time, O(1) space.
+Dry Run: nums=[1,1,1,0,0,0,1,1,1,1,0], k=2 -> best=6.
+
+Problem Name: Longest Repeating Character Replacement
+Pattern Type: Sliding Window (variable size tracking max frequency)
+Intuition: Window valid if window length - maxFreq <= k (replace others to dominant char).
+Approach:
+1. Use count array of size 26.
+2. Track maxFreq within window.
+3. If window length - maxFreq > k, shrink from left.
+4. Update best length.
+Java Code:
+```java
+public int characterReplacement(String s, int k) {
+    int[] freq = new int[26];
+    int left = 0, best = 0, maxFreq = 0;
+    for (int right = 0; right < s.length(); right++) {
+        int idx = s.charAt(right) - 'A';
+        freq[idx]++;
+        maxFreq = Math.max(maxFreq, freq[idx]);
+        while (right - left + 1 - maxFreq > k) {
+            freq[s.charAt(left) - 'A']--;
+            left++;
+        }
+        best = Math.max(best, right - left + 1);
+    }
+    return best;
+}
+```
+Complexity: O(n) time, O(1) space (alphabet size).
+Dry Run: s="AABABBA", k=1 -> best=4.
+
+Problem Name: Fruits Into Baskets
+Pattern Type: Sliding Window (variable size, at most K distinct where K=2)
+Intuition: Keep counts of fruit types while ensuring at most two baskets.
+Approach:
+1. Use map counter for fruits.
+2. Expand right, increment count.
+3. While map size>2, decrement at left and remove zero entries.
+4. Update max length.
+Java Code:
+```java
+public int totalFruit(int[] fruits) {
+    Map<Integer, Integer> basket = new HashMap<>();
+    int left = 0, best = 0;
+    for (int right = 0; right < fruits.length; right++) {
+        basket.merge(fruits[right], 1, Integer::sum);
+        while (basket.size() > 2) {
+            int leftFruit = fruits[left++];
+            basket.merge(leftFruit, -1, Integer::sum);
+            if (basket.get(leftFruit) == 0) basket.remove(leftFruit);
+        }
+        best = Math.max(best, right - left + 1);
+    }
+    return best;
+}
+```
+Complexity: O(n) time, O(1) space (max 3 entries).
+Dry Run: [1,2,1,2,3] -> best window length 4 (1,2,1,2).
+
+--- Phase 3 ---
+
+Problem Name: Sliding Window Maximum
+Pattern Type: Sliding Window (fixed size with deque optimization)
+Intuition: Use deque to keep indices of elements in decreasing order; front always max.
+Approach:
+1. Iterate right index.
+2. Pop smaller values from deque tail; push current index.
+3. Remove head if outside window (i <= right - k).
+4. When right >= k-1, record nums[deque.peekFirst()].
+Java Code:
+```java
+public int[] maxSlidingWindow(int[] nums, int k) {
+    Deque<Integer> dq = new ArrayDeque<>();
+    int n = nums.length;
+    int[] res = new int[n - k + 1];
+    for (int right = 0; right < n; right++) {
+        while (!dq.isEmpty() && nums[dq.peekLast()] <= nums[right]) {
+            dq.removeLast();
+        }
+        dq.addLast(right);
+        if (dq.peekFirst() <= right - k) {
+            dq.removeFirst();
+        }
+        if (right >= k - 1) {
+            res[right - k + 1] = nums[dq.peekFirst()];
+        }
+    }
+    return res;
+}
+```
+Complexity: O(n) time, O(k) space.
+Dry Run: nums=[1,3,-1,-3,5,3,6,7], k=3 -> outputs [3,3,5,5,6,7].
+
+Problem Name: Minimum Window Substring
+Pattern Type: Sliding Window (variable size with required counts)
+Intuition: Expand to cover all required characters; shrink to find minimal window.
+Approach:
+1. Build need map of target string.
+2. Expand right, decrement need count, track matches when count >= 0.
+3. When all characters satisfied, shrink left while preserving validity.
+4. Record smallest window.
+Java Code:
+```java
+public String minWindow(String s, String t) {
+    if (t.length() > s.length()) return "";
+    int[] need = new int[128];
+    int required = t.length();
+    for (char c : t.toCharArray()) need[c]++;
+    int left = 0, minLen = Integer.MAX_VALUE, start = 0;
+    for (int right = 0; right < s.length(); right++) {
+        if (need[s.charAt(right)]-- > 0) required--;
+        while (required == 0) {
+            if (right - left + 1 < minLen) {
+                minLen = right - left + 1;
+                start = left;
+            }
+            if (++need[s.charAt(left++)] > 0) required++;
+        }
+    }
+    return minLen == Integer.MAX_VALUE ? "" : s.substring(start, start + minLen);
+}
+```
+Complexity: O(n) time, O(1) space (ASCII).
+Dry Run: s="ADOBECODEBANC", t="ABC" -> answer "BANC".
+
+Problem Name: Substring with Concatenation of All Words
+Pattern Type: Sliding Window (fixed size segments with frequency map)
+Intuition: Window size equals total length of all words; slide by word length using multiple offsets.
+Approach:
+1. wordLen = words[0].length(), totalLen = wordLen * word count.
+2. Build target map of word counts.
+3. For offset 0..wordLen-1, run sliding window stepping by wordLen, maintaining counts.
+4. When counts match target, record start index.
+Java Code:
+```java
+public List<Integer> findSubstring(String s, String[] words) {
+    List<Integer> res = new ArrayList<>();
+    if (words.length == 0) return res;
+    int wordLen = words[0].length();
+    int totalLen = wordLen * words.length;
+    Map<String, Integer> target = new HashMap<>();
+    for (String w : words) target.merge(w, 1, Integer::sum);
+    for (int offset = 0; offset < wordLen; offset++) {
+        Map<String, Integer> window = new HashMap<>();
+        int left = offset, count = 0;
+        for (int right = offset; right + wordLen <= s.length(); right += wordLen) {
+            String word = s.substring(right, right + wordLen);
+            if (!target.containsKey(word)) {
+                window.clear();
+                count = 0;
+                left = right + wordLen;
+                continue;
+            }
+            window.merge(word, 1, Integer::sum);
+            count++;
+            while (window.get(word) > target.get(word)) {
+                String leftWord = s.substring(left, left + wordLen);
+                window.merge(leftWord, -1, Integer::sum);
+                if (window.get(leftWord) == 0) window.remove(leftWord);
+                left += wordLen;
+                count--;
+            }
+            if (count == words.length) {
+                res.add(left);
+            }
+        }
+    }
+    return res;
+}
+```
+Complexity: O(n * wordLen) time, O(number of words) space.
+Dry Run: s="barfoothefoobarman", words=["foo","bar"] -> indices [0,9].
+
+Problem Name: Container With Most Water
+Pattern Type: Two Pointer (opposite ends with area calculation)
+Intuition: Area determined by shorter line; move pointer at shorter height to seek taller boundary.
+Approach:
+1. left=0, right=n-1, best=0.
+2. Compute area = min(height[left],height[right]) * (right-left).
+3. Update best; move pointer at shorter height inward.
+4. Continue until pointers meet.
+Java Code:
+```java
+public int maxArea(int[] height) {
+    int left = 0, right = height.length - 1;
+    int best = 0;
+    while (left < right) {
+        int h = Math.min(height[left], height[right]);
+        int area = h * (right - left);
+        if (area > best) best = area;
+        if (height[left] < height[right]) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+    return best;
+}
+```
+Complexity: O(n) time, O(1) space.
+Dry Run: heights=[1,8,6,2,5,4,8,3,7] -> best area 49 using lines 8 and 7.
+
+Problem Name: Trapping Rain Water
+Pattern Type: Two Pointer (opposite ends with prefix maxima)
+Intuition: Track max left/right boundaries; water level limited by smaller boundary.
+Approach:
+1. left=0, right=n-1, leftMax=0, rightMax=0, water=0.
+2. Compare heights[left] and heights[right].
+3. Move lower side pointer inward, update max, add trapped water (max - current height).
+Java Code:
+```java
+public int trap(int[] height) {
+    int left = 0, right = height.length - 1;
+    int leftMax = 0, rightMax = 0, water = 0;
+    while (left < right) {
+        if (height[left] <= height[right]) {
+            leftMax = Math.max(leftMax, height[left]);
+            water += leftMax - height[left];
+            left++;
+        } else {
+            rightMax = Math.max(rightMax, height[right]);
+            water += rightMax - height[right];
+            right--;
+        }
+    }
+    return water;
+}
+```
+Complexity: O(n) time, O(1) space.
+Dry Run: height=[0,1,0,2,1,0,1,3,2,1,2,1] -> water=6.
+
+
+6. Bonus Section
+------------------------------------------------------------
+Common Mistakes:
+- Forgetting to shrink while loops when window invalid, causing incorrect results or infinite loops.
+- Off-by-one errors when computing window size (right - left + 1 vs right - left).
+- Failing to update auxiliary counts when moving left pointer.
+- Not handling edge cases like empty input or window size larger than array length.
+- Reusing frequency arrays without resetting between test cases.
+
+Recognition Tips:
+- Need longest/shortest substring/subarray with constraints? -> sliding window.
+- Array sorted and you need pair/triplet sums or boundary optimization? -> two pointer.
+- Tracking at most K distinct or limited replacements -> variable window with map.
+- Questions asking for number of contiguous segments meeting criteria -> sliding window.
+- Problems involving extremes (max area, trapped water) on sorted or index-ordered data -> two pointer.
+
+Cheat Sheet Templates:
+- Fixed Window (sum/count):
+```java
+int windowSum = 0;
+for (int i = 0; i < k; i++) windowSum += nums[i];
+for (int right = k; right < nums.length; right++) {
+    windowSum += nums[right] - nums[right - k];
+    // update answer here
+}
+```
+
+- Variable Window (at most constraint):
+```java
+int left = 0;
+Map<Character, Integer> count = new HashMap<>();
+for (int right = 0; right < s.length(); right++) {
+    count.merge(s.charAt(right), 1, Integer::sum);
+    while (!isValid(count)) {
+        count.merge(s.charAt(left), -1, Integer::sum);
+        if (count.get(s.charAt(left)) == 0) count.remove(s.charAt(left));
+        left++;
+    }
+    // update answer using window [left, right]
+}
+```
+
+- Two Pointer Opposite Ends (sorted arrays):
+```java
+int left = 0, right = nums.length - 1;
+while (left < right) {
+    int sum = nums[left] + nums[right];
+    if (sum == target) return true;
+    if (sum < target) left++;
+    else right--;
+}
+```
+
+- Two Pointer Same Direction (in-place partitioning):
+```java
+int slow = 0;
+for (int fast = 0; fast < nums.length; fast++) {
+    if (condition(nums[fast])) {
+        swap(nums, slow, fast);
+        slow++;
+    }
+}
+```
+
+Use these as scaffolds and adapt the condition/validity checks for each problem.
+
+------------------------------------------------------------
+Finished: You now have a roadmap from fundamentals to advanced mastery of sliding window and two pointer strategies in Java. Practice iteratively, revisit the dry runs, and internalize the intuition behind window validity and pointer movement.
